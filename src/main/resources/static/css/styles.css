@@ -1,0 +1,12 @@
+body {
+    font-family: sans-serif;
+    background-color: #fcfc03;
+
+}
+
+nav {
+    display: block;
+    font-size: 20px;
+    padding: 20px;
+    text-align: center;
+}
