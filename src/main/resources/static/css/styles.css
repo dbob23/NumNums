@@ -4,9 +4,30 @@ body {
 
 }
 
-nav {
+nav ul {
+    background-color: #333;
+    list-style-type: none;
+    margin: 14px;
+    padding: 0;
+    overflow: hidden;
+
+}
+
+
+nav li {
+    float: left;
+    margin: 14px;
+    color: red;
+
+}
+
+nav li a {
     display: block;
-    font-size: 20px;
-    padding: 20px;
-    text-align: center;
+    color: white;
+    float: right;
+    padding: 14px 16px;
+}
+
+nav li a:hover {
+    background-color: grey;
 }
