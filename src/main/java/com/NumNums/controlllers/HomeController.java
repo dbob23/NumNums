@@ -5,8 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-//Hello, Jose!
-
+//Woo hoo! Good times with Git!
 
 @Controller
 @RequestMapping("NumNums")
