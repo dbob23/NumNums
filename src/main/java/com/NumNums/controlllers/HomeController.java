@@ -17,8 +17,8 @@ public class HomeController {
 
 
     @RequestMapping(value="", method = RequestMethod.GET)
-    public String index(Model model){
-
+    public String index(@ModelAttribute("aSearch") @Valid SearchDetails aSearch, Errors errors, Model model){
+        model.addAttribute("aSearch",new SearchDetails());
         model.addAttribute("title", "NumNums!");
         return "home/index";
     }
@@ -27,7 +27,6 @@ public class HomeController {
     public String processZipCode(@ModelAttribute("aSearch") @Valid SearchDetails aSearch, Errors errors, Model model){
         if (errors.hasErrors()) {
             model.addAttribute("title", "NumNums!");
-            model.addAttribute("aSearch", new SearchDetails());
             return "home/index";
         }
 

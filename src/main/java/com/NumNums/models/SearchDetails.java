@@ -7,8 +7,8 @@ import javax.validation.constraints.Pattern;
 
 public class SearchDetails {
 
-    @NotNull(message = "Please enter your zip code.")
-    @NotBlank(message = "Please enter your zip code.")
+    @NotNull(message = "Please enter a valid zip code.")
+    @NotBlank(message = "Please enter a valid zip code.")
     @Pattern(regexp = "^[0-9]{5}(?:-[0-9]{4})?$", message = "You entered an invalid zip code.")
     private String zipCode;
 
