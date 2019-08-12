@@ -4,18 +4,17 @@ package com.NumNums.controlllers;
 import com.NumNums.models.SearchDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
-import java.io.IOException;
 
 
 @Controller
 @RequestMapping("NumNums")
 public class HomeController {
+
 
     @RequestMapping(value="", method = RequestMethod.GET)
     public String index(Model model){
@@ -25,18 +24,16 @@ public class HomeController {
     }
 
     @RequestMapping(value="", method = RequestMethod.POST)
-    public String processZipCode(@ModelAttribute @Valid  SearchDetails aSearch, Model model, Errors errors) {
-
+    public String processZipCode(@ModelAttribute("aSearch") @Valid SearchDetails aSearch, Errors errors, Model model){
         if (errors.hasErrors()) {
             model.addAttribute("title", "NumNums!");
-            model.addAttribute( "aSearch", new SearchDetails());
+            model.addAttribute("aSearch", new SearchDetails());
             return "home/index";
         }
 
 
         model.addAttribute("title", "NumNums!");
-        model.addAttribute( "aSearch", new SearchDetails());
-
+        model.addAttribute("aSearch", new SearchDetails());
 //        test
 
         return "home/test";
