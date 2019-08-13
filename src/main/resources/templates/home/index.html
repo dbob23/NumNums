@@ -4,13 +4,25 @@
 <body class="container">
 <nav th:replace="fragments :: navigation"></nav>
 <h2>Welcome to NumNums! We're going to help you find something good to eat.</h2>
-<form method="post" style="max-width:120px;" th:object="${aSearch}" >
+<form method="post" style="max-width:300px;" th:object="${aSearch}">
     <div class="form-group">
         <label th:for="zipCode">Zip Code</label>
         <input class="form-control" type="text" th:field="*{zipCode}"/>
         <span class="error" th:errors="*{zipCode}"></span>
     </div>
-    <input type="submit" value="Submit"/>
+    <div class="dropdown">
+        <p>Search Distance in Miles</p>
+        <select name="distance" th:field="*{distance}">
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+            <option value="25">25</option>
+        </select>
+        <br><br>
+    </div>
+    <input type="submit" value="Search"/>
+
 </form>
 </body>
 <footer th:replace="fragments ::footer"></footer>
