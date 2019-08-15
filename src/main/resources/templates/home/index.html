@@ -21,6 +21,17 @@
         </select>
         <br><br>
     </div>
+    <div class="checkbox">
+        <p>Please select your dining preferences. You may choose all that apply.</p>
+        <ul>
+            <li><input type="checkbox" name="choice" th:field="*{choices}" value="gluten-free"/>gluten-free<br></li>
+            <li><input type="checkbox" name="choice" th:field="*{choices}" value="lactose-free"/>lactose-free<br></li>
+            <li><input type="checkbox" name="choice" th:field="*{choices}" value="vegan"/>vegan<br></li>
+            <li><input type="checkbox" name="choice" th:field="*{choices}" value="vegetarian" />vegetarian<br></li>
+            <li><input type="checkbox" name="choice" th:field="*{choices}" value="non-vegetarian"/>non-vegetarian<br></li>
+        </ul>
+        <span class="error" th:errors="*{choices}"></span>
+    </div><br>
     <input type="submit" value="Search"/>
 
 </form>
