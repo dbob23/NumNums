@@ -32,10 +32,7 @@ public class HomeController {
 
 
         model.addAttribute("title", "NumNums!");
-        model.addAttribute("aSearch", new SearchDetails());
-//        test
-        System.out.println(aSearch);
-        return "home/test";
+        return "home/display";
     }
 
     }

@@ -2,7 +2,11 @@
 <html xmlns:="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
 <head th:replace="fragments :: head">
 </head>
-<body>
-<h1>It Works!</h1>
+<body class="container">
+<nav th:replace="fragments :: navigation"></nav>
+<h2>It Works!</h2>
+<div >
+    <p th:text="${aSearch}"></p>
+</div>
 </body>
-</html>git 
+</html>
