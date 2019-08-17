@@ -1,17 +1,13 @@
 package com.NumNums.models;
 
 
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class SearchDetails {
 
-//    @NotNull(message = "Please enter a valid zip code.")
-//    @NotBlank(message = "Zip code cannot be left blank")
     @Pattern(regexp = "^[0-9]{5}(?:-[0-9]{4})?$", message = "You must enter a valid zipcode. Please try again.")
     private String zipCode;
 
@@ -51,11 +47,11 @@ public class SearchDetails {
 
     @Override
     public String toString() {
-        return "SearchDetails{" +
+        return "SearchDetails: " +
                 "zipCode='" + zipCode + '\'' +
                 ", choices=" + choices +
                 ", distance=" + distance +
-                '}';
+                '.';
     }
 
 
