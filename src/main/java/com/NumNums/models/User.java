@@ -54,6 +54,7 @@ public class User {
     }
 
 
+
     public Integer getId() {
         return id;
     }
@@ -101,14 +102,10 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "User: " +
                 "id=" + id +
-                ", username='" + username + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", active=" + active +
-                ", roles=" + roles +
-                '}';
+                ", username= " + username + 
+                ", email= " + email;
     }
 }
 

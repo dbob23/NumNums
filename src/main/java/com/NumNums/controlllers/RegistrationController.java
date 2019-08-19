@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
+import java.util.HashSet;
 
 
 @Controller
@@ -26,7 +27,7 @@ public class RegistrationController {
 
         @RequestMapping(value="NumNums/registration", method = RequestMethod.GET)
         public String displayRegistrationForm(Model model) {
-            model.addAttribute("title", "NumNums!");
+            model.addAttribute("title", "Register");
             model.addAttribute(new User());
             return "login/registration";
 
@@ -35,21 +36,20 @@ public class RegistrationController {
     @RequestMapping(value="NumNums/registration", method = RequestMethod.POST)
     public String processRegisterationForm(@ModelAttribute("user") @Valid User user, Errors errors, Model model) {
         if (errors.hasErrors()) {
-            model.addAttribute("title", "NumNums!");
-            model.addAttribute(new User());
+            model.addAttribute("title", "Register");
             return "login/registration";
         }
 
         User userExists = userService.findUserByEmail(user.getEmail());
         if (userExists != null) {
-            model.addAttribute("username.error", "There is already a user with the email provided.");
-            return "redirect:";
+            model.addAttribute("error", "There is already a user with the email provided.");
+            return "login/registration";
         }
 
-        model.addAttribute("successMessage", "User has been registered successfully.");
-        model.addAttribute(new User());
         userService.saveUser(user);
-        return "login/registration";
+        model.addAttribute("user", user);
+        model.addAttribute("message", "You have successfully created a new user!");
+        return "admin/home";
     }
 }
 
