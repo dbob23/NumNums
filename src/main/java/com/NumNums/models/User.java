@@ -1,7 +1,6 @@
 package com.NumNums.models;
 
 import org.hibernate.validator.constraints.Length;
-//import javax.management.relation.Role;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
@@ -55,12 +54,9 @@ public class User {
     }
 
 
+
     public Integer getId() {
         return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getUsername() {
@@ -102,6 +98,14 @@ public class User {
 
     public void setRoles(HashSet<com.NumNums.models.Role> roles) {
         this.roles = roles;
+    }
+
+    @Override
+    public String toString() {
+        return "User: " +
+                "id=" + id +
+                ", username= " + username + 
+                ", email= " + email;
     }
 }
 

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments :: head">
+</head>
+<body class="container">
+<nav th:replace="fragments :: navigation"></nav>
+<h2>It Works!</h2>
+<div >
+    <p th:text="${message}"></p>
+    <p th:text="${user}"></p>
+</div>
+</body>
+</html>
