@@ -44,6 +44,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
+//            http
+//
+//                    .antMatchers("/**").permitAll();
+//        }
+
+//        http.httpBasic().disable();
+//
         http.
                 authorizeRequests()
                 .antMatchers("/NumNums").permitAll()
@@ -53,7 +60,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/NumNums/admin/**").hasAuthority("ADMIN").anyRequest()
                 .authenticated().and().csrf().disable().formLogin()
                 .loginPage("/NumNums/login").failureUrl("/NumNums/login?error=true")
-                .defaultSuccessUrl("/NumNums/admin/home")
+                .defaultSuccessUrl("/NumNums/display")
                 .usernameParameter("email")
                 .passwordParameter("password")
                 .and().logout()
@@ -69,6 +76,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         web.ignoring().antMatchers("/scripts/**");
         web.ignoring().antMatchers("/images/**");
     }
+
 
 
 }

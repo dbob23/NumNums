@@ -1,16 +1,17 @@
 package com.NumNums.controlllers;
 
 
+import com.NumNums.models.LogInUserObject;
 import com.NumNums.models.User;
 import com.NumNums.models.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 
@@ -21,22 +22,50 @@ public class LoginController {
     private UserService userService;
 
     @RequestMapping(value= "NumNums/login", method = RequestMethod.GET)
-    public String displayLoginForm(Model model) {
+    public String displayLoginForm(@ModelAttribute("aLogInUserObject") LogInUserObject aLogInUserObject, Model model) {
+        model.addAttribute("aLoginUserObject", new LogInUserObject());
         model.addAttribute("title", "Log In");
         return "login/login";
     }
 
     @RequestMapping(value = "NumNums/login", method = RequestMethod.POST)
-    public String processLoginForm(Model model) {
+    public String processLoginForm(@ModelAttribute("aLogInUserObject") LogInUserObject aLogInUserObject, Model model) {
 
 
+        User aUser = userService.findUserByEmail(aLogInUserObject.getEmail());
 
-            model.addAttribute("title", "Welcome");
-            return "admin/home";
+        if (aUser == null){
+            model.addAttribute("message", "You have entered an invalid email or password.");
+            return "login/login";
+        }
+        if ( !aUser.getPassword().equals(aLogInUserObject.getPassword())){
+            model.addAttribute("message", "You have entered an invalid email or password.");
+            return "login/login";
         }
 
+        aUser.setActive(2);
+        model.addAttribute("aLogInUserObject", new LogInUserObject());
+        model.addAttribute("title", "Welcome");
+        model.addAttribute("user", aUser);
+        model.addAttribute("message", "You are successfully logged in!");
+        return "home/display";
+       }
 
-        }
+//       tutorial controller
+
+//    @RequestMapping(value="NumNums/login", method = RequestMethod.GET)
+//    public ModelAndView login(){
+//        ModelAndView modelAndView = new ModelAndView();
+//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//        User user = userService.findUserByEmail(auth.getName());
+//        modelAndView.addObject("userName", "Welcome " + user.getUsername() + "  (" + user.getEmail() + ")");
+//        modelAndView.addObject("adminMessage","Content Available Only for Users with Admin Role");
+//        modelAndView.setViewName("admin/home");
+//        return modelAndView;
+//    }
+
+
+}
 
 
 
