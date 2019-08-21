@@ -31,7 +31,7 @@ public class LoginController {
     @RequestMapping(value = "NumNums/login", method = RequestMethod.POST)
     public String processLoginForm(@ModelAttribute("aLogInUserObject") LogInUserObject aLogInUserObject, Model model) {
 
-
+        model.addAttribute("aLogInUserObject", new LogInUserObject());
         User aUser = userService.findUserByEmail(aLogInUserObject.getEmail());
 
         if (aUser == null){
@@ -44,7 +44,6 @@ public class LoginController {
         }
 
         aUser.setActive(2);
-        model.addAttribute("aLogInUserObject", new LogInUserObject());
         model.addAttribute("title", "Welcome");
         model.addAttribute("user", aUser);
         model.addAttribute("message", "You are successfully logged in!");

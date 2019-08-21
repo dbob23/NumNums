@@ -31,6 +31,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private String rolesQuery;
 
     @Override
+    @Autowired
     protected void configure(AuthenticationManagerBuilder auth)
             throws Exception {
         auth.
@@ -39,6 +40,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authoritiesByUsernameQuery(rolesQuery)
                 .dataSource(dataSource)
                 .passwordEncoder(bCryptPasswordEncoder);
+
     }
 
     @Override
@@ -52,7 +54,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //        http.httpBasic().disable();
 //
         http.
-                authorizeRequests()
+                authorizeRequests().antMatchers("/").permitAll()
                 .antMatchers("/NumNums").permitAll()
                 .antMatchers("/NumNums/login").permitAll()
                 .antMatchers("/NumNums/registration").permitAll()

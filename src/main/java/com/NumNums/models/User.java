@@ -105,7 +105,8 @@ public class User {
         return "User: " +
                 "id=" + id +
                 ", username= " + username +
-                ", email= " + email;
+                ", email= " + email +
+                ", active status: " + active;
     }
 }
 
