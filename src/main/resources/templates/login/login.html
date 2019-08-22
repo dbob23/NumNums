@@ -8,7 +8,7 @@
     <form th:action="@{/NumNums/registration}" method="get">
         <button class="btn btn-md btn-warning btn-block" type="Submit">Don't have an account? Register here.</button>
     </form>
-<form th:action="@{/NumNums/login}" method="POST" th:object="${aLogInUserObject}" class="form-signin">
+<form th:action="@{/NumNums/login}" method="POST"  class="form-signin">
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
@@ -16,17 +16,17 @@
                 <br/>
                     <div class="form-group">
                         <div class="col-sm-9">
-                            <input type="text" id="email" name="email" th:field="*{email}"  th:placeholder="Email"
+                            <input type="text" id="email" name="email"   th:placeholder="Email"
                                 class="form-control" /> <br/>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-9">
                         <input type="password" th:placeholder="Password"
-                         id="password" name="password"  th:field="*{password}" class="form-control" /> <br />
+                         id="password" name="password"  class="form-control" /> <br />
                         </div>
                     </div>
-                    <div align="center" th:text="${message}" th:if="${param.error}">
+                    <div align="center"  th:if="${param.error}">
                     <p class="error">Email or Password invalid, please verify</p>
                     </div>
                     <div align="center"th:if="${param.logout}">
