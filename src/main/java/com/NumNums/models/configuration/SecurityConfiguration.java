@@ -31,6 +31,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private String rolesQuery;
 
     @Override
+    @Autowired
     protected void configure(AuthenticationManagerBuilder auth)
             throws Exception {
         auth.
@@ -39,13 +40,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authoritiesByUsernameQuery(rolesQuery)
                 .dataSource(dataSource)
                 .passwordEncoder(bCryptPasswordEncoder);
+
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
         http.
-                authorizeRequests()
+                authorizeRequests().antMatchers("/").permitAll()
                 .antMatchers("/NumNums").permitAll()
                 .antMatchers("/NumNums/login").permitAll()
                 .antMatchers("/NumNums/registration").permitAll()
@@ -53,12 +55,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/NumNums/admin/**").hasAuthority("ADMIN").anyRequest()
                 .authenticated().and().csrf().disable().formLogin()
                 .loginPage("/NumNums/login").failureUrl("/NumNums/login?error=true")
-                .defaultSuccessUrl("/NumNums/admin/home")
+                .defaultSuccessUrl("/NumNums/login")
                 .usernameParameter("email")
                 .passwordParameter("password")
                 .and().logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/NumNums/logout"))
-                .logoutSuccessUrl("/").and().exceptionHandling()
+                .logoutSuccessUrl("/NumNums/login?logout=true").and().exceptionHandling()
                 .accessDeniedPage("/NumNums/access-denied");
 
     }
@@ -69,6 +71,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         web.ignoring().antMatchers("/scripts/**");
         web.ignoring().antMatchers("/images/**");
     }
+
 
 
 }

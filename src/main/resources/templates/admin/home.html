@@ -4,6 +4,12 @@
 </head>
 <body class="container">
 <nav th:replace="fragments :: navigation"></nav>
+<div>
+<form th:action="@{/NumNums/logout}" method="get">
+    <button class="btn btn-md btn-warning btn-block" type="Logout">Logout</button>
+</form>
+
+</div>
 <h2>It Works!</h2>
 <div >
     <p th:text="${message}"></p>
