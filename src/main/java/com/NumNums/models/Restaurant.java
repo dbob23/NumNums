@@ -16,10 +16,8 @@ public class Restaurant {
     @Column(name = "restaurantId")
     private int id;
 
-//    @OneToMany(cascade = CascadeType.ALL)
-//    @JoinTable(name = "")
-    @Column(name = "userId")
-    private int userId;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private User user;
 
     @Column(name = "name")
     @NotEmpty(message = "Name field may not be left empty.")
@@ -51,9 +49,8 @@ public class Restaurant {
 
     public Restaurant() {}
 
-    public Restaurant (Integer id, Integer userId, String restaurantName, String webAddress, String streetAddress){
+    public Restaurant (Integer id, String restaurantName, String webAddress, String streetAddress){
         this.id = id;
-        this.userId = userId;
         this.restaurantName = restaurantName;
         this.webAddress = webAddress;
         this.streetAddress = streetAddress;
@@ -72,13 +69,6 @@ public class Restaurant {
         this.id = id;
     }
 
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
 
     public String getRestaurantName() {
         return restaurantName;

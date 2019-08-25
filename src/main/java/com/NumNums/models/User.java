@@ -4,7 +4,9 @@ import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 
@@ -16,6 +18,10 @@ public class User {
     @Id
     @Column(name = "user_id")
     private int id;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "restaurantId")
+    private List<Restaurant> restaurants = new ArrayList<>();
 
     @Column(unique = true)
     @NotEmpty(message = "Please provide your name.")
@@ -98,6 +104,14 @@ public class User {
 
     public void setRoles(HashSet<com.NumNums.models.Role> roles) {
         this.roles = roles;
+    }
+
+    public List<Restaurant> getRestaurants() {
+        return restaurants;
+    }
+
+    public void setRestaurants(List<Restaurant> restaurants) {
+        this.restaurants = restaurants;
     }
 
     @Override

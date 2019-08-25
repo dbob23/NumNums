@@ -35,3 +35,7 @@ nav li a:hover {
 .error {
     color: red;
 }
+.b {
+    text-align: center;
+    display: inline-block;
+}

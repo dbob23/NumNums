@@ -3,17 +3,50 @@
 <head th:replace="fragments :: head">
 </head>
 <body class="container">
-<nav th:replace="fragments :: navigation"></nav>
-<div>
-<form th:action="@{/NumNums/logout}" method="get">
-    <button class="btn btn-md btn-warning btn-block" type="Logout">Logout</button>
-</form>
+<nav>
+    <ul>
+        <li><h2>NumNums!</h2></li>
+        <li><a href="/NumNums">Search</a></li>
+        <li><a href="/NumNums/registration">Register</a></li>
+        <li><a href="/NumNums/login">Login</a></li>
+        <li><a href="/NumNums/about">About</a></li>
+        <li><a href="/NumNums/logout">Logout</a></li>
+    </ul>
+</nav>
 
-</div>
-<h2>It Works!</h2>
-<div >
+<div>
     <p th:text="${message}"></p>
     <p th:text="${user}"></p>
 </div>
+
+<div>
+    <b>You are logged in!</b>
+</div>
+<br/><br/>
+
+<div class="container">
+    <p th:unless="${restaurants} and ${restaurants.size()}"><i>You have not yet added a restaurant to NumNums!</i></p>
+
+    <table class="table">
+
+        <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Website</th>
+        </tr>
+
+        <tr th:each="restaurant : ${restaurants}">
+            <td th:text="${restaurant.restaurantName}"></td>
+            <td th:text="${restaurant.streetAddress}"></td>
+            <td th:href="${restaurant.webAddress}"></td>
+        </tr>
+    </table>
+</div>
+    <div>
+    <br/><br/>
+    <a class = "in text link" href="/admin/add">Add a restaurant</a>
+    <a class = "in text link" href="/admin/edit">Edit a restaurant</a>
+    </div>
+
 </body>
 </html>
