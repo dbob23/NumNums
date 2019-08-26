@@ -49,9 +49,10 @@ public class Restaurant {
 
     public Restaurant() {}
 
-    public Restaurant (Integer id, String restaurantName, String webAddress, String streetAddress){
+    public Restaurant (Integer id, User user, String restaurantName, String webAddress, String streetAddress){
         this.id = id;
         this.restaurantName = restaurantName;
+        this.user = user;
         this.webAddress = webAddress;
         this.streetAddress = streetAddress;
         this.glutenFree = false;
@@ -69,6 +70,13 @@ public class Restaurant {
         this.id = id;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public String getRestaurantName() {
         return restaurantName;

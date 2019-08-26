@@ -49,8 +49,9 @@ public class User {
     public User() {
     }
 
-    public User(Integer id, String username, String password, String email, Set roles) {
+    public User(Integer id, List<Restaurant> restaurants,String username, String password, String email, Set roles) {
         this.id = id;
+        this.restaurants = restaurants;
         this.username = username;
         this.password = password;
         this.email = email;
