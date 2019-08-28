@@ -39,14 +39,14 @@
             <td th:text="${restaurant.restaurantName}"></td>
             <td th:text="${restaurant.streetAddress}"></td>
             <td th:href="${restaurant.webAddress}"></td>
+            <td th:href="/admin/edit">Edit a restaurant</td>
         </tr>
     </table>
 </div>
     <div>
     <br/><br/>
     <a class = "in text link" href="/NumNums/add">Add a restaurant</a>
-    <a class = "in text link" href="/admin/edit">Edit a restaurant</a>
+<!--    <a class = "in text link" href="/admin/edit">Edit a restaurant</a>-->
     </div>
-
 </body>
 </html>

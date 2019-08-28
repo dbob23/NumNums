@@ -44,7 +44,7 @@ public class Restaurant {
 
     @Column(name = "zipCode")
     @Pattern(regexp = "^[0-9]{5}(?:-[0-9]{4})?$", message = "You must enter a valid zipcode. Please try again.")
-    @NotEmpty(message = "Please provide a valid zip code.")
+//    @NotEmpty(message = "Please provide a valid zip code.")
     private String zipCode;
 
 
