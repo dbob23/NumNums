@@ -39,25 +39,29 @@ public class RestaurantController {
 
     }
 
-    //    @RequestMapping(value="NumNums/add", method = RequestMethod.POST)
-//    public ModelAndView
+
     @RequestMapping(value = "NumNums/add", method = RequestMethod.POST)
     public ModelAndView addNewRestaurant(@Valid Restaurant restaurant, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
-        Restaurant restaurantExists = restaurantService.findRestaurantById(restaurant.getId());
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByEmail(auth.getName());
+        modelAndView.addObject("user", user);
+        Restaurant restaurantExists = restaurantService.findRestaurantByWebAddress(restaurant.getWebAddress());
         if (restaurantExists != null) {
-            bindingResult
-                    .rejectValue("restaurantName", "error.restaurant",
-                            "There is already a restaurant registered with the information provided");
-        }
-        if (bindingResult.hasErrors()) {
+            modelAndView.addObject("restaurantExistsMessage", "That restaurant already exists in our database.");
             modelAndView.setViewName("admin/add");
+//            bindingResult
+//                    .rejectValue("restaurantName", "error.restaurant",
+//                            "There is already a restaurant registered with the information provided");
+//        }
+//        if (bindingResult.hasErrors()) {
+//            modelAndView.setViewName("admin/add");
         } else {
+           // modelAndView.addObject("user", user);
+            restaurant.setUser(user);
             restaurantService.saveRestaurant(restaurant);
-            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-            User user = userService.findUserByEmail(auth.getName());
+            user.addRestaurant(restaurant);
             modelAndView.addObject("message", "A restaurant has been registered successfully");
-            modelAndView.addObject("user", user);
             modelAndView.setViewName("admin/home");
 
         }

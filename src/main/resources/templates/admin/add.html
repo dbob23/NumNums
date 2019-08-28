@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org" xmlns:name="http://www.w3.org/1999/xhtml">
 
 <head th:replace="fragments :: head">
 </head>
@@ -50,10 +50,31 @@
                         <input type="text" id="streetAddress" name="streetAddress" th:field="*{streetAddress}" class="form-control" /> <br />
                         <span class="error" th:errors="*{streetAddress}"></span>
                     </div>
+                </div>
                     <div class="form-group">
-                        <div class="col-sm-9">
-                            <input type="hidden" id="user" name="user" th:field="*{user}" th:value="${user}">
+                    <div class="col-sm-9">
+                        <label th:for="city">City</label>
+                        <input type="text" id="city" name="city" th:field="*{city}" class="form-control" /> <br />
+                        <span class="error" th:errors="*{city}"></span>
+                    </div>
+                    </div>
+                        <div class="form-group">
+                    <div class="col-sm-9">
+                        <label th:for="state">State</label>
+                        <input type="text" id="state" name="state" th:field="*{state}" class="form-control" /> <br />
+                        <span class="error" th:errors="*{state}"></span>
+                    </div>
                         </div>
+                            <div class="form-group">
+                            <div class="col-sm-9">
+                        <label th:for="zipCode">ZipCode</label>
+                        <input type="text" id="zipCode" name="zipCode" th:field="*{zipCode}" class="form-control" /> <br />
+                        <span class="error" th:errors="*{zipCode}"></span>
+                            </div>
+                            </div>
+
+                <input type="hidden" id="user"  th:field="*{user}" th:vslue="*{user}">
+
                 <div class="form-group">
                     <div class="col-sm-9">
                         <button class="btn btn-lg btn-primary btn-block" name="Add" value="Add" type="Submit" th:text="Add"></button>
@@ -63,10 +84,6 @@
 
         </div>
     </div>
-    </div>
-    </div>
-
-
 
 </form>
 

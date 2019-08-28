@@ -10,6 +10,9 @@
     </form>
 <form th:action="@{/NumNums/login}" method="POST"  class="form-signin">
     <div class="container">
+        <div align="center">
+            <p th:text="${registeredMessage}"></p>
+        </div>
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <h3 class="form-signin-heading" th:text="Welcome"></h3>

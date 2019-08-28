@@ -48,8 +48,8 @@ public class RegistrationController {
 
         userService.saveUser(user);
         model.addAttribute("user", user);
-        model.addAttribute("message", "You have successfully created a new user!");
-        return "admin/home";
+        model.addAttribute("registeredMessage", "You have successfully created a new user! Please log in.");
+        return "login/login";
     }
 }
 

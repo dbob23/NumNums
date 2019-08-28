@@ -6,6 +6,8 @@ import org.hibernate.validator.constraints.URL;
 import javax.persistence.*;
 import javax.validation.constraints.AssertFalse;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "restaurant")
@@ -32,6 +34,20 @@ public class Restaurant {
     @NotEmpty(message = "Please provide a street address.")
     private String streetAddress;
 
+    @Column(name = "city")
+    @NotEmpty(message = "Please provide a city.")
+    private String city;
+
+    @Column(name = "state")
+    @NotEmpty(message = "Please provide a state.")
+    private String state;
+
+    @Column(name = "zipCode")
+    @Pattern(regexp = "^[0-9]{5}(?:-[0-9]{4})?$", message = "You must enter a valid zipcode. Please try again.")
+    @NotEmpty(message = "Please provide a valid zip code.")
+    private String zipCode;
+
+
     @Column(name = "glutenFree")
     private boolean glutenFree;
 
@@ -47,14 +63,18 @@ public class Restaurant {
     @Column(name = "nonVegetarian")
     private boolean nonVegetarian;
 
-    public Restaurant() {}
+    public Restaurant() {
+    }
 
-    public Restaurant (Integer id, User user, String restaurantName, String webAddress, String streetAddress){
+    public Restaurant(Integer id, User user, String restaurantName, String webAddress, String streetAddress, String city, String state, String zipCode) {
         this.id = id;
         this.restaurantName = restaurantName;
         this.user = user;
         this.webAddress = webAddress;
         this.streetAddress = streetAddress;
+        this.city = city;
+        this.state = state;
+        this.zipCode = zipCode;
         this.glutenFree = false;
         this.lactoseFree = false;
         this.vegan = false;
@@ -102,6 +122,30 @@ public class Restaurant {
         this.streetAddress = streetAddress;
     }
 
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
+    }
+
     public boolean isGlutenFree() {
         return glutenFree;
     }
@@ -141,4 +185,15 @@ public class Restaurant {
     public void setNonVegetarian(boolean nonVegetarian) {
         this.nonVegetarian = nonVegetarian;
     }
+
+
+    @Override
+    public String toString() {
+        return "Restaurant" +
+                "id=" + id +
+                ", user=" + user +
+                ", restaurantName='" + restaurantName + '\'' +
+                ", webAddress='" + webAddress + '\'' ;
+    }
+
 }

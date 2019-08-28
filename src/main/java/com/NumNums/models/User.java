@@ -21,6 +21,7 @@ public class User {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "restaurantId")
+    @JoinTable(name = "restaurants", joinColumns = @JoinColumn(name= "user_id"), inverseJoinColumns = @JoinColumn(name = "restaurant_id"))
     private List<Restaurant> restaurants = new ArrayList<>();
 
     @Column(unique = true)
@@ -49,7 +50,7 @@ public class User {
     public User() {
     }
 
-    public User(Integer id, List<Restaurant> restaurants,String username, String password, String email, Set roles) {
+    public User(Integer id, List<Restaurant> restaurants, String username, String password, String email, Set roles) {
         this.id = id;
         this.restaurants = restaurants;
         this.username = username;
@@ -111,8 +112,12 @@ public class User {
         return restaurants;
     }
 
-    public void setRestaurants(List<Restaurant> restaurants) {
+    public void setRestaurants(ArrayList<Restaurant> restaurants) {
         this.restaurants = restaurants;
+    }
+
+    public void addRestaurant(Restaurant restaurant){
+        this.restaurants.add(restaurant);
     }
 
     @Override
