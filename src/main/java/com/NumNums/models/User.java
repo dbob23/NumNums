@@ -4,9 +4,7 @@ import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 
@@ -20,9 +18,7 @@ public class User {
     private int id;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "restaurantId")
-    @JoinTable(name = "restaurants", joinColumns = @JoinColumn(name= "user_id"), inverseJoinColumns = @JoinColumn(name = "restaurant_id"))
-    private List<Restaurant> restaurants = new ArrayList<>();
+    private Set<Restaurant> restaurants;
 
     @Column(unique = true)
     @NotEmpty(message = "Please provide your name.")
@@ -50,7 +46,7 @@ public class User {
     public User() {
     }
 
-    public User(Integer id, List<Restaurant> restaurants, String username, String password, String email, Set roles) {
+    public User(int id, Set<Restaurant> restaurants, String username, String password, String email, Set roles) {
         this.id = id;
         this.restaurants = restaurants;
         this.username = username;
@@ -63,7 +59,7 @@ public class User {
 
 
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
@@ -108,11 +104,11 @@ public class User {
         this.roles = roles;
     }
 
-    public List<Restaurant> getRestaurants() {
+    public Set<Restaurant> getRestaurants() {
         return restaurants;
     }
 
-    public void setRestaurants(ArrayList<Restaurant> restaurants) {
+    public void setRestaurants(HashSet<Restaurant> restaurants) {
         this.restaurants = restaurants;
     }
 

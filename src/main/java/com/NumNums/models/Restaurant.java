@@ -4,9 +4,7 @@ package com.NumNums.models;
 import org.hibernate.validator.constraints.URL;
 
 import javax.persistence.*;
-import javax.validation.constraints.AssertFalse;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 @Entity
@@ -15,7 +13,7 @@ public class Restaurant {
 
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
-    @Column(name = "restaurantId")
+    @Column(name = "restaurant_id")
     private int id;
 
     @ManyToOne(cascade = CascadeType.ALL)
@@ -66,7 +64,7 @@ public class Restaurant {
     public Restaurant() {
     }
 
-    public Restaurant(Integer id, User user, String restaurantName, String webAddress, String streetAddress, String city, String state, String zipCode) {
+    public Restaurant(int id, User user, String restaurantName, String webAddress, String streetAddress, String city, String state, String zipCode) {
         this.id = id;
         this.restaurantName = restaurantName;
         this.user = user;

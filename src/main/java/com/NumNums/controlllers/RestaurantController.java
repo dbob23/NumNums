@@ -46,14 +46,14 @@ public class RestaurantController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
         modelAndView.addObject("user", user);
-//        Restaurant restaurantExists = restaurantService.findRestaurantByWebAddress(restaurant.getWebAddress());
-//
-//        if (restaurantExists != null) {
-//            modelAndView.addObject("restaurantExistsMessage", "That restaurant already exists in our database.");
-//            modelAndView.setViewName("admin/add");
-//        }
-//        else
-//
+        Restaurant restaurantExists = restaurantService.findRestaurantByWebAddress(restaurant.getWebAddress());
+
+        if (restaurantExists != null) {
+            modelAndView.addObject("restaurantExistsMessage", "That restaurant already exists in our database.");
+            modelAndView.setViewName("admin/add");
+        }
+        else
+
         if (bindingResult.hasErrors()) {
             modelAndView.setViewName("admin/add");
         }
