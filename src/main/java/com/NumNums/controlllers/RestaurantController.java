@@ -46,7 +46,7 @@ public class RestaurantController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
         modelAndView.addObject("user", user);
-        Restaurant restaurantExists = restaurantService.findRestaurantByWebAddress(restaurant.getWebAddress());
+        Restaurant restaurantExists = restaurantService.findRestaurantByWebAddress(restaurant.getWebAddress().toLowerCase());
 
         if (restaurantExists != null) {
             modelAndView.addObject("restaurantExistsMessage", "That restaurant already exists in our database.");
