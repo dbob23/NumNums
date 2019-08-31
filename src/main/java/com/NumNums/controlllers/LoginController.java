@@ -25,9 +25,11 @@ import org.springframework.web.servlet.ModelAndView;
             if (user != null) {
                 modelAndView.addObject("user", "Welcome,  " + user.getUsername());
                 modelAndView.addObject("adminMessage", "Content Available Only for Users with Admin Role");
+                modelAndView.addObject("restaurants", user.getRestaurants());
                 modelAndView.setViewName("admin/home");
             } else {
-
+                modelAndView.addObject("failMessage", "Email or Password invalid, please verify");
+                modelAndView.addObject("logoutMessage","You have been logged out");
                 modelAndView.addObject("title", "Log In");
                 modelAndView.setViewName("login/login");
             }

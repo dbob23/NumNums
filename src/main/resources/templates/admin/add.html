@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:name="http://www.w3.org/1999/xhtml">
+
+<head th:replace="fragments :: head">
+</head>
+<body class="container">
+<nav>
+    <ul>
+        <li><h2>NumNums!</h2></li>
+        <li><a href="/NumNums">Search</a></li>
+        <li><a href="/NumNums/registration">Register</a></li>
+        <li><a href="/NumNums/login">Login</a></li>
+        <li><a href="/NumNums/about">About</a></li>
+        <li><a href="/NumNums/logout">Logout</a></li>
+    </ul>
+</nav>
+
+<div>
+    <p th:text="${message}"></p>
+    <p th:text="${user}"></p>
+</div>
+
+<div>
+    <b>You are logged in!</b>
+</div>
+<form th:action="@{/NumNums/add}" method="POST"  class="form-signin" th:object="${restaurant}">
+    <div class="container">
+        <span class="error" th:text="${restaurantExistsMessage}"></span>
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <br/>
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <label th:for="restaurantName">Name of Restaurant</label>
+                        <input type="text" id="restaurantName" name="restaurantName" th:field="*{restaurantName}"
+                               class="form-control" /> <br/>
+                        <span class="error" th:errors="*{restaurantName}"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <label th:for="webAddress">Restaurant Web Address</label>
+                        <input type="text" id="webAddress" name="webAddress" th:field="*{webAddress}" class="form-control" /> <br />
+                        <span class="error" th:errors="*{webAddress}"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <label th:for="streetAddress">Restaurant Street Address</label>
+                        <input type="text" id="streetAddress" name="streetAddress" th:field="*{streetAddress}" class="form-control" /> <br />
+                        <span class="error" th:errors="*{streetAddress}"></span>
+                    </div>
+                </div>
+                    <div class="form-group">
+                    <div class="col-sm-9">
+                        <label th:for="city">City</label>
+                        <input type="text" id="city" name="city" th:field="*{city}" class="form-control" /> <br />
+                        <span class="error" th:errors="*{city}"></span>
+                    </div>
+                    </div>
+                        <div class="form-group">
+                    <div class="col-sm-9">
+                        <label th:for="state">State</label>
+                        <input type="text" id="state" name="state" th:field="*{state}" class="form-control" /> <br />
+                        <span class="error" th:errors="*{state}"></span>
+                    </div>
+                        </div>
+                            <div class="form-group">
+                            <div class="col-sm-9">
+                        <label th:for="zipCode">ZipCode</label>
+                        <input type="text" id="zipCode" name="zipCode" th:field="*{zipCode}" class="form-control" /> <br />
+                        <span class="error" th:errors="*{zipCode}"></span>
+                            </div>
+                            </div>
+                <div class="checkbox">
+                    <p>Please select the dining options available. You may choose all that apply.</p>
+                    <ul>
+                        <li><input type="checkbox" name="glutenFree" th:field="*{glutenFree}" th:value="true"/>gluten-free<br></li>
+                        <li><input type="checkbox" name="lactoseFree" th:field="*{lactoseFree}" th:value="true"/>lactose-free<br></li>
+                        <li><input type="checkbox" name="vegan" th:field="*{vegan}" th:value="vegan"/>vegan<br></li>
+                        <li><input type="checkbox" name="vegetarian" th:field="*{vegetarian}" th:value="true" />vegetarian<br></li>
+                        <li><input type="checkbox" name="nonVegetarian" th:field="*{nonVegetarian}" th:value="true"/>non-vegetarian<br></li>
+                    </ul>
+                </div><br>
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <button class="btn btn-lg btn-primary btn-block" name="Add" value="Add" type="Submit" th:text="Add"></button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</form>
+
+
+
+</body>
+</html>

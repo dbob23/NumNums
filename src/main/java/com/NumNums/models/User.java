@@ -5,6 +5,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 
@@ -16,6 +17,9 @@ public class User {
     @Id
     @Column(name = "user_id")
     private int id;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Restaurant> restaurants;
 
     @Column(unique = true)
     @NotEmpty(message = "Please provide your name.")
@@ -43,8 +47,9 @@ public class User {
     public User() {
     }
 
-    public User(Integer id, String username, String password, String email, Set roles) {
+    public User(int id, List<Restaurant> restaurants, String username, String password, String email, Set roles) {
         this.id = id;
+        this.restaurants = restaurants;
         this.username = username;
         this.password = password;
         this.email = email;
@@ -55,7 +60,7 @@ public class User {
 
 
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
@@ -98,6 +103,18 @@ public class User {
 
     public void setRoles(HashSet<com.NumNums.models.Role> roles) {
         this.roles = roles;
+    }
+
+    public List<Restaurant> getRestaurants() {
+        return restaurants;
+    }
+
+    public void setRestaurants(List<Restaurant> restaurants) {
+        this.restaurants = restaurants;
+    }
+
+    public void addRestaurant(Restaurant restaurant){
+        this.restaurants.add(restaurant);
     }
 
     @Override

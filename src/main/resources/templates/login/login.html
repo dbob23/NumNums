@@ -10,6 +10,9 @@
     </form>
 <form th:action="@{/NumNums/login}" method="POST"  class="form-signin">
     <div class="container">
+        <div align="center">
+            <p th:text="${registeredMessage}"></p>
+        </div>
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <h3 class="form-signin-heading" th:text="Welcome"></h3>
@@ -22,26 +25,25 @@
                     </div>
                     <div class="form-group">
                         <div class="col-sm-9">
-                        <input type="password" th:placeholder="Password"
-                         id="password" name="password"  class="form-control" /> <br />
+                            <input type="password" th:placeholder="Password" id="password" name="password"  class="form-control" /> <br />
                         </div>
                     </div>
                     <div align="center"  th:if="${param.error}">
-                    <p class="error">Email or Password invalid, please verify</p>
+                        <p class="error" th:text="${failMessage}"></p>
                     </div>
                     <div align="center"th:if="${param.logout}">
-                        <p>You have been logged out</p>
+                        <p th:text="${logoutMessage}"></p>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-9">
-                    <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="Submit" th:text="Login"></button>
+                            <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="Submit" th:text="Login"></button>
                         </div>
                     </div>
-            </div>
+                    </div>
 
+                </div>
             </div>
         </div>
-    </div>
     </div>
 
 
