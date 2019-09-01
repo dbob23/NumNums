@@ -71,7 +71,7 @@ public class RestaurantController {
 
 
     @RequestMapping(value = "NumNums/edit{id}", method = RequestMethod.GET)
-    public ModelAndView displayEditForm(@RequestParam (value = "id") int id) {
+    public ModelAndView displayEditForm(@RequestParam (value = "id", required = false) int id) {
         ModelAndView modelAndView = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
@@ -79,10 +79,35 @@ public class RestaurantController {
         modelAndView.addObject("restaurant", restaurantService.findRestaurantById(id));
         modelAndView.addObject("welcome", "Welcome, " + user.getUsername() + "!");
         modelAndView.addObject("message", "All fields will be saved as they appear when submitted.");
+        modelAndView.addObject("id", id);
         modelAndView.setViewName("admin/edit");
 
         return modelAndView;
     }
 
+    @RequestMapping(value = "NumNums/edit{id}", method = RequestMethod.POST)
+    public ModelAndView processEditForm(@Valid Restaurant restaurant, BindingResult bindingResult, @RequestParam (value = "id") int id) {
+        ModelAndView modelAndView = new ModelAndView();
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByEmail(auth.getName());
+        modelAndView.addObject("user", user);
+        Restaurant restaurantExists = restaurantService.findRestaurantByWebAddress(restaurant.getWebAddress().toLowerCase());
+
+        if (restaurantExists != null && restaurant.getId() != restaurantExists.getId()) {
+            modelAndView.addObject("restaurantExistsMessage", "That web address already exists in our database.");
+            modelAndView.setViewName("admin/edit");
+        } else if (bindingResult.hasErrors()) {
+            modelAndView.setViewName("admin/edit");
+        } else {
+            restaurant.setUser(user);
+            user.addRestaurant(restaurant);
+            restaurantService.saveRestaurant(restaurant);
+            modelAndView.addObject("restaurants", user.getRestaurants());
+            modelAndView.addObject("message", "A restaurant has been edited successfully");
+            modelAndView.setViewName("admin/home");
+        }
+        return modelAndView;
+    }
 
     }

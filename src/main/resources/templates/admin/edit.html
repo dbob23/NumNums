@@ -24,7 +24,7 @@
     <p th:text="${welcome}"></p>
     <b>You are logged in!</b>
 </div>
-<form th:action="@{/NumNums/edit}" method="POST"  class="form-signin" th:object="${restaurant}">
+<form th:action="@{/NumNums/edit(id=${restaurant.id})}" method="POST"  class="form-signin" th:object="${restaurant}">
     <div class="container">
         <span class="error" th:text="${restaurantExistsMessage}"></span>
         <div class="row">
@@ -86,14 +86,17 @@
                 <div>
                     <p th:text="${message}"></p>
                 </div>
-
                 <div class="form-group">
                     <div class="col-sm-9">
-                        <button class="btn btn-lg btn-primary btn-block" name="Edit" value="Edit" type="Submit" th:text="Edit"></button>
+                        <button class="btn btn-lg btn-primary btn-block" name="Edit" value="Edit" type="Submit" >Save Changes</button>
+                    </div><br>
+                    <div class="col-sm-9">
+                    <form th:action="@{/NumNums/delete(id=${id}}" method="get">
+                        <button class="btn btn-lg btn-primary btn-block" type="Submit">Delete Restaurant</button>
+                    </form>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 
