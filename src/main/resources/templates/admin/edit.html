@@ -17,14 +17,14 @@
 </nav>
 
 <div>
-    <p th:text="${message}"></p>
     <p th:text="${user}"></p>
 </div>
 
 <div>
+    <p th:text="${welcome}"></p>
     <b>You are logged in!</b>
 </div>
-<form th:action="@{/NumNums/add}" method="POST"  class="form-signin" th:object="${restaurant}">
+<form th:action="@{/NumNums/edit}" method="POST"  class="form-signin" th:object="${restaurant}">
     <div class="container">
         <span class="error" th:text="${restaurantExistsMessage}"></span>
         <div class="row">
@@ -33,7 +33,7 @@
                 <div class="form-group">
                     <div class="col-sm-9">
                         <label th:for="restaurantName">Name of Restaurant</label>
-                        <input type="text" id="restaurantName" name="restaurantName" th:field="*{restaurantName}"
+                        <input type="text" id="restaurantName" name="restaurantName" th:value="*{restaurantName}" th:field="*{restaurantName}"
                                class="form-control" /> <br/>
                         <span class="error" th:errors="*{restaurantName}"></span>
                     </div>
@@ -41,38 +41,38 @@
                 <div class="form-group">
                     <div class="col-sm-9">
                         <label th:for="webAddress">Restaurant Web Address</label>
-                        <input type="text" id="webAddress" name="webAddress" placeholder="https//: " th:field="*{webAddress}" class="form-control" /> <br />
+                        <input type="text" id="webAddress" name="webAddress" th:value="*{webAddress}" th:field="*{webAddress}" class="form-control" /> <br />
                         <span class="error" th:errors="*{webAddress}"></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-9">
                         <label th:for="streetAddress">Restaurant Street Address</label>
-                        <input type="text" id="streetAddress" name="streetAddress" th:field="*{streetAddress}" class="form-control" /> <br />
+                        <input type="text" id="streetAddress" name="streetAddress" th:value="*{streetAddress}" th:field="*{streetAddress}" class="form-control" /> <br />
                         <span class="error" th:errors="*{streetAddress}"></span>
                     </div>
                 </div>
-                    <div class="form-group">
+                <div class="form-group">
                     <div class="col-sm-9">
                         <label th:for="city">City</label>
-                        <input type="text" id="city" name="city" th:field="*{city}" class="form-control" /> <br />
+                        <input type="text" id="city" name="city" th:value="*{city}" th:field="*{city}" class="form-control" /> <br />
                         <span class="error" th:errors="*{city}"></span>
                     </div>
-                    </div>
-                        <div class="form-group">
+                </div>
+                <div class="form-group">
                     <div class="col-sm-9">
                         <label th:for="state">State</label>
-                        <input type="text" id="state" name="state" th:field="*{state}" class="form-control" /> <br />
+                        <input type="text" id="state" name="state" th:value="*{state}" th:field="*{state}" class="form-control" /> <br />
                         <span class="error" th:errors="*{state}"></span>
                     </div>
-                        </div>
-                            <div class="form-group">
-                            <div class="col-sm-9">
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-9">
                         <label th:for="zipCode">ZipCode</label>
-                        <input type="text" id="zipCode" name="zipCode" th:field="*{zipCode}" class="form-control" /> <br />
+                        <input type="text" id="zipCode" name="zipCode" th:value="*{zipCode}" th:field="*{zipCode}" class="form-control" /> <br />
                         <span class="error" th:errors="*{zipCode}"></span>
-                            </div>
-                            </div>
+                    </div>
+                </div>
                 <div class="checkbox">
                     <p>Please select the dining options available. You may choose all that apply.</p>
                     <ul>
@@ -83,10 +83,13 @@
                         <li><input type="checkbox" name="nonVegetarian" th:field="*{nonVegetarian}" th:value="true"/>non-vegetarian<br></li>
                     </ul>
                 </div><br>
+                <div>
+                    <p th:text="${message}"></p>
+                </div>
 
                 <div class="form-group">
                     <div class="col-sm-9">
-                        <button class="btn btn-lg btn-primary btn-block" name="Add" value="Add" type="Submit" th:text="Add"></button>
+                        <button class="btn btn-lg btn-primary btn-block" name="Edit" value="Edit" type="Submit" th:text="Edit"></button>
                     </div>
                 </div>
             </div>

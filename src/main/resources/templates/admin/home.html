@@ -43,7 +43,7 @@
             <td th:text="${restaurant.restaurantName}"></td>
             <td th:text="${restaurant.streetAddress}"></td>
             <td><a th:href="@{${restaurant.webAddress}}"><p th:text="${restaurant.webAddress}"></p></a></td>
-            <td><a th:href="@{admin/edit}">Edit</a></td>
+            <td><a th:href="@{/NumNums/edit(id=${restaurant.id})}">Edit</a></td>
         </tr>
     </table>
 </div>

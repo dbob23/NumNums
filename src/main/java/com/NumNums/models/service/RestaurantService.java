@@ -4,9 +4,10 @@ package com.NumNums.models.service;
 import com.NumNums.models.Restaurant;
 import com.NumNums.models.data.RestaurantRepository;
 import com.NumNums.models.data.UserRepository;
-import jdk.nashorn.internal.parser.Scanner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service("restaurantService")
 public class RestaurantService {
@@ -20,9 +21,9 @@ public class RestaurantService {
         this.userRepository = userRepository;
     }
 
-//    public Restaurant findRestaurantById (int id){
-//        return restaurantRepository.findById(id);
-//    }
+    public Restaurant findRestaurantById (int id){
+        return restaurantRepository.findById(id);
+    }
 
     public Restaurant findRestaurantByWebAddress (String webAddress){
         return restaurantRepository.findByWebAddress(webAddress);
