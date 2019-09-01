@@ -53,14 +53,16 @@ public class RestaurantController {
             modelAndView.setViewName("admin/add");
         } else if (bindingResult.hasErrors()) {
             modelAndView.setViewName("admin/add");
+        } else {
+            restaurant.setUser(user);
+            user.addRestaurant(restaurant);
+            restaurantService.saveRestaurant(restaurant);
+            modelAndView.addObject("restaurants", user.getRestaurants());
+            modelAndView.addObject("message", "A restaurant has been registered successfully");
+            modelAndView.setViewName("admin/home");
         }
-        restaurant.setUser(user);
-        user.addRestaurant(restaurant);
-        restaurantService.saveRestaurant(restaurant);
-        modelAndView.addObject("restaurants", user.getRestaurants());
-        modelAndView.addObject("message", "A restaurant has been registered successfully");
-        modelAndView.setViewName("admin/home");
+            return modelAndView;
+        }
 
-        return modelAndView;
-    }
+
 }
