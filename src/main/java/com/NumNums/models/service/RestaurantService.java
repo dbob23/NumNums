@@ -7,8 +7,6 @@ import com.NumNums.models.data.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service("restaurantService")
 public class RestaurantService {
 
@@ -22,6 +20,7 @@ public class RestaurantService {
     }
 
     public Restaurant findRestaurantById (int id){
+
         return restaurantRepository.findById(id);
     }
 
@@ -29,9 +28,12 @@ public class RestaurantService {
         return restaurantRepository.findByWebAddress(webAddress);
     }
 
-
-    public void saveRestaurant(Restaurant restaurant){
+    public void saveRestaurant(Restaurant restaurant) {
         restaurantRepository.save(restaurant);
-
     }
+
+    public void deleteRestaurant(int id) {
+        restaurantRepository.deleteById(id);
+    }
+
 }

@@ -6,12 +6,11 @@ import org.springframework.stereotype.Repository;
 
 @Repository("restaurantRepository")
 public interface RestaurantRepository extends JpaRepository<Restaurant, Integer> {
-    Restaurant findById( int id);
+
+    Restaurant findById(int id);
 
     Restaurant findByWebAddress(String webAddress);
+
 }
 
-//@Repository("restaurantRepository")
-////public interface RestaurantRepository extends JpaRepository<Restaurant, String> {
-////    Restaurant findByWebAddress(String webAddress);
-////}
+

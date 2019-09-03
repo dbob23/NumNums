@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:name="http://www.w3.org/1999/xhtml">
+
+<head th:replace="fragments :: head">
+</head>
+<body class="container">
+<nav>
+    <ul>
+        <li><h2>NumNums!</h2></li>
+        <li><a href="/NumNums">Search</a></li>
+        <li><a href="/NumNums/registration">Register</a></li>
+        <li><a href="/NumNums/login">Login</a></li>
+        <li><a href="/NumNums/about">About</a></li>
+        <li><a href="/NumNums/logout">Logout</a></li>
+    </ul>
+</nav>
+<div>
+    <p th:text="${user}"></p>
+</div>
+<div>
+    <p th:text="${welcome}"></p>
+    <b>You are logged in!</b>
+</div>
+<form th:action="@{/NumNums/delete(id=${restaurant.id})}" method="POST"  class="form-signin" th:object="${restaurant}">
+    <div class="container">
+        <table class="table">
+            <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Website</th>
+            </tr>
+            <tr>
+                <td th:text="${restaurant.restaurantName}"></td>
+                <td th:text="${restaurant.streetAddress}"></td>
+                <td><a th:href="@{${restaurant.webAddress}}"><p th:text="${restaurant.webAddress}"></p></a></td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <p th:text="${message}"></p>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-9">
+            <button class="btn btn-lg btn-primary btn-block" name="Delete" value="Delete" type="Submit" >Delete this Restuarant</button>
+        </div><br>
+    </div>
+</form>
+<form th:action="@{/NumNums/login}" method="get">
+    <div class="form-group">
+        <div class="col-sm-9">
+            <button class="btn btn-lg btn-primary btn-block" type="Submit">Cancel</button>
+        </div>
+    </div>
+</form>
+</body>
+</html>

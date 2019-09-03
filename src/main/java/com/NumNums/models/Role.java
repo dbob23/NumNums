@@ -1,6 +1,5 @@
 package com.NumNums.models;
 
-
 import javax.persistence.*;
 
 @Entity

@@ -18,7 +18,7 @@ public class User {
     @Column(name = "user_id")
     private int id;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany( mappedBy = "user")
     private List<Restaurant> restaurants;
 
     @Column(unique = true)
@@ -57,8 +57,6 @@ public class User {
         this.roles = roles;
 
     }
-
-
 
     public int getId() {
         return id;
