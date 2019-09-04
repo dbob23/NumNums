@@ -1,6 +1,5 @@
 package com.NumNums.models;
 
-
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -17,8 +16,7 @@ public class SearchDetails {
 
     private int distance;
 
-    public SearchDetails() {
-    }
+    public SearchDetails() {}
 
     public SearchDetails(String zipCode, int distance, ArrayList choices) {
         this.zipCode = zipCode;
@@ -26,13 +24,9 @@ public class SearchDetails {
         this.choices = choices;
     }
 
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
-    }
+    public void setZipCode(String zipCode) { this.zipCode = zipCode; }
 
-    public String getZipCode() {
-        return zipCode;
-    }
+    public String getZipCode() { return zipCode; }
 
     public int getDistance() { return distance; }
 
@@ -41,6 +35,7 @@ public class SearchDetails {
     public ArrayList getChoices() {
         return choices;
     }
+
     public void setChoices(ArrayList choices) {
         this.choices = choices;
     }

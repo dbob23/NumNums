@@ -1,8 +1,6 @@
 package com.NumNums.models;
 
-
 import org.hibernate.validator.constraints.URL;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
@@ -16,7 +14,7 @@ public class Restaurant {
     @Column(name = "restaurant_id")
     private int id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn
     private User user;
 
@@ -25,7 +23,7 @@ public class Restaurant {
     private String restaurantName;
 
     @Column(name = "webAddress")
-    @URL(message = "Please provide a valid web address.")
+    @Pattern(regexp = "^(https?:\\/\\/)?([\\w\\Q$-_+!*'(),%\\E]+\\.)+[‌​\\w]{2,63}\\/?$" , message = "Please enter a valid web address." )
     @NotEmpty(message = "Please provide a valid web address.")
     private String webAddress;
 
@@ -45,7 +43,6 @@ public class Restaurant {
     @Pattern(regexp = "^[0-9]{5}(?:-[0-9]{4})?$", message = "You must enter a valid zipcode. Please try again.")
     private String zipCode;
 
-
     @Column(name = "glutenFree")
     private boolean glutenFree;
 
@@ -61,8 +58,7 @@ public class Restaurant {
     @Column(name = "nonVegetarian")
     private boolean nonVegetarian;
 
-    public Restaurant() {
-    }
+    public Restaurant() {}
 
     public Restaurant(int id, User user, String restaurantName, String webAddress, String streetAddress, String city, String state, String zipCode) {
         this.id = id;
