@@ -1,6 +1,5 @@
 package com.NumNums.models;
 
-import org.hibernate.validator.constraints.URL;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
@@ -189,5 +188,7 @@ public class Restaurant {
                 ", restaurantName='" + restaurantName + '\'' +
                 ", webAddress='" + webAddress + '\'' ;
     }
+
+
 
 }
