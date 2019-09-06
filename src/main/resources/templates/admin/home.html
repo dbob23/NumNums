@@ -36,12 +36,22 @@
         <tr>
             <th>Name</th>
             <th>Address</th>
+            <th>Gluten Free</th>
+            <th>Lactose Free</th>
+            <th>Vegan</th>
+            <th>Vegetarian</th>
+            <th>Non-Vegetarian</th>
             <th>Website</th>
         </tr>
 
         <tr th:each="restaurant : ${restaurants}">
             <td th:text="${restaurant.restaurantName}"></td>
-            <td th:text="${restaurant.streetAddress}"></td>
+            <td th:text="${restaurant.streetAddress} + ', ' + ${restaurant.city} + ', ' + ${restaurant.state} + ', ' + ${restaurant.zipCode}"></td>
+            <td><div th:if="${restaurant.glutenFree}">Yes</div><div th:if="${!restaurant.glutenFree}">No</div></td>
+            <td><div th:if="${restaurant.lactoseFree}">Yes</div><div th:if="${!restaurant.lactoseFree}">No</div></td>
+            <td><div th:if="${restaurant.vegan}">Yes</div><div th:if="${!restaurant.vegan}">No</div></td>
+            <td><div th:if="${restaurant.vegetarian}">Yes</div><div th:if="${!restaurant.vegetarian}">No</div></td>
+            <td><div th:if="${restaurant.nonVegetarian}">Yes</div><div th:if="${!restaurant.nonVegetarian}">No</div></td>
             <td><a th:href="@{${restaurant.webAddress}}"><p th:text="${restaurant.webAddress}"></p></a></td>
             <td><a th:href="@{/NumNums/edit(id=${restaurant.id})}">Edit</a></td>
         </tr>

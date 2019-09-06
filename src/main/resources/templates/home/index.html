@@ -4,13 +4,23 @@
 </head>
 <body class="container">
 <nav th:replace="fragments :: navigation"></nav>
-<h2>Welcome to NumNums! We're going to help you find something good to eat.</h2>
+<h2>Welcome to NumNums! We're going to help you find something good to eat.</h2><br>
 <form method="post" style="max-width:300px;" th:object="${aSearch}">
+    <div class="checkbox">
+        <p>Please select your dining preferences. You may choose all that apply.</p>
+        <ul>
+            <li><input type="checkbox" name="glutenFree" th:field="*{glutenFree}" value="true"/>gluten-free<br></li>
+            <li><input type="checkbox" name="lactoseFree" th:field="*{lactoseFree}" value="true"/>lactose-free<br></li>
+            <li><input type="checkbox" name="vegan" th:field="*{vegan}" value="true"/>vegan<br></li>
+            <li><input type="checkbox" name="vegetarian" th:field="*{vegetarian}" value="true" />vegetarian<br></li>
+            <li><input type="checkbox" name="nonVegetarian" th:field="*{nonVegetarian}" value="true"/>non-vegetarian<br></li>
+        </ul>
+    </div><br>
     <div class="form-group">
         <label th:for="zipCode">Zip Code</label>
         <input class="form-control" type="text" th:field="*{zipCode}"/>
         <span class="error" th:errors="*{zipCode}"></span>
-    </div>
+    </div><br>
     <div class="dropdown">
         <p>Search Distance in Miles</p>
         <select name="distance" th:field="*{distance}">
@@ -21,20 +31,8 @@
             <option value="25">25</option>
         </select>
         <br><br>
-    </div>
-    <div class="checkbox">
-        <p>Please select your dining preferences. You may choose all that apply.</p>
-        <ul>
-            <li><input type="checkbox" name="choice" th:field="*{choices}" value="gluten-free"/>gluten-free<br></li>
-            <li><input type="checkbox" name="choice" th:field="*{choices}" value="lactose-free"/>lactose-free<br></li>
-            <li><input type="checkbox" name="choice" th:field="*{choices}" value="vegan"/>vegan<br></li>
-            <li><input type="checkbox" name="choice" th:field="*{choices}" value="vegetarian" />vegetarian<br></li>
-            <li><input type="checkbox" name="choice" th:field="*{choices}" value="non-vegetarian"/>non-vegetarian<br></li>
-        </ul>
-        <span class="error" th:errors="*{choices}"></span>
     </div><br>
     <input type="submit" value="Search"/>
-
 </form>
 </body>
 <footer th:replace="fragments ::footer"></footer>
