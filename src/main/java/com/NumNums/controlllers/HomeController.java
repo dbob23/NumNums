@@ -2,6 +2,7 @@ package com.NumNums.controlllers;
 
 
 import com.NumNums.models.SearchDetails;
+import com.NumNums.models.service.RestaurantService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -31,7 +32,8 @@ public class HomeController {
         }
 
 
-        model.addAttribute("title", "NumNums!");
+        model.addAttribute("title", "NumNums! Display");
+        model.addAttribute("restaurants", RestaurantService.findAll());
         return "home/display";
     }
 
