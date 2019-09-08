@@ -1,14 +1,104 @@
+
+
+
 <!DOCTYPE html>
-<html xmlns:="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
-<head th:replace="fragments :: head">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="initial-scale=1.0">
+    <title th:text="${title}">NumNums! Display</title>
+
+    <!--    stylesheets   -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+
+    <!--  bootstrap scripts    -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script type="text/javscript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </head>
 <body class="container">
-<nav th:replace="fragments :: navigation"></nav>
-<h2>It Works!</h2>
-<div >
-    <p th:text="${message}"></p>
-    <p th:text="${aSearch}"></p>
-    <p th:text="${aUser}"></p>
-</div>
+    <nav>
+        <ul>
+            <li><h2>NumNums!</h2></li>
+            <li><a href="/NumNums">Search</a></li>
+            <li><a href="/NumNums/registration">Register</a></li>
+            <li><a href="/NumNums/login">Login</a></li>
+            <li><a href="/NumNums/about">About</a></li>
+        </ul>
+    </nav>
+    <div class = "container-fluid">
+        <div class = "row">
+            <div class="col">
+                <p th:text="${aSearch}"></p>
+            </div>
+        </div>
+    </div>
+    <div class = "container-fluid">
+        <div class = "row">
+            <div class="col">
+                <h3 >Map View</h3>
+            </div>
+        </div>
+    </div>
+    <div class = "container-fluid">
+        <div class = "row">
+            <div class="col">
+                <div id="map"></div>
+            </div>
+        </div>
+    </div><br><br>
+    <div class="container-fluid">
+        <div class = "row">
+            <div class="col">
+                <h3 >List View</h3>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class = "row">
+            <div class="col">
+                <table class="table">
+                    <tr>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>Gluten Free</th>
+                        <th>Lactose Free</th>
+                        <th>Vegan</th>
+                        <th>Vegetarian</th>
+                        <th>Non-Vegetarian</th>
+                        <th>Website</th>
+                    </tr>
+                    <tr th:each="restaurant : ${restaurants}">
+                        <td th:text="${restaurant.restaurantName}"></td>
+                        <td th:text="${restaurant.streetAddress} + ', ' + ${restaurant.city} + ', ' + ${restaurant.state} + ', ' + ${restaurant.zipCode}"></td>
+                        <td><div th:if="${restaurant.glutenFree}">Yes</div><div th:if="${!restaurant.glutenFree}">No</div></td>
+                        <td><div th:if="${restaurant.lactoseFree}">Yes</div><div th:if="${!restaurant.lactoseFree}">No</div></td>
+                        <td><div th:if="${restaurant.vegan}">Yes</div><div th:if="${!restaurant.vegan}">No</div></td>
+                        <td><div th:if="${restaurant.vegetarian}">Yes</div><div th:if="${!restaurant.vegetarian}">No</div></td>
+                        <td><div th:if="${restaurant.nonVegetarian}">Yes</div><div th:if="${!restaurant.nonVegetarian}">No</div></td>
+                        <td><a th:href="@{${restaurant.webAddress}}"><p th:text="${restaurant.webAddress}"></p></a></td>
+                    </tr>
+                </table>
+                <p th:unless="${restaurants} and ${restaurants.size()}"><i>There are no restaurants that match your search. Try again.</i></p>
+            </div>
+        </div>
+    </div>
+    <br><br>
+    <!--    google maps scripts  -->
+    <script type="text/javascript">
+    var map;
+
+    function initMap() {
+
+    var options = {
+    center: {lat: 38.6270, lng: -90.1994},
+    zoom: 8
+    };
+    map = new google.maps.Map(document.getElementById('map'), options);
+    }
+
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvq8G2idSuiPwzYEt6JIsbqtP29RjZZ0c&callback=initMap" async defer></script>
 </body>
 </html>

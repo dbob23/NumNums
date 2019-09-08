@@ -82,15 +82,8 @@ public class SearchDetails {
 
     @Override
     public String toString() {
-        return "SearchDetails{" +
-                "zipCode='" + zipCode + '\'' +
-                ", distance=" + distance +
-                ", glutenFree=" + glutenFree +
-                ", lactoseFree=" + lactoseFree +
-                ", vegan=" + vegan +
-                ", vegetarian=" + vegetarian +
-                ", nonVegetarian=" + nonVegetarian +
-                '}';
+
+        return "You have searched for a restaurant within " + distance + " miles of " + zipCode + ". Here are the results:";
     }
 
 }

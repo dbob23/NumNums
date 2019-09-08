@@ -7,16 +7,23 @@ import com.NumNums.models.data.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service("restaurantService")
 public class RestaurantService {
 
     private UserRepository userRepository;
-    private RestaurantRepository restaurantRepository;
+    private static RestaurantRepository restaurantRepository;
 
     @Autowired
     public RestaurantService(RestaurantRepository restaurantRepository, UserRepository userRepository){
         this.restaurantRepository = restaurantRepository;
         this.userRepository = userRepository;
+    }
+
+    public static ArrayList findAll() {
+        return (ArrayList) restaurantRepository.findAll();
     }
 
     public Restaurant findRestaurantById (int id){

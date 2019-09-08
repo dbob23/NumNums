@@ -1,7 +1,10 @@
-body {
+html,body {
     font-family: sans-serif;
     background-color: #fcfc03;
-
+    height: 100%;
+    width:100%;
+    margin: 0;
+    padding: 0;
 }
 
 nav ul {
@@ -39,3 +42,8 @@ nav li a:hover {
     text-align: center;
     display: inline-block;
 }
+#map {
+        height: 500px;
+        width:100%;
+      }
+
