@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:name="http://www.w3.org/1999/xhtml">
+
+<head th:replace="fragments :: head">
+</head>
+<body class="container">
+<nav>
+    <ul>
+        <li><h2>NumNums!</h2></li>
+        <li><a href="/NumNums">Search</a></li>
+        <li><a href="/NumNums/registration">Register</a></li>
+        <li><a href="/NumNums/login">Login</a></li>
+        <li><a href="/NumNums/about">About</a></li>
+        <li><a href="/NumNums/logout">Logout</a></li>
+    </ul>
+</nav>
+
+<div class="container-fluid">
+    <p th:text="${message}"></p>
+    <p th:text="${user}"></p>
+</div>
+
+<div class="container-fluid">
+    <b>You are logged in!</b>
+</div>
+
+
+
+
+
+
+</body>
+</html>
