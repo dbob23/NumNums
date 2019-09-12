@@ -17,7 +17,7 @@
         <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
         <!--  axios script   -->
-        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<!--        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>-->
 </head>
 <body class="container">
 <nav>
@@ -94,37 +94,37 @@
 
 
 
-<script th:inline="javascript" type="text/javascript">
+<!--<script th:inline="javascript" type="text/javascript">-->
 
-/*<![CDATA[*/
+<!--/*<![CDATA[*/-->
 
-    geocode();
+<!--    geocode();-->
 
-     function geocode(){
+<!--     function geocode(){-->
 
-/*[+
-       var location  = [[${restaurant.streetAddress}]] + [[${restaurant.city}]] + [[${restaurant.state}]] +  [[${restaurant.zipCode}]];
+<!--/*[+-->
+<!--       var location  = [[${restaurant.streetAddress}]] + [[${restaurant.city}]] + [[${restaurant.state}]] +  [[${restaurant.zipCode}]];-->
 
-+]*/
-        axios.get("https://maps.googleapis.com/maps/api/geocode/json", {
+<!--+]*/-->
+<!--        axios.get("https://maps.googleapis.com/maps/api/geocode/json", {-->
 
-        params:{
-            address:location,
-            key:"AIzaSyDvq8G2idSuiPwzYEt6JIsbqtP29RjZZ0c"
-        }
-      })
-      .then(function(response){
-        console.log(response);
-      })
-       .catch(function(error){
-        console.log(error);
-       });
+<!--        params:{-->
+<!--            address:location,-->
+<!--            key:"AIzaSyDvq8G2idSuiPwzYEt6JIsbqtP29RjZZ0c"-->
+<!--        }-->
+<!--      })-->
+<!--      .then(function(response){-->
+<!--        console.log(response);-->
+<!--      })-->
+<!--       .catch(function(error){-->
+<!--        console.log(error);-->
+<!--       });-->
 
-    }
+<!--    }-->
 
-/*]]>*/
+<!--/*]]>*/-->
 
-</script>
+<!--</script>-->
 
 </body>
 </html>

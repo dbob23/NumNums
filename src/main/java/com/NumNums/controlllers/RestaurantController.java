@@ -1,5 +1,6 @@
 package com.NumNums.controlllers;
 
+import com.NumNums.models.ParameterStringBuilder;
 import com.NumNums.models.Restaurant;
 import com.NumNums.models.User;
 import com.NumNums.models.service.RestaurantService;
@@ -13,7 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
 import javax.validation.Valid;
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 public class RestaurantController {
@@ -66,7 +73,6 @@ public class RestaurantController {
     @RequestMapping(value = "NumNums/confirmAdd", method = RequestMethod.GET)
     public ModelAndView displayConfirmAddForm(Restaurant restaurant) {
         ModelAndView modelAndView = new ModelAndView();
-//        modelAndView.addObject(new Restaurant());
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
         modelAndView.addObject("title", "Confirm Add");
@@ -79,10 +85,52 @@ public class RestaurantController {
 
 
     @RequestMapping(value = "NumNums/confirmAdd", method = RequestMethod.POST)
-    public ModelAndView processConfirmAddForm(Restaurant restaurant) {
+    public ModelAndView processConfirmAddForm(Restaurant restaurant) throws IOException {
         ModelAndView modelAndView = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
+
+        URL  url = new URL("http://maps.googleapis.com/maps/api/geocode/json");
+        HttpURLConnection con = (HttpURLConnection) url.openConnection();
+        con.setRequestMethod("GET");
+
+        Map<String, String> parameters = new HashMap<>();
+        parameters.put("param1", restaurant.getStreetAddress());
+        parameters.put("param2", restaurant.getCity());
+        parameters.put("param3", restaurant.getState());
+        parameters.put("param4", restaurant.getZipCode());
+
+        con.setDoOutput(true);
+        DataOutputStream out = new DataOutputStream(con.getOutputStream());
+        out.writeBytes(ParameterStringBuilder.getParamsString(parameters));
+        out.flush();
+        out.close();
+
+        con.setRequestProperty("Content-Type", "application/json");
+        String contentType = con.getHeaderField("Content-Type");
+
+        con.setConnectTimeout(5000);
+        con.setReadTimeout(5000);
+
+        int status = con.getResponseCode();
+
+
+
+        if (status > 299) {
+            streamReader = new InputStreamReader(con.getErrorStream());
+        } else {
+            streamReader = new InputStreamReader(con.getInputStream());
+        }
+
+
+        in = new BufferedReader(
+                new InputStreamReader(con.getInputStream()));
+        content = new StringBuffer();
+        while ((inputLine = in.readLine()) != null) {
+            content.append(inputLine);
+        }
+        in.close();
+
 //        int editRestaurantId = restaurant.getId();
 //        Restaurant editRestaurant = restaurantService.findRestaurantById(editRestaurantId);
 //        if (editRestaurant != null) {
@@ -105,6 +153,7 @@ public class RestaurantController {
         modelAndView.addObject("message", restaurant.getRestaurantName() + " has been added to NumNums!");
         modelAndView.addObject("title", "Logged In");
         modelAndView.setViewName("admin/home");
+        System.out.println(content);
         return modelAndView;
        }
 
