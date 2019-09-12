@@ -20,7 +20,6 @@
 </div>
 
 <div>
-    <p th:text="${welcome}"></p>
     <b>You are logged in!</b>
 </div>
 <form th:action="@{/NumNums/edit(id=${restaurant.id})}" method="POST"  class="form-signin" th:object="${restaurant}">

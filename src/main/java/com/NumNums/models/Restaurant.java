@@ -57,9 +57,15 @@ public class Restaurant {
     @Column(name = "nonVegetarian")
     private boolean nonVegetarian;
 
+    @Column(name = "latitude")
+    private double  latitude;
+
+    @Column(name = "longitude")
+    private double longitude;
+
     public Restaurant() {}
 
-    public Restaurant(int id, User user, String restaurantName, String webAddress, String streetAddress, String city, String state, String zipCode) {
+    public Restaurant(int id, User user, String restaurantName, String webAddress, String streetAddress, String city, String state, String zipCode, double latitude, double longitude) {
         this.id = id;
         this.restaurantName = restaurantName;
         this.user = user;
@@ -73,6 +79,8 @@ public class Restaurant {
         this.vegan = false;
         this.vegetarian = false;
         this.nonVegetarian = false;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     public int getId() {
@@ -179,6 +187,13 @@ public class Restaurant {
         this.nonVegetarian = nonVegetarian;
     }
 
+    public double getLatitude() { return latitude; }
+
+    public void setLatitude(double latitude) { this.latitude = latitude; }
+
+    public double getLongitude() { return longitude; }
+
+    public void setLongitude(double longitude) { this.longitude = longitude; }
 
     @Override
     public String toString() {
