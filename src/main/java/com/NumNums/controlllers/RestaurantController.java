@@ -1,6 +1,5 @@
 package com.NumNums.controlllers;
 
-import com.NumNums.models.ParameterStringBuilder;
 import com.NumNums.models.Restaurant;
 import com.NumNums.models.User;
 import com.NumNums.models.service.RestaurantService;
@@ -16,11 +15,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
 
 @Controller
 public class RestaurantController {
@@ -90,46 +89,24 @@ public class RestaurantController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
 
-        URL  url = new URL("http://maps.googleapis.com/maps/api/geocode/json");
+//        http request
+        String address = restaurant.getStreetAddress()+","+restaurant.getCity()+","+restaurant.getState();
+        String noSpaces = address.replace(" ", "+");
+
+        URL url = new URL("https://maps.googleapis.com/maps/api/geocode/json?address="+noSpaces+"&key=AIzaSyDvq8G2idSuiPwzYEt6JIsbqtP29RjZZ0c");
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("GET");
 
-        Map<String, String> parameters = new HashMap<>();
-        parameters.put("param1", restaurant.getStreetAddress());
-        parameters.put("param2", restaurant.getCity());
-        parameters.put("param3", restaurant.getState());
-        parameters.put("param4", restaurant.getZipCode());
-
-        con.setDoOutput(true);
-        DataOutputStream out = new DataOutputStream(con.getOutputStream());
-        out.writeBytes(ParameterStringBuilder.getParamsString(parameters));
-        out.flush();
-        out.close();
-
-        con.setRequestProperty("Content-Type", "application/json");
-        String contentType = con.getHeaderField("Content-Type");
-
-        con.setConnectTimeout(5000);
-        con.setReadTimeout(5000);
-
-        int status = con.getResponseCode();
-
-
-
-        if (status > 299) {
-            streamReader = new InputStreamReader(con.getErrorStream());
-        } else {
-            streamReader = new InputStreamReader(con.getInputStream());
-        }
-
-
-        in = new BufferedReader(
-                new InputStreamReader(con.getInputStream()));
-        content = new StringBuffer();
+        BufferedReader in = new BufferedReader(new InputStreamReader(
+                con.getInputStream()));
+        String inputLine;
         while ((inputLine = in.readLine()) != null) {
-            content.append(inputLine);
+            System.out.println(inputLine);
         }
+
         in.close();
+        con.disconnect();
+
 
 //        int editRestaurantId = restaurant.getId();
 //        Restaurant editRestaurant = restaurantService.findRestaurantById(editRestaurantId);
@@ -144,6 +121,7 @@ public class RestaurantController {
 //            modelAndView.setViewName("admin/home");
 //            return modelAndView;
 //        }
+
         user.addRestaurant(restaurant);
         restaurant.setUser(user);
         restaurantService.saveRestaurant(restaurant);
@@ -153,7 +131,7 @@ public class RestaurantController {
         modelAndView.addObject("message", restaurant.getRestaurantName() + " has been added to NumNums!");
         modelAndView.addObject("title", "Logged In");
         modelAndView.setViewName("admin/home");
-        System.out.println(content);
+//        System.out.println(content);
         return modelAndView;
        }
 
