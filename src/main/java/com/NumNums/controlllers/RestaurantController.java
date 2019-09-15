@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.validation.Valid;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -90,12 +89,11 @@ public class RestaurantController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
 
-//        http request
+            //      geocode http request
         String address = restaurant.getStreetAddress() + "," + restaurant.getCity() + "," + restaurant.getState();
         String noSpaces = address.replace(" ", "+");
 
         URL url = new URL("https://maps.googleapis.com/maps/api/geocode/json?address=" + noSpaces + "&key=AIzaSyDvq8G2idSuiPwzYEt6JIsbqtP29RjZZ0c");
-
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("GET");
         con.setRequestProperty("Content-Type", "application/json");
@@ -107,25 +105,25 @@ public class RestaurantController {
         while ((inputLine = in.readLine()) != null) {
             inputLine += in.readLine();
             System.out.println(inputLine);
-
         }
+            in.close();
+
             JSONObject jb = new JSONObject(in.toString());
-
-            JSONArray jsonObject1 = (JSONArray) jb.get("results");
-            JSONObject jsonObject2 = (JSONObject)jsonObject1.get(2);
-            JSONObject location = (JSONObject) jsonObject2.get("location");
-
+            JSONArray results = (JSONArray) jb.get("results");
+            JSONObject jsonObject1 = (JSONObject)results.get(0);
+            JSONObject geometry = (JSONObject) jsonObject1.get("geometry");
+            JSONObject location = (JSONObject) geometry.get("location");
             double lat = location.getDouble("lat");
             double lng = location.getDouble("lng");
-
             restaurant.setLatitude(lat);
             restaurant.setLongitude(lng);
 
             System.out.println( "Lat = "+location.get("lat"));
             System.out.println( "Lng = "+location.get("lng"));
 
-            in.close();
             con.disconnect();
+
+            //     end geocode http request
 
 
 //        int editRestaurantId = restaurant.getId();
