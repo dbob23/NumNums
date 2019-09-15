@@ -4,6 +4,9 @@ import com.NumNums.models.Restaurant;
 import com.NumNums.models.User;
 import com.NumNums.models.service.RestaurantService;
 import com.NumNums.models.service.UserService;
+import org.apache.tomcat.util.json.ParseException;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -68,7 +71,6 @@ public class RestaurantController {
         return modelAndView;
     }
 
-
     @RequestMapping(value = "NumNums/confirmAdd", method = RequestMethod.GET)
     public ModelAndView displayConfirmAddForm(Restaurant restaurant) {
         ModelAndView modelAndView = new ModelAndView();
@@ -82,30 +84,48 @@ public class RestaurantController {
         return modelAndView;
     }
 
-
     @RequestMapping(value = "NumNums/confirmAdd", method = RequestMethod.POST)
-    public ModelAndView processConfirmAddForm(Restaurant restaurant) throws IOException {
+    public ModelAndView processConfirmAddForm(Restaurant restaurant) throws IOException, ParseException {
         ModelAndView modelAndView = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
 
 //        http request
-        String address = restaurant.getStreetAddress()+","+restaurant.getCity()+","+restaurant.getState();
+        String address = restaurant.getStreetAddress() + "," + restaurant.getCity() + "," + restaurant.getState();
         String noSpaces = address.replace(" ", "+");
 
-        URL url = new URL("https://maps.googleapis.com/maps/api/geocode/json?address="+noSpaces+"&key=AIzaSyDvq8G2idSuiPwzYEt6JIsbqtP29RjZZ0c");
+        URL url = new URL("https://maps.googleapis.com/maps/api/geocode/json?address=" + noSpaces + "&key=AIzaSyDvq8G2idSuiPwzYEt6JIsbqtP29RjZZ0c");
+
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("GET");
+        con.setRequestProperty("Content-Type", "application/json");
+        con.setRequestProperty("Accept", "application/json");
 
         BufferedReader in = new BufferedReader(new InputStreamReader(
                 con.getInputStream()));
         String inputLine;
         while ((inputLine = in.readLine()) != null) {
+            inputLine += in.readLine();
             System.out.println(inputLine);
-        }
 
-        in.close();
-        con.disconnect();
+        }
+            JSONObject jb = new JSONObject(in.toString());
+
+            JSONArray jsonObject1 = (JSONArray) jb.get("results");
+            JSONObject jsonObject2 = (JSONObject)jsonObject1.get(2);
+            JSONObject location = (JSONObject) jsonObject2.get("location");
+
+            double lat = location.getDouble("lat");
+            double lng = location.getDouble("lng");
+
+            restaurant.setLatitude(lat);
+            restaurant.setLongitude(lng);
+
+            System.out.println( "Lat = "+location.get("lat"));
+            System.out.println( "Lng = "+location.get("lng"));
+
+            in.close();
+            con.disconnect();
 
 
 //        int editRestaurantId = restaurant.getId();
@@ -122,19 +142,19 @@ public class RestaurantController {
 //            return modelAndView;
 //        }
 
-        user.addRestaurant(restaurant);
-        restaurant.setUser(user);
-        restaurantService.saveRestaurant(restaurant);
-        modelAndView.addObject("restaurants", user.getRestaurants());
-        modelAndView.addObject("button", "Add this restaurant");
-        modelAndView.addObject("welcome", "Welcome, " + user.getUsername() + "!");
-        modelAndView.addObject("message", restaurant.getRestaurantName() + " has been added to NumNums!");
-        modelAndView.addObject("title", "Logged In");
-        modelAndView.setViewName("admin/home");
-//        System.out.println(content);
-        return modelAndView;
-       }
+            user.addRestaurant(restaurant);
+            restaurant.setUser(user);
+            restaurantService.saveRestaurant(restaurant);
+            modelAndView.addObject("restaurants", user.getRestaurants());
+            modelAndView.addObject("button", "Add this restaurant");
+            modelAndView.addObject("welcome", "Welcome, " + user.getUsername() + "!");
+            modelAndView.addObject("message", restaurant.getRestaurantName() + " has been added to NumNums!");
+            modelAndView.addObject("title", "Logged In");
+            modelAndView.setViewName("admin/home");
+            return modelAndView;
 
+
+    }
     @RequestMapping(value = "NumNums/edit{id}", method = RequestMethod.GET)
     public ModelAndView displayEditForm(@RequestParam (value = "id", required = false) int id) {
         ModelAndView modelAndView = new ModelAndView();
