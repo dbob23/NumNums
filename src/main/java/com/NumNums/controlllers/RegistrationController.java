@@ -39,11 +39,13 @@ public class RegistrationController {
 
         User userExists = userService.findUserByEmail(user.getEmail());
         if (userExists != null) {
+            model.addAttribute("title", "Register");
             model.addAttribute("error", "There is already a user with the email provided.");
             return "login/registration";
         }
 
         userService.saveUser(user);
+        model.addAttribute("title", "Log In");
         model.addAttribute("user", user);
         model.addAttribute("registeredMessage", "You have successfully created a new user! Please log in.");
         return "login/login";

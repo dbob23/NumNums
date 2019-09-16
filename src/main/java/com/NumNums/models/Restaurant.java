@@ -3,6 +3,7 @@ package com.NumNums.models;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "restaurant")
@@ -57,9 +58,15 @@ public class Restaurant {
     @Column(name = "nonVegetarian")
     private boolean nonVegetarian;
 
+    @Column(name = "latitude", precision = 10, scale = 6)
+    private BigDecimal latitude;
+
+    @Column(name = "longitude", precision = 10, scale = 6)
+    private BigDecimal longitude;
+
     public Restaurant() {}
 
-    public Restaurant(int id, User user, String restaurantName, String webAddress, String streetAddress, String city, String state, String zipCode) {
+    public Restaurant(int id, User user, String restaurantName, String webAddress, String streetAddress, String city, String state, String zipCode, BigDecimal latitude, BigDecimal longitude) {
         this.id = id;
         this.restaurantName = restaurantName;
         this.user = user;
@@ -73,6 +80,8 @@ public class Restaurant {
         this.vegan = false;
         this.vegetarian = false;
         this.nonVegetarian = false;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     public int getId() {
@@ -179,6 +188,13 @@ public class Restaurant {
         this.nonVegetarian = nonVegetarian;
     }
 
+    public BigDecimal getLatitude() { return latitude; }
+
+    public void setLatitude(BigDecimal latitude) { this.latitude = latitude; }
+
+    public BigDecimal getLongitude() { return longitude; }
+
+    public void setLongitude(BigDecimal longitude) { this.longitude = longitude; }
 
     @Override
     public String toString() {

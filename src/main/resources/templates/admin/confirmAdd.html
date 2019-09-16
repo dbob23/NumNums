@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:name="http://www.w3.org/1999/xhtml">
+
+<head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="initial-scale=1.0">
+        <title th:text="${title}">NumNums! Confirm Add</title>
+
+        <!--    stylesheets   -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+        <link rel="stylesheet" th:href="@{/css/styles.css}" />
+
+        <!--  bootstrap scripts    -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+        <!--  axios script   -->
+<!--        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>-->
+</head>
+<body class="container">
+<nav>
+    <ul>
+        <li><h2>NumNums!</h2></li>
+        <li><a href="/NumNums">Search</a></li>
+        <li><a href="/NumNums/registration">Register</a></li>
+        <li><a href="/NumNums/login">Login</a></li>
+        <li><a href="/NumNums/about">About</a></li>
+        <li><a href="/NumNums/logout">Logout</a></li>
+    </ul>
+</nav>
+
+<div class="container-fluid">
+    <p th:text="${user}"></p>
+</div>
+
+<div class="container-fluid">
+    <b>You are logged in!</b>
+</div>
+<form th:action="@{/NumNums/confirmAdd}" method="POST"  class="form-signin" th:object="${restaurant}">
+    <div class="container">
+        <table class="table">
+            <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Gluten Free</th>
+                <th>Lactose Free</th>
+                <th>Vegan</th>
+                <th>Vegetarian</th>
+                <th>Non-Vegetarian</th>
+                <th>Website</th>
+            </tr>
+            <tr>
+                <td th:text="${restaurant.restaurantName}"></td>
+                <td th:text="${restaurant.streetAddress} + ', ' + ${restaurant.city} + ', ' + ${restaurant.state} + ', ' + ${restaurant.zipCode}">
+                <td><div th:if="${restaurant.glutenFree}">Yes</div><div th:if="${!restaurant.glutenFree}">No</div></td>
+                <td><div th:if="${restaurant.lactoseFree}">Yes</div><div th:if="${!restaurant.lactoseFree}">No</div></td>
+                <td><div th:if="${restaurant.vegan}">Yes</div><div th:if="${!restaurant.vegan}">No</div></td>
+                <td><div th:if="${restaurant.vegetarian}">Yes</div><div th:if="${!restaurant.vegetarian}">No</div></td>
+                <td><div th:if="${restaurant.nonVegetarian}">Yes</div><div th:if="${!restaurant.nonVegetarian}">No</div></td>
+                <td><a th:href="@{${restaurant.webAddress}}"><p th:text="${restaurant.webAddress}"></p></a></td>
+            </tr>
+            <input type="hidden" id="restaurantName" name="restaurantName" th:value="${restaurant.restaurantName}" th:field="*{restaurantName}"/>
+            <input type="hidden" id="streetAddress" name="streetAddress" th:value="${restaurant.StreetAddress}" th:field="*{streetAddress}"/>
+            <input type="hidden" id="city" name="city" th:value="${restaurant.city}" th:field="*{city}"/>
+            <input type="hidden" id="state" name="state" th:value="${restaurant.state}" th:field="*{state}"/>
+            <input type="hidden" id="zipCode" name="zipCode" th:value="${restaurant.zipCode}" th:field="*{zipCode}"/>
+            <input type="hidden" id="glutenFree" name="glutenFree" th:value="${restaurant.glutenFree}" th:field="*{glutenFree}"/>
+            <input type="hidden" id="lactoseFree" name="lactoseFree" th:value="${restaurant.lactoseFree}" th:field="*{lactoseFree}"/>
+            <input type="hidden" id="vegan" name="vegan" th:value="${restaurant.vegan}" th:field="*{vegan}"/>
+            <input type="hidden" id="vegetarian" name="vegetarian" th:value="${restaurant.vegetarian}" th:field="*{vegetarian}"/>
+            <input type="hidden" id="nonVegetarian" name="nonVegetarian" th:value="${restaurant.nonVegetarian}" th:field="*{nonVegetarian}"/>
+            <input type="hidden" id="webAddress" name="webAddress" th:value="${restaurant.webAddress}" th:field="*{webAddress}"/>
+
+        </table>
+    </div>
+    <div>
+        <p th:text="${message}"></p>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-9">
+            <button class="btn btn-lg btn-primary btn-block" name="Add" value="Add" type="Submit">Submit</button>
+        </div><br>
+    </div>
+</form>
+<form th:action="@{/NumNums/login}" method="get">
+    <div class="form-group">
+        <div class="col-sm-9">
+            <button class="btn btn-lg btn-primary btn-block" type="Submit">Cancel</button>
+        </div>
+    </div>
+</form>
+</body>
+</html>
