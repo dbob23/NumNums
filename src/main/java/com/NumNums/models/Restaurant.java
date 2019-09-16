@@ -3,6 +3,7 @@ package com.NumNums.models;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "restaurant")
@@ -57,15 +58,15 @@ public class Restaurant {
     @Column(name = "nonVegetarian")
     private boolean nonVegetarian;
 
-    @Column(name = "latitude")
-    private double  latitude;
+    @Column(name = "latitude", precision = 10, scale = 6)
+    private BigDecimal latitude;
 
-    @Column(name = "longitude")
-    private double longitude;
+    @Column(name = "longitude", precision = 10, scale = 6)
+    private BigDecimal longitude;
 
     public Restaurant() {}
 
-    public Restaurant(int id, User user, String restaurantName, String webAddress, String streetAddress, String city, String state, String zipCode, double latitude, double longitude) {
+    public Restaurant(int id, User user, String restaurantName, String webAddress, String streetAddress, String city, String state, String zipCode, BigDecimal latitude, BigDecimal longitude) {
         this.id = id;
         this.restaurantName = restaurantName;
         this.user = user;
@@ -187,13 +188,13 @@ public class Restaurant {
         this.nonVegetarian = nonVegetarian;
     }
 
-    public double getLatitude() { return latitude; }
+    public BigDecimal getLatitude() { return latitude; }
 
-    public void setLatitude(double latitude) { this.latitude = latitude; }
+    public void setLatitude(BigDecimal latitude) { this.latitude = latitude; }
 
-    public double getLongitude() { return longitude; }
+    public BigDecimal getLongitude() { return longitude; }
 
-    public void setLongitude(double longitude) { this.longitude = longitude; }
+    public void setLongitude(BigDecimal longitude) { this.longitude = longitude; }
 
     @Override
     public String toString() {

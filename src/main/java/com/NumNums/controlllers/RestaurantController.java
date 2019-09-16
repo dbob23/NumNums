@@ -4,7 +4,6 @@ import com.NumNums.models.Restaurant;
 import com.NumNums.models.User;
 import com.NumNums.models.service.RestaurantService;
 import com.NumNums.models.service.UserService;
-import org.apache.tomcat.util.json.ParseException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
-import java.io.IOException;
+import java.math.BigDecimal;
 import java.net.URL;
 import java.util.Scanner;
 
@@ -83,38 +82,35 @@ public class RestaurantController {
     }
 
     @RequestMapping(value = "NumNums/confirmAdd", method = RequestMethod.POST)
-    public ModelAndView processConfirmAddForm(Restaurant restaurant) throws IOException, ParseException {
+    public ModelAndView processConfirmAddForm(Restaurant restaurant)  {
         ModelAndView modelAndView = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
-
-            //      geocode http request
         String address = restaurant.getStreetAddress() + "," + restaurant.getCity() + "," + restaurant.getState();
         String noSpaces = address.replace(" ", "+");
-
-        URL url = new URL("https://maps.googleapis.com/maps/api/geocode/json?address=" + noSpaces + "&key=AIzaSyDvq8G2idSuiPwzYEt6JIsbqtP29RjZZ0c");
-
-        Scanner scan = new Scanner(url.openStream());
-        String str = new String();
-        while (scan.hasNext())
-            str += scan.nextLine();
-            System.out.println(str);
-
-        scan.close();
-
-        JSONObject jb = new JSONObject(str);
-        JSONArray results = (JSONArray) jb.get("results");
-        JSONObject jsonObject1 = (JSONObject)results.get(0);
-        JSONObject geometry = (JSONObject) jsonObject1.get("geometry");
-        JSONObject location = (JSONObject) geometry.get("location");
-        double lat = location.getDouble("lat");
-        double lng = location.getDouble("lng");
-        restaurant.setLatitude(lat);
-        restaurant.setLongitude(lng);
-
-        System.out.println( "Lat = "+location.get("lat"));
-        System.out.println( "Lng = "+location.get("lng"));
-
+        try {
+            URL url = new URL("https://maps.googleapis.com/maps/api/geocode/json?address=" + noSpaces + "&key=AIzaSyDvq8G2idSuiPwzYEt6JIsbqtP29RjZZ0c");
+            Scanner scan = new Scanner(url.openStream());
+            String str = new String();
+            while (scan.hasNext())
+                str += scan.nextLine();
+                System.out.println(str);
+                scan.close();
+                JSONObject jb = new JSONObject(str);
+                JSONArray results = (JSONArray) jb.get("results");
+                JSONObject jsonObject1 = (JSONObject) results.get(0);
+                JSONObject geometry = (JSONObject) jsonObject1.get("geometry");
+                JSONObject location = (JSONObject) geometry.get("location");
+                BigDecimal lat = location.getBigDecimal("lat");
+                BigDecimal lng = location.getBigDecimal("lng");
+                restaurant.setLatitude(lat);
+                restaurant.setLongitude(lng);
+                System.out.println("Lat = " + location.get("lat"));
+                System.out.println("Lng = " + location.get("lng"));
+            }
+        catch(Exception e) {
+        }
+        finally {
         user.addRestaurant(restaurant);
         restaurant.setUser(user);
         restaurantService.saveRestaurant(restaurant);
@@ -124,10 +120,10 @@ public class RestaurantController {
         modelAndView.addObject("message", restaurant.getRestaurantName() + " has been added to NumNums!");
         modelAndView.addObject("title", "Logged In");
         modelAndView.setViewName("admin/home");
+        }
         return modelAndView;
-
-
     }
+
     @RequestMapping(value = "NumNums/edit{id}", method = RequestMethod.GET)
     public ModelAndView displayEditForm(@RequestParam (value = "id", required = false) int id) {
         ModelAndView modelAndView = new ModelAndView();
@@ -143,12 +139,11 @@ public class RestaurantController {
     }
 
     @RequestMapping(value = "NumNums/edit{id}", method = RequestMethod.POST)
-    public ModelAndView processEditForm(@Valid Restaurant restaurant, BindingResult bindingResult, @RequestParam (value = "id") int id) throws IOException {
+    public ModelAndView processEditForm(@Valid Restaurant restaurant, BindingResult bindingResult, @RequestParam (value = "id") int id) {
         ModelAndView modelAndView = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
         Restaurant restaurantExists = restaurantService.findRestaurantByWebAddress(restaurant.getWebAddress().toLowerCase());
-
         if (restaurantExists != null && restaurant.getId() != restaurantExists.getId()) {
             modelAndView.addObject("title", "Edit");
             modelAndView.addObject("restaurantExistsMessage", "That web address already exists in our database.");
@@ -159,42 +154,40 @@ public class RestaurantController {
         } else {
             restaurant.setUser(user);
             user.addRestaurant(restaurant);
-
             String address = restaurant.getStreetAddress() + "," + restaurant.getCity() + "," + restaurant.getState();
             String noSpaces = address.replace(" ", "+");
-
-            URL url = new URL("https://maps.googleapis.com/maps/api/geocode/json?address=" + noSpaces + "&key=AIzaSyDvq8G2idSuiPwzYEt6JIsbqtP29RjZZ0c");
-
-            Scanner scan = new Scanner(url.openStream());
-            String str = new String();
-            while (scan.hasNext())
-                str += scan.nextLine();
-            System.out.println(str);
-
-            scan.close();
-
-            JSONObject jb = new JSONObject(str);
-            JSONArray results = (JSONArray) jb.get("results");
-            JSONObject jsonObject1 = (JSONObject)results.get(0);
-            JSONObject geometry = (JSONObject) jsonObject1.get("geometry");
-            JSONObject location = (JSONObject) geometry.get("location");
-            double lat = location.getDouble("lat");
-            double lng = location.getDouble("lng");
-            restaurant.setLatitude(lat);
-            restaurant.setLongitude(lng);
-
-            System.out.println( "Lat = "+location.get("lat"));
-            System.out.println( "Lng = "+location.get("lng"));
-            restaurantService.saveRestaurant(restaurant);
-            modelAndView.addObject("restaurants", user.getRestaurants());
-            modelAndView.addObject("user", "Welcome, " + user.getUsername());modelAndView.addObject("message",  restaurant.getRestaurantName()+" has been edited successfully");
-            modelAndView.addObject("id", id);
-            modelAndView.addObject("title", "Logged In");
-            modelAndView.setViewName("admin/home");
+            try {
+                URL url = new URL("https://maps.googleapis.com/maps/api/geocode/json?address=" + noSpaces + "&key=AIzaSyDvq8G2idSuiPwzYEt6JIsbqtP29RjZZ0c");
+                Scanner scan = new Scanner(url.openStream());
+                String str = new String();
+                while (scan.hasNext())
+                    str += scan.nextLine();
+                System.out.println(str);
+                scan.close();
+                JSONObject jb = new JSONObject(str);
+                JSONArray results = (JSONArray) jb.get("results");
+                JSONObject jsonObject1 = (JSONObject) results.get(0);
+                JSONObject geometry = (JSONObject) jsonObject1.get("geometry");
+                JSONObject location = (JSONObject) geometry.get("location");
+                BigDecimal lat = location.getBigDecimal("lat");
+                BigDecimal lng = location.getBigDecimal("lng");
+                restaurant.setLatitude(lat);
+                restaurant.setLongitude(lng);
+                System.out.println("Lat = " + location.get("lat"));
+                System.out.println("Lng = " + location.get("lng"));
+            } catch (Exception e) {
+            } finally {
+                restaurantService.saveRestaurant(restaurant);
+                modelAndView.addObject("restaurants", user.getRestaurants());
+                modelAndView.addObject("user", "Welcome, " + user.getUsername());
+                modelAndView.addObject("message", restaurant.getRestaurantName() + " has been edited successfully");
+                modelAndView.addObject("id", id);
+                modelAndView.addObject("title", "Logged In");
+                modelAndView.setViewName("admin/home");
+            }
         }
-
-        return modelAndView;
-    }
+            return modelAndView;
+        }
 
     @RequestMapping(value = "NumNums/delete{id}", method = RequestMethod.GET)
     public ModelAndView displayDeleteForm(@RequestParam (value = "id", required = false) int id ){
