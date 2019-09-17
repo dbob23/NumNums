@@ -52,17 +52,13 @@ public class RestaurantService {
         ArrayList<Restaurant> results = new ArrayList<>();
 
         try {
-            // create our mysql database connection
+            // create mysql database connection
             String myDriver = "com.mysql.cj.jdbc.Driver";
             String myUrl = "jdbc:mysql://localhost:8889/NumNums?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
             Class.forName(myDriver);
             Connection conn = DriverManager.getConnection(myUrl, "NumNums", "LaunchCode2019");
 
-            // our SQL SELECT query.
-            // if you only need a few columns, specify them by name instead of using "*"
-
-
-            // create the java statement
+            // create java statement
             Statement st = conn.createStatement();
 
             // execute the query, and get a java resultset
@@ -77,7 +73,7 @@ public class RestaurantService {
                     "    )\n" +
                     ") AS distance\n" +
                     "FROM restaurant\n" +
-                    "HAVING distance < 25\n" +
+                    "HAVING distance < 5\n" +
                     "ORDER BY distance\n" +
                     "LIMIT 0 , 20;");
 
@@ -88,14 +84,12 @@ public class RestaurantService {
                 // print the results
                 System.out.println("restaurant id: " + id);
                 results.add(findRestaurantById(id));
-
             }
             st.close();
         } catch (Exception e) {
             System.err.println("Got an exception! ");
             System.err.println(e.getMessage());
         }
-
         return results;
     }
 }
