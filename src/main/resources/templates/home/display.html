@@ -89,7 +89,7 @@
     <script type="text/javascript" th:inline="javascript">
 /*<![CDATA[*/
 
-    var map;
+   var map;
 
     function initMap() {
 
@@ -100,11 +100,12 @@
 
     map = new google.maps.Map(document.getElementById('map'), options);
 
-
-    var marker = new google.maps.Marker({
-        position:{lat: 38.5950619, lng: -90.2291565},
+        /*[# th:each="restaurant : ${restaurants}"]*/
+        var marker = new google.maps.Marker({
+        position:{lat:[(${restaurant.latitude})] , lng: [(${restaurant.longitude})},
         map:map
         });
+        /*[/]*/
     }
     /*]]>*/
     </script>

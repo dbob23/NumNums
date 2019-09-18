@@ -11,6 +11,10 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Integer>
 
     Restaurant findByWebAddress(String webAddress);
 
+//    @Query();
+//)
+//    List<Restaurant> findCloseToZipcode(Integer zipcode)
+
 }
 
 
