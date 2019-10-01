@@ -23,14 +23,14 @@ import java.util.Scanner;
 public class HomeController {
 
 
-    @RequestMapping(value="", method = RequestMethod.GET)
-    public String index(@ModelAttribute("aSearch") @Valid SearchDetails aSearch, Errors errors, Model model){
-        model.addAttribute("aSearch",new SearchDetails());
+    @RequestMapping(value = "", method = RequestMethod.GET)
+    public String index(@ModelAttribute("aSearch") @Valid SearchDetails aSearch, Errors errors, Model model) {
+        model.addAttribute("aSearch", new SearchDetails());
         model.addAttribute("title", "NumNums!");
         return "home/index";
     }
 
-    @RequestMapping(value="", method = RequestMethod.POST)
+    @RequestMapping(value = "", method = RequestMethod.POST)
     public String processZipCode(@ModelAttribute("aSearch") @Valid SearchDetails aSearch, Errors errors, Model model) {
         if (errors.hasErrors()) {
             model.addAttribute("title", "NumNums!");
@@ -63,4 +63,4 @@ public class HomeController {
         }
         return "home/display";
     }
-    }
+}
