@@ -43,7 +43,7 @@ public class HomeController {
             String str = new String();
             while (scan.hasNext())
                 str += scan.nextLine();
-            System.out.println(str);
+//            System.out.println(str);
             scan.close();
             JSONObject jb = new JSONObject(str);
             JSONArray results = (JSONArray) jb.get("results");
@@ -60,6 +60,8 @@ public class HomeController {
         } finally {
             model.addAttribute("title", "NumNums! Display");
             model.addAttribute("restaurants", RestaurantService.locateRestaurants(aSearch));
+            System.out.println(model);
+
         }
         return "home/display";
     }

@@ -18,7 +18,8 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Integer>
     Restaurant findByWebAddress(String webAddress);
 
     @Transactional
-    @Query(value = "SELECT *, (3959 * acos( cos(radians(/*${aSearch.latitude}*/)) * cos(radians(latitude)) * cos(radians(longitude) - radians(/*${aSearch.longitude}*/)) + sin(radians/*$(aSearch.latitude)*/) * sin(radians(latitude))))AS distance FROM restaurant HAVING distance</*${aSearch.distance}*/ ORDER BY distance LIMIT 0, 20;",nativeQuery = true)
+//    @Query(value = "SELECT *, (3959 * acos( cos(radians(/*${aSearch.latitude}*/)) * cos(radians(latitude)) * cos(radians(longitude) - radians(/*${aSearch.longitude}*/)) + sin(radians/*$(aSearch.latitude)*/) * sin(radians(latitude))))AS distance FROM restaurant HAVING distance</*${aSearch.distance}*/ ORDER BY distance LIMIT 0, 20;",nativeQuery = true)
+    @Query(value = "SELECT * FROM restaurant;", nativeQuery = true)
     ArrayList<Restaurant> locateRestaurants(@Param("aSearch") SearchDetails aSearch);
 }
 
