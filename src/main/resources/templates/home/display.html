@@ -87,7 +87,7 @@
     <br><br>
     <!--    google maps scripts  -->
     <script type="text/javascript" th:inline="javascript">
-/*<![CDATA[*/
+
 
    var map;
 
@@ -102,14 +102,17 @@
 
 }
 
-<!--        /*[# th:each="restaurant : ${restaurants}"]*/-->
-<!--        var marker = new google.maps.Marker({-->
-<!--        position:{lat:[(${restaurant.latitude})] , lng: [(${restaurant.longitude})},-->
-<!--        map:map-->
-<!--        });-->
-<!--        /*[/]*/-->
+    var restaurants = (${restaurants})
+    var marker, i
 
-    /*]]>*/
+    for (i = 0; i < restaurants.length; i++) {
+        marker = new google.maps.Marker({
+        position:lat:(${restaurants[i].latitude}) , lng: (${restaurants[i].longitude}),
+        map:map
+        });
+
+
+
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvq8G2idSuiPwzYEt6JIsbqtP29RjZZ0c&callback=initMap" async defer></script>
 </body>
