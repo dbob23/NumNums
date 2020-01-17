@@ -3,7 +3,14 @@
 <head th:replace="fragments :: head">
 </head>
 <body class="container">
-<nav th:replace="fragments :: navigation"></nav>
+<nav th:fragment="navigation">
+    <ul>
+        <li><a class="logo" href="/NumNums"><h2>NumNums!</h2></a></li>
+        <li><a href="/NumNums/registration">Register</a></li>
+        <li><a href="/NumNums/login">Login</a></li>
+        <li><a href="/NumNums/about">About</a></li>
+    </ul>
+</nav>
 <h2>Welcome to NumNums! We're going to help you find something good to eat.</h2><br>
 <form method="post" style="max-width:300px;" th:object="${aSearch}">
     <div class="checkbox">
