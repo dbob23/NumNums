@@ -4,7 +4,14 @@
 <head th:replace="fragments :: head">
 </head>
 <body class="container">
-<nav th:replace="fragments :: navigation"></nav>
+<nav>
+    <ul>
+        <li><a class="logo" href="/NumNums"><h2>NumNums!</h2></a></li>
+        <li><a href="/NumNums">Search</a></li>
+        <li><a href="/NumNums/registration">Register</a></li>
+        <li><a href="/NumNums/about">About</a></li>
+    </ul>
+</nav>
     <form th:action="@{/NumNums/registration}" method="get">
         <button class="btn btn-md btn-warning btn-block" type="Submit">Don't have an account? Register here.</button>
     </form>
