@@ -8,11 +8,10 @@
 <nav>
     <ul>
         <li><a class="logo" href="/NumNums"><h2>NumNums!</h2></a></li>
-        <li><h2>NumNums!</h2>
         <li><a href="/NumNums">Search</a></li>
         <li><a href="/NumNums/registration">Register</a></li>
-        <li><a href="/NumNums/about">About</a></li>
         <li><a href="/NumNums/logout">Logout</a></li>
+        <li><a href="/NumNums/about">About</a></li>
     </ul>
 </nav>
 
@@ -21,7 +20,7 @@
 </div>
 
 <div>
-    <b>You are logged in!</b>
+    <b>You are logged in! Add another great restaurant to NumNums!</b>
 </div>
 <form th:action="@{/NumNums/add}" method="POST"  class="form-signin" th:object="${restaurant}">
     <div class="container">
