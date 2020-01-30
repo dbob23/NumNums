@@ -15,11 +15,12 @@
     <!--  bootstrap scripts    -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script type="text/javscript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </head>
 <body class="container">
     <nav>
         <ul>
+            <li><a class="logo" href="/NumNums"><h2>NumNums!</h2></a></li>
             <li><h2>NumNums!</h2></li>
             <li><a href="/NumNums">Search</a></li>
             <li><a href="/NumNums/registration">Register</a></li>
@@ -96,9 +97,20 @@
     zoom: 8
     };
     map = new google.maps.Map(document.getElementById('map'), options);
+
+    var marker = new google.maps.Marker({
+            position:{lat: 38.5950619, lng: -90.2291565},
+            map:map
+           });
+        }
     }
 
     </script>
+
+
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvq8G2idSuiPwzYEt6JIsbqtP29RjZZ0c&callback=initMap" async defer></script>
+
+
+
 </body>
 </html>
