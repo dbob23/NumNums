@@ -1,7 +1,6 @@
 package com.NumNums.models.data;
 
 import com.NumNums.models.Restaurant;
-import com.NumNums.models.SearchDetails;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -17,12 +16,14 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Integer>
 
     Restaurant findByWebAddress(String webAddress);
 
+
    @Transactional
 //    @Query(value = "SELECT *, (3959 * acos( cos(radians(/*${aSearch.latitude}*/)) * cos(radians(latitude)) * cos(radians(longitude) - radians(/*${aSearch.longitude}*/)) + sin(radians/*$(aSearch.latitude)*/) * sin(radians(latitude))))AS distance FROM restaurant HAVING distance</*${aSearch.distance}*/ ORDER BY distance LIMIT 0, 20;",nativeQuery = true)
-//    @Query(nativeQuery = true, value = "SELECT * FROM restaurant WHERE r.zip_code = ?#{aSearch.getZipCode}")
-   @Query(value = "SELECT * FROM restaurant WHERE zip_code = '63118';", nativeQuery = true)
-     ArrayList<Restaurant> locateRestaurants(@Param("aSearch") SearchDetails aSearch);
+    @Query(value = "SELECT * FROM restaurant WHERE zip_code = :zip", nativeQuery = true)
+//   @Query(value = "SELECT * FROM restaurant WHERE zip_code = '63118';", nativeQuery = true)
+//     ArrayList<Restaurant> locateRestaurants(@Param("aSearch") SearchDetails aSearch);
 //    ArrayList<Restaurant> locateRestaurants( SearchDetails aSearch);
+    ArrayList<Restaurant> locateRestaurants (@Param("zip") String zip );
 
 
 }

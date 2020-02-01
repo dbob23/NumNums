@@ -59,7 +59,10 @@ public class HomeController {
         } catch (Exception e) {
         } finally {
             model.addAttribute("title", "NumNums! Display");
-            model.addAttribute("restaurants", RestaurantService.locateRestaurants(aSearch));
+//            model.addAttribute("restaurants", RestaurantService.locateRestaurants(aSearch));
+            String zip = aSearch.getZipCode();
+            model.addAttribute("restaurants", RestaurantService.locateRestaurants(zip));
+
             System.out.println(model);
 
         }

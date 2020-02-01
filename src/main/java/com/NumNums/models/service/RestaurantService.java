@@ -2,7 +2,6 @@ package com.NumNums.models.service;
 
 
 import com.NumNums.models.Restaurant;
-import com.NumNums.models.SearchDetails;
 import com.NumNums.models.data.RestaurantRepository;
 import com.NumNums.models.data.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +30,13 @@ public class RestaurantService {
         return restaurantRepository.findById(id);
     }
 
-    public static ArrayList<Restaurant> locateRestaurants(SearchDetails aSearch) {
-        return restaurantRepository.locateRestaurants(aSearch);
+//    public static ArrayList<Restaurant> locateRestaurants(SearchDetails aSearch) {
+//        return restaurantRepository.locateRestaurants(aSearch);
+//    }
+
+
+    public static ArrayList<Restaurant> locateRestaurants (String zip){
+        return restaurantRepository.locateRestaurants(zip);
     }
 
     public Restaurant findRestaurantByWebAddress(String webAddress) {
