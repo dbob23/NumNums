@@ -11,12 +11,10 @@
         <li><a href="/NumNums/logout">Logout</a></li>
     </ul>
 </nav>
-
 <div>
     <p th:text="${message}"></p>
     <p th:text="${user}"></p>
 </div>
-
 <div>
     <b>You are logged in!</b>
 </div>
@@ -25,12 +23,9 @@
     <a class = "in text link" href="/NumNums/add">Add a restaurant</a>
 </div>
 <br/><br/>
-
 <div class="container">
     <p th:unless="${restaurants} and ${restaurants.size()}"><i>You have not yet added a restaurant to NumNums!</i></p>
-
     <table class="table">
-
         <tr>
             <th>Name</th>
             <th>Address</th>
@@ -41,7 +36,6 @@
             <th>Non-Vegetarian</th>
             <th>Website</th>
         </tr>
-
         <tr th:each="restaurant : ${restaurants}">
             <td th:text="${restaurant.restaurantName}"></td>
             <td th:text="${restaurant.streetAddress} + ', ' + ${restaurant.city} + ', ' + ${restaurant.state} + ', ' + ${restaurant.zipCode}"></td>

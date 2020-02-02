@@ -59,9 +59,14 @@ public class HomeController {
         } catch (Exception e) {
         } finally {
             model.addAttribute("title", "NumNums! Display");
-//            model.addAttribute("restaurants", RestaurantService.locateRestaurants(aSearch));
-            String zip = aSearch.getZipCode();
-            model.addAttribute("restaurants", RestaurantService.locateRestaurants(zip));
+
+//            Set parameters for Query
+
+            BigDecimal latitude = aSearch.getLatitude();
+            BigDecimal longitude = aSearch.getLongitude();
+            int distance = aSearch.getDistance();
+
+            model.addAttribute("restaurants", RestaurantService.locateRestaurants(latitude, longitude, distance));
 
             System.out.println(model);
 

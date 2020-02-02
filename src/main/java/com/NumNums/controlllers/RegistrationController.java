@@ -22,12 +22,11 @@ public class RegistrationController {
 
 
 
-        @RequestMapping(value="NumNums/registration", method = RequestMethod.GET)
+    @RequestMapping(value="NumNums/registration", method = RequestMethod.GET)
         public String displayRegistrationForm(Model model) {
             model.addAttribute("title", "Register");
             model.addAttribute(new User());
             return "login/registration";
-
         }
 
     @RequestMapping(value="NumNums/registration", method = RequestMethod.POST)
@@ -51,5 +50,3 @@ public class RegistrationController {
         return "login/login";
     }
 }
-
-
