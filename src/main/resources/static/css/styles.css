@@ -15,14 +15,6 @@ nav ul {
 
 }
 
-
-nav li {
-    float: left;
-    margin: 14px;
-    color: red;
-
-}
-
 nav li a {
     display: block;
     color: white;
@@ -37,6 +29,7 @@ nav li a:hover {
 .error {
     color: red;
 }
+
 .b {
     text-align: center;
     display: inline-block;

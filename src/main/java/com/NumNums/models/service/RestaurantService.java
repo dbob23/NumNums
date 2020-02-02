@@ -7,8 +7,8 @@ import com.NumNums.models.data.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.List;
 
 @Service("restaurantService")
 public class RestaurantService {
@@ -17,7 +17,7 @@ public class RestaurantService {
     private static RestaurantRepository restaurantRepository;
 
     @Autowired
-    public RestaurantService(RestaurantRepository restaurantRepository, UserRepository userRepository){
+    public RestaurantService(RestaurantRepository restaurantRepository, UserRepository userRepository) {
         this.restaurantRepository = restaurantRepository;
         this.userRepository = userRepository;
     }
@@ -26,12 +26,15 @@ public class RestaurantService {
         return (ArrayList) restaurantRepository.findAll();
     }
 
-    public Restaurant findRestaurantById (int id){
-
+    public static Restaurant findRestaurantById(int id) {
         return restaurantRepository.findById(id);
     }
 
-    public Restaurant findRestaurantByWebAddress (String webAddress){
+    public static ArrayList locateRestaurants(BigDecimal latitude, BigDecimal longitude, int distance) {
+        return restaurantRepository.locateRestaurants(latitude, longitude, distance);
+    }
+
+    public Restaurant findRestaurantByWebAddress(String webAddress) {
         return restaurantRepository.findByWebAddress(webAddress);
     }
 
@@ -42,5 +45,6 @@ public class RestaurantService {
     public void deleteRestaurant(int id) {
         restaurantRepository.deleteById(id);
     }
+
 
 }

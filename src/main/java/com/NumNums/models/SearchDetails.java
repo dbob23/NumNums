@@ -1,6 +1,7 @@
 package com.NumNums.models;
 
 import javax.validation.constraints.Pattern;
+import java.math.BigDecimal;
 
 
 public class SearchDetails {
@@ -20,9 +21,13 @@ public class SearchDetails {
 
     private boolean nonVegetarian;
 
+    private BigDecimal latitude;
+
+    private BigDecimal longitude;
+
     public SearchDetails() {}
 
-    public SearchDetails(String zipCode, int distance, boolean glutenFree, boolean lactoseFree, boolean vegan, boolean vegetarian, boolean nonVegetarian) {
+    public SearchDetails(String zipCode, int distance, boolean glutenFree, boolean lactoseFree, boolean vegan, boolean vegetarian, boolean nonVegetarian, BigDecimal latitude, BigDecimal longitude) {
         this.zipCode = zipCode;
         this.distance = distance;
         this.glutenFree = false;
@@ -30,6 +35,8 @@ public class SearchDetails {
         this.vegan = false;
         this.vegetarian = false;
         this.nonVegetarian = false;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     public void setZipCode(String zipCode) { this.zipCode = zipCode; }
@@ -80,11 +87,24 @@ public class SearchDetails {
         this.nonVegetarian = nonVegetarian;
     }
 
-    @Override
-    public String toString() {
-
-        return "You have searched for a restaurant within " + distance + " miles of " + zipCode + ". Here are the results:";
+    public BigDecimal getLatitude() {
+        return latitude;
     }
 
-}
+    public void setLatitude(BigDecimal latitude) {
+        this.latitude = latitude;
+    }
 
+    public BigDecimal getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(BigDecimal longitude) {
+        this.longitude = longitude;
+    }
+
+    @Override
+    public String toString() {
+        return "You have searched for a restaurant within " + distance + " miles of " + zipCode + ". Here are the results:";
+    }
+}

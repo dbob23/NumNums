@@ -204,7 +204,4 @@ public class Restaurant {
                 ", restaurantName='" + restaurantName + '\'' +
                 ", webAddress='" + webAddress + '\'' ;
     }
-
-
-
 }
