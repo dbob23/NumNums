@@ -30,7 +30,13 @@
     <div class = "container-fluid">
         <div class = "row">
             <div class="col">
-                <p th:text="${aSearch}"></p>
+                <span th:text="${aSearch}"></span>
+                <div th:each="diningOption : ${diningOptions}">
+                    <div th:if="${diningOption.value} == true">
+                        <p th:text="'You are looking for ' + ${diningOption.key} + ' food.'"></p>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -84,6 +90,11 @@
             </div>
         </div>
     </div>
+<!--    <div th:each="entrySet : ${diningOptions}">-->
+<!--        <div th:if="${entrySet.value} == true">-->
+<!--            <p th:text="'You are looking for ' + ${entrySet.key} + ' food.'"></p>-->
+<!--        </div>-->
+<!--    </div>-->
     <br><br>
 
 

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.validation.Valid;
 import java.math.BigDecimal;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.Scanner;
 
 
@@ -36,7 +37,16 @@ public class HomeController {
             model.addAttribute("title", "NumNums!");
             return "home/index";
         }
+
+        HashMap<String, Boolean> diningOptions = new HashMap<>();
+            diningOptions.put("gluten free", aSearch.isGlutenFree());
+            diningOptions.put("lactose free", aSearch.isLactoseFree());
+            diningOptions.put("vegan", aSearch.isVegan());
+            diningOptions.put("vegetarian", aSearch.isVegetarian());
+            diningOptions.put("non-vegetarian", aSearch.isNonVegetarian());
+
         String zipCode = aSearch.getZipCode();
+
         try {
             URL url = new URL("https://maps.googleapis.com/maps/api/geocode/json?components=postal_code:" + zipCode + "|country:US&key=AIzaSyDvq8G2idSuiPwzYEt6JIsbqtP29RjZZ0c");
             Scanner scan = new Scanner(url.openStream());
@@ -66,7 +76,9 @@ public class HomeController {
             BigDecimal longitude = aSearch.getLongitude();
             int distance = aSearch.getDistance();
 
+
             model.addAttribute("restaurants", RestaurantService.locateRestaurants(latitude, longitude, distance));
+            model.addAttribute("diningOptions", diningOptions);
 
             System.out.println(model);
 
