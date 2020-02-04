@@ -102,9 +102,4 @@ public class SearchDetails {
     public void setLongitude(BigDecimal longitude) {
         this.longitude = longitude;
     }
-
-    @Override
-    public String toString() {
-        return "You have searched for a restaurant within " + distance + " miles of " + zipCode + ". Here are the results:";
-    }
 }

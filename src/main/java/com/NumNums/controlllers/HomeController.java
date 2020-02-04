@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.validation.Valid;
 import java.math.BigDecimal;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 
@@ -38,14 +40,44 @@ public class HomeController {
             return "home/index";
         }
 
-        HashMap<String, Boolean> diningOptions = new HashMap<>();
-            diningOptions.put("gluten free", aSearch.isGlutenFree());
-            diningOptions.put("lactose free", aSearch.isLactoseFree());
-            diningOptions.put("vegan", aSearch.isVegan());
-            diningOptions.put("vegetarian", aSearch.isVegetarian());
-            diningOptions.put("non-vegetarian", aSearch.isNonVegetarian());
-
+        StringBuilder confirmMessage = new StringBuilder("You have searched for a restaurant within " + aSearch.getDistance() + " miles of zipcode " + aSearch.getZipCode());
+        HashMap<String, Boolean> typeOfFood = new HashMap();
+        ArrayList<String> onlyTrueTypes = new ArrayList<>();
         String zipCode = aSearch.getZipCode();
+
+        typeOfFood.put("gluten-free", aSearch.isGlutenFree());
+        typeOfFood.put("lactose-free", aSearch.isLactoseFree());
+        typeOfFood.put("vegan", aSearch.isVegan());
+        typeOfFood.put("vegetarian", aSearch.isVegetarian());
+        typeOfFood.put("non-vegetarian", aSearch.isNonVegetarian());
+
+        for ( Map.Entry<String, Boolean> type : typeOfFood.entrySet()) {
+            if (type.getValue() == true) {
+                onlyTrueTypes.add(type.getKey());
+            }
+        }
+        if (onlyTrueTypes.size() != 0 && onlyTrueTypes != null) {
+            confirmMessage.append(" that serves");
+
+            if (onlyTrueTypes.size() == 1) {
+                confirmMessage.append(" " + onlyTrueTypes.get(0) + " food.");
+            }
+            if (onlyTrueTypes.size() == 2) {
+                confirmMessage.append(" " + onlyTrueTypes.get(0) + " and " + onlyTrueTypes.get(1) + " food.");
+            }
+            if (onlyTrueTypes.size() >= 3){
+                int i = 0;
+                while (i <= onlyTrueTypes.size() - 2) {
+                    confirmMessage.append(" ");
+                    confirmMessage.append(onlyTrueTypes.get(i));
+                    confirmMessage.append(", ");
+                    i++;
+                }
+                confirmMessage.append("and ");
+                confirmMessage.append(onlyTrueTypes.get(i));
+                confirmMessage.append(" food.");
+            }
+        }
 
         try {
             URL url = new URL("https://maps.googleapis.com/maps/api/geocode/json?components=postal_code:" + zipCode + "|country:US&key=AIzaSyDvq8G2idSuiPwzYEt6JIsbqtP29RjZZ0c");
@@ -78,10 +110,9 @@ public class HomeController {
 
 
             model.addAttribute("restaurants", RestaurantService.locateRestaurants(latitude, longitude, distance));
-            model.addAttribute("diningOptions", diningOptions);
+            model.addAttribute("confirmMessage", confirmMessage);
 
             System.out.println(model);
-
         }
         return "home/display";
     }
