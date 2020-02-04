@@ -89,7 +89,7 @@
 
     <!--    google maps scripts  -->
 <!--    <script type="text/javascript" src="/static/js/script.js"></script>-->
-    <script>
+    <script th:inline="javascript">
     var map;
 
     function initMap() {
@@ -101,11 +101,14 @@
 
     map = new google.maps.Map(document.getElementById('map'), options);
 
-    var marker = new google.maps.Marker({
-      
-        position:{lat: 38.5950619, lng: -90.2291565},
+    var searchResults = [[${restaurants}]]
+
+    for (var i = 0; i < searchResults.length; i++) {
+        var marker = new google.maps.Marker({
+        position:{lat: searchResults[i].getLatitude(), lng: searchResults[i].getLongitude()},
         map:map
      });
+     }
      }
     </script>
 
