@@ -89,24 +89,36 @@
 
     <!--    google maps scripts  -->
 <!--    <script type="text/javascript" src="/static/js/script.js"></script>-->
-    <script>
+    <script inline="text/javascript">
+
+
     var map;
 
     function initMap() {
 
     var options = {
         center: {lat: 38.6270, lng: -90.1994},
-        zoom: 8
+        zoom: 11
     };
 
     map = new google.maps.Map(document.getElementById('map'), options);
 
-    var marker = new google.maps.Marker({
-      
-        position:{lat: 38.5950619, lng: -90.2291565},
+    var latList = [(${latList})];
+    var lngList = [(${lngList})];
+
+    console.log(latList);
+    console.log(lngList);
+
+
+    for (var i = 0; i < latList.length; i++) {
+        console.log(i);
+        var marker = new google.maps.Marker({
+        position:{lat: parseFloat(latList[i]), lng: parseFloat(lngList[i])},
         map:map
      });
      }
+     }
+
     </script>
 
 
