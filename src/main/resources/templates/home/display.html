@@ -89,27 +89,37 @@
 
     <!--    google maps scripts  -->
 <!--    <script type="text/javascript" src="/static/js/script.js"></script>-->
-    <script th:inline="javascript">
+    <script inline="text/javascript">
+
+
     var map;
 
     function initMap() {
 
     var options = {
         center: {lat: 38.6270, lng: -90.1994},
-        zoom: 8
+        zoom: 11
     };
 
     map = new google.maps.Map(document.getElementById('map'), options);
 
-    var searchResults = [[${restaurants}]]
 
-    for (var i = 0; i < searchResults.length; i++) {
+    var latList = /*[[${latList}]]*/ [38.599, 38.6359, 38.649, 38.6373, 38.6598];
+    var lngList = /*[[${lngList}]]*/ [-90.2431, -90.2219, -90.2514, -90.3078, -90.3372];
+
+    console.log(latList);
+    console.log(lngList);
+
+
+    for (var i = 0; i < latList.length; i++) {
+        console.log(i);
         var marker = new google.maps.Marker({
-        position:{lat: searchResults[i].getLatitude(), lng: searchResults[i].getLongitude()},
+        position:{lat: parseFloat(latList[i]), lng: parseFloat(lngList[i])},
         map:map
      });
      }
      }
+
     </script>
 
 
