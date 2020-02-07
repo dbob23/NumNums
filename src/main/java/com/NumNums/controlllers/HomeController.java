@@ -1,6 +1,7 @@
 package com.NumNums.controlllers;
 
 
+import com.NumNums.models.Restaurant;
 import com.NumNums.models.SearchDetails;
 import com.NumNums.models.service.RestaurantService;
 import org.json.JSONArray;
@@ -109,7 +110,27 @@ public class HomeController {
             int distance = aSearch.getDistance();
 
 
-            model.addAttribute("restaurants", RestaurantService.locateRestaurants(latitude, longitude, distance));
+            ArrayList<Restaurant> searchResults = RestaurantService.locateRestaurants(latitude, longitude, distance);
+            ArrayList<BigDecimal> latList = new ArrayList<>();
+            ArrayList<BigDecimal> lngList = new ArrayList<>();
+
+            if (searchResults.size() != 0 && searchResults != null) {
+                for (Restaurant res : searchResults) {
+                    latList.add(res.getLatitude());
+                    lngList.add(res.getLongitude());
+                }
+
+                System.out.println("latList: " + latList + "lngList: " + lngList);
+            }
+
+            System.out.println(searchResults);
+
+            model.addAttribute("latList", latList);
+            model.addAttribute("lngList", lngList);
+            model.addAttribute("restaurants", searchResults);
+
+
+//            model.addAttribute("restaurants", RestaurantService.locateRestaurants(latitude, longitude, distance));
             model.addAttribute("confirmMessage", confirmMessage);
 
             System.out.println(model);
