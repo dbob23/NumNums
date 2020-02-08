@@ -105,19 +105,34 @@
 
     var latList = [(${latList})];
     var lngList = [(${lngList})];
+    var addList = /*[(${addressList})]*/ "3201 S.Grand Blvd.";
+    var nameList = /*[(${nameList})]*/ "Lulu's";
+    var webList = /*[(${webList})]*/ "https://www.LulusLocalEatery.com";
+
 
     console.log(latList);
     console.log(lngList);
-
+    console.log(nameList);
 
     for (var i = 0; i < latList.length; i++) {
-        console.log(i);
         var marker = new google.maps.Marker({
-        position:{lat: parseFloat(latList[i]), lng: parseFloat(lngList[i])},
-        map:map
-     });
+            position:{lat: parseFloat(latList[i]), lng: parseFloat(lngList[i])},
+            map:map
+            });
+
+            var contentString = nameList + "<br>" + addList + "<br>" + webList;
+
+            var infoWindow = new google.maps.InfoWindow({
+                content: contentString
+                });
+
+            marker.infoWindow = infoWindow;
+
+            marker.addListener('click',function(){
+                return this.infoWindow.open(map,this);
+                })
      }
-     }
+}
 
     </script>
 

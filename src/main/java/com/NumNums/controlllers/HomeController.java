@@ -97,8 +97,8 @@ public class HomeController {
             BigDecimal lng = location.getBigDecimal("lng");
             aSearch.setLatitude(lat);
             aSearch.setLongitude(lng);
-            System.out.println("Lat = " + location.get("lat"));
-            System.out.println("Lng = " + location.get("lng"));
+//            System.out.println("Lat = " + location.get("lat"));
+//            System.out.println("Lng = " + location.get("lng"));
         } catch (Exception e) {
         } finally {
             model.addAttribute("title", "NumNums! Display");
@@ -113,27 +113,36 @@ public class HomeController {
             ArrayList<Restaurant> searchResults = RestaurantService.locateRestaurants(latitude, longitude, distance);
             ArrayList<BigDecimal> latList = new ArrayList<>();
             ArrayList<BigDecimal> lngList = new ArrayList<>();
+            ArrayList<String> nameList = new ArrayList<>();
+            ArrayList<String> addressList = new ArrayList<>();
+            ArrayList<String> webList = new ArrayList<>();
 
             if (searchResults.size() != 0 && searchResults != null) {
                 for (Restaurant res : searchResults) {
                     latList.add(res.getLatitude());
                     lngList.add(res.getLongitude());
+                    nameList.add(res.getRestaurantName());
+                    webList.add(res.getWebAddress());
+                    addressList.add(res.getStreetAddress());
                 }
 
-                System.out.println("latList: " + latList + "lngList: " + lngList);
+//                System.out.println("latList: " + latList + "lngList: " + lngList);
             }
 
-            System.out.println(searchResults);
+//            System.out.println(searchResults);
 
             model.addAttribute("latList", latList);
             model.addAttribute("lngList", lngList);
+            model.addAttribute("nameList", nameList);
+            model.addAttribute("addressList", addressList);
+            model.addAttribute("webList", webList);
             model.addAttribute("restaurants", searchResults);
 
 
 //            model.addAttribute("restaurants", RestaurantService.locateRestaurants(latitude, longitude, distance));
             model.addAttribute("confirmMessage", confirmMessage);
 
-            System.out.println(model);
+//            System.out.println(model);
         }
         return "home/display";
     }
