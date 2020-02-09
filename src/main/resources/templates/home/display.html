@@ -90,7 +90,7 @@
     <!--    google maps scripts  -->
 <!--    <script type="text/javascript" src="/static/js/script.js"></script>-->
     <script inline="text/javascript">
-
+/*<![CDATA[*/
 
     var map;
 
@@ -105,14 +105,17 @@
 
     var latList = [(${latList})];
     var lngList = [(${lngList})];
-    var addList = /*[(${addressList})]*/ "3201 S.Grand Blvd.";
-    var nameList = /*[(${nameList})]*/ "Lulu's";
-    var webList = /*[(${webList})]*/ "https://www.LulusLocalEatery.com";
+    var addList = /*[(${addressList})]*/ '3201 S. Grand Blvd';
+    var nameList = /*[(${nameList})]*/ 'Lulus Local Eatery';
+    var webList = /*[(${webList})]*/ 'https://www.LulusLocalEatery.com';
 
 
     console.log(latList);
     console.log(lngList);
+    console.log(addList);
     console.log(nameList);
+    console.log(webList);
+
 
     for (var i = 0; i < latList.length; i++) {
         var marker = new google.maps.Marker({
@@ -133,7 +136,7 @@
                 })
      }
 }
-
+ /*]]>*/
     </script>
 
 
