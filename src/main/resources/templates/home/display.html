@@ -105,17 +105,16 @@
 
     var latList = [(${latList})];
     var lngList = [(${lngList})];
-    var addList = /*[(${addressList})]*/ '3201 S. Grand Blvd';
-    var nameList = /*[(${nameList})]*/ 'Lulus Local Eatery';
-    var webList = /*[(${webList})]*/ 'https://www.LulusLocalEatery.com';
+    var addressList = [(${addressList})];
+    var nameList = [(${nameList})];
+    var webList = [(${webList})];
 
 
     console.log(latList);
     console.log(lngList);
-    console.log(addList);
+    console.log(addressList);
     console.log(nameList);
     console.log(webList);
-
 
     for (var i = 0; i < latList.length; i++) {
         var marker = new google.maps.Marker({
@@ -123,7 +122,7 @@
             map:map
             });
 
-            var contentString = nameList + "<br>" + addList + "<br>" + "<a href='https://www.LulusLocalEatery.com'>https://www.LulusLocalEatery.com</a>";
+            var contentString = nameList[i] + "<br>" + addressList[i] + "<br>" + "<a href = webList[i]>" + webList[i] + "</a>";
 
             var infoWindow = new google.maps.InfoWindow({
                 content: contentString
@@ -134,7 +133,7 @@
             marker.addListener('click',function(){
                 return this.infoWindow.open(map,this);
                 })
-     }
+    }
 }
  /*]]>*/
     </script>
