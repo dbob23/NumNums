@@ -41,7 +41,7 @@ public class HomeController {
             model.addAttribute("title", "NumNums!");
             return "home/index";
         }
-
+                        //build confirm message
         StringBuilder confirmMessage = new StringBuilder("You have searched for a restaurant within " + aSearch.getDistance() + " miles of zipcode " + aSearch.getZipCode());
         HashMap<String, Boolean> typeOfFood = new HashMap();
         ArrayList<String> onlyTrueTypes = new ArrayList<>();
@@ -109,14 +109,33 @@ public class HomeController {
             int distance = aSearch.getDistance();
 
             ArrayList<Restaurant> searchResults = RestaurantService.locateRestaurants(latitude, longitude, distance);
+
+                        //filter searchResults
+            ArrayList<Restaurant> filteredSearchResults = new ArrayList<>();
+
+
+            if (onlyTrueTypes != null && onlyTrueTypes.size() != 0) {
+                for (int i = 0; i < searchResults.size(); i++){
+                    if (onlyTrueTypes.contains("gluten-free") && searchResults.get(i).isGlutenFree()){
+                    } else if (onlyTrueTypes.contains("lactose-free") && searchResults.get(i).isLactoseFree()){
+                    } else if (onlyTrueTypes.contains("vegan") && searchResults.get(i).isVegan()){
+                    } else if (onlyTrueTypes.contains("vegetarian") && searchResults.get(i).isVegetarian()){
+                    } else if (onlyTrueTypes.contains("non-vegetarian") && searchResults.get(i).isNonVegetarian()) {
+                        filteredSearchResults.add(searchResults.get(i));
+                    }
+                }
+            }
+
+
+            //ArrayLists needed to display markers and infoWindows
             ArrayList<BigDecimal> latList = new ArrayList<>();
             ArrayList<BigDecimal> lngList = new ArrayList<>();
             ArrayList<String> nameList = new ArrayList<>();
             ArrayList<String> addressList = new ArrayList<>();
             ArrayList<String> webList = new ArrayList<>();
 
-            if (searchResults.size() != 0 && searchResults != null) {
-                for (Restaurant res : searchResults) {
+            if (filteredSearchResults.size() != 0 && filteredSearchResults != null) {
+                for (Restaurant res : filteredSearchResults) {
                     latList.add(res.getLatitude());
                     lngList.add(res.getLongitude());
                     nameList.add(res.getRestaurantName());
@@ -153,17 +172,16 @@ public class HomeController {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            //            System.out.println(searchResults);
+
+            System.out.println(filteredSearchResults);
             model.addAttribute("latList", latList);
             model.addAttribute("lngList", lngList);
             model.addAttribute("nameList", json);
             model.addAttribute("addressList", jsonTwo);
             model.addAttribute("webList", jsonThree);
-            model.addAttribute("restaurants", searchResults);
+            model.addAttribute("restaurants", filteredSearchResults);
 
-            //            model.addAttribute("restaurants", RestaurantService.locateRestaurants(latitude, longitude, distance));
             model.addAttribute("confirmMessage", confirmMessage);
-            //            System.out.println(model);
         }
         return "home/display";
     }
