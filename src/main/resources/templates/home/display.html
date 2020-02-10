@@ -90,7 +90,7 @@
     <!--    google maps scripts  -->
 <!--    <script type="text/javascript" src="/static/js/script.js"></script>-->
     <script inline="text/javascript">
-
+/*<![CDATA[*/
 
     var map;
 
@@ -105,20 +105,37 @@
 
     var latList = [(${latList})];
     var lngList = [(${lngList})];
+    var addressList = [(${addressList})];
+    var nameList = [(${nameList})];
+    var webList = [(${webList})];
+
 
     console.log(latList);
     console.log(lngList);
-
+    console.log(addressList);
+    console.log(nameList);
+    console.log(webList);
 
     for (var i = 0; i < latList.length; i++) {
-        console.log(i);
         var marker = new google.maps.Marker({
-        position:{lat: parseFloat(latList[i]), lng: parseFloat(lngList[i])},
-        map:map
-     });
-     }
-     }
+            position:{lat: parseFloat(latList[i]), lng: parseFloat(lngList[i])},
+            map:map
+            });
 
+            var contentString = nameList[i] + "<br>" + addressList[i] + "<br>" + "<a href = webList[i]>" + webList[i] + "</a>";
+
+            var infoWindow = new google.maps.InfoWindow({
+                content: contentString
+                });
+
+            marker.infoWindow = infoWindow;
+
+            marker.addListener('click',function(){
+                return this.infoWindow.open(map,this);
+                })
+    }
+}
+ /*]]>*/
     </script>
 
 
