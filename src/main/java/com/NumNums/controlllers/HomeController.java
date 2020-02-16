@@ -123,7 +123,6 @@ public class HomeController {
 
             HashMap<String, Boolean> userInputMap = new HashMap();
             ArrayList<String> userInputSearchList = new ArrayList<>();
-            HashMap<String, Integer> searchResultPropertiesMap = new HashMap<>();
             ArrayList<String> searchResultPropertiesList = new ArrayList<>();
 
             userInputMap.put("glutenFree", aSearch.isGlutenFree());
@@ -167,7 +166,7 @@ public class HomeController {
                     }
                     searchResultPropertiesList.clear();
                 }
-
+            }
 
                 //ArrayLists needed to display markers and infoWindows
                 ArrayList<BigDecimal> latList = new ArrayList<>();
@@ -188,8 +187,10 @@ public class HomeController {
                     System.out.println("nameList: " + nameList);
                     System.out.println("webList: " + webList);
                     System.out.println("addressList: " + addressList);
-                    System.out.println("latList: " + latList + "lngList: " + lngList);
+                    System.out.println("latList: " + latList + " lngList: " + lngList);
+                    System.out.println("searchLat: " + latitude + " searchLng: " + longitude);
                 }
+
 
                 //            convert string arrays to json
 
@@ -214,6 +215,20 @@ public class HomeController {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                ObjectMapper mapperFour = new ObjectMapper();
+                String jsonFour = "";
+                try {
+                    jsonFour = mapperFour.writeValueAsString(latitude);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                ObjectMapper mapperFive = new ObjectMapper();
+                String jsonFive = "";
+                try {
+                    jsonFive = mapperFive.writeValueAsString(longitude);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
                 System.out.println(filteredSearchResults);
                 model.addAttribute("latList", latList);
@@ -223,8 +238,10 @@ public class HomeController {
                 model.addAttribute("webList", jsonThree);
                 model.addAttribute("restaurants", filteredSearchResults);
                 model.addAttribute("confirmMessage", confirmMessage);
-            }
-            return "home/display";
+                model.addAttribute("latitude", jsonFour);
+                model.addAttribute("longitude", jsonFive);
+                model.addAttribute("numberOfResults", ("We found " + filteredSearchResults.size()) + " restaurants that meet your needs.");
+                return "home/display";
         }
     }
 }

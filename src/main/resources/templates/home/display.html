@@ -30,13 +30,14 @@
     <div class = "container-fluid">
         <div class = "row">
             <div class="col">
-                <span th:text="${confirmMessage}"></span>
+                <span><i th:text="${confirmMessage}"></i></span>
             </div>
         </div>
     </div>
     <div class = "container-fluid">
         <div class = "row">
             <div class="col">
+                <span><i th:text="${numberOfResults}"></i></span>
                 <h3 >Map View</h3>
             </div>
         </div>
@@ -52,6 +53,7 @@
         <div class = "row">
             <div class="col">
                 <h3 >List View</h3>
+                <span th:unless="${restaurants} and ${restaurants.size()}"><i>Please enter your dining preferences, widen your search area, and try again.</i></span>
             </div>
         </div>
     </div>
@@ -80,7 +82,6 @@
                         <td><a th:href="@{${restaurant.webAddress}}"><p th:text="${restaurant.webAddress}"></p></a></td>
                     </tr>
                 </table>
-                <p th:unless="${restaurants} and ${restaurants.size()}"><i>There are no restaurants that match your search. Please enter your dining preferences, widen your search area, and try again.</i></p>
             </div>
         </div>
     </div>
@@ -93,11 +94,13 @@
 /*<![CDATA[*/
 
     var map;
+    var latitude = [[${latitude}]];
+    var longitude = [[${longitude}]];
 
     function initMap() {
 
     var options = {
-        center: {lat: 38.6270, lng: -90.1994},
+        center: {lat: parseFloat(latitude), lng: parseFloat(longitude)},
         zoom: 11
     };
 
@@ -115,6 +118,9 @@
     console.log(addressList);
     console.log(nameList);
     console.log(webList);
+    console.log(latitude);
+    console.log(longitude);
+
 
     for (var i = 0; i < latList.length; i++) {
         var marker = new google.maps.Marker({
