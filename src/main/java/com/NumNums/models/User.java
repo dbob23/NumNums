@@ -1,6 +1,7 @@
 package com.NumNums.models;
 
 import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
@@ -21,8 +22,9 @@ public class User {
     @OneToMany( mappedBy = "user")
     private List<Restaurant> restaurants;
 
-    @Column(unique = true)
+    @Column(name = "username", nullable = false)
     @NotEmpty(message = "Please provide your name.")
+
     private String username;
 
     @Column(name = "email")

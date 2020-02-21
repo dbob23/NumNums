@@ -5,42 +5,52 @@
 <body class="container">
 <nav th:fragment="navigation">
     <ul>
-        <li><a class="logo" href="/NumNums"><h2>NumNums!</h2></a></li>
-        <li><a href="/NumNums/registration">Register</a></li>
-        <li><a href="/NumNums/login">Login</a></li>
-        <li><a href="/NumNums/about">About</a></li>
+        <li><a class="logo" href="/NumNums"><h1 class="display-1">NumNums!</h1></a></li>
+        <li><h4><a href="/NumNums/registration">Register</a></h4></li>
+        <li><h4><a href="/NumNums/login">Login</a></h4></li>
+        <li><h4><a href="/NumNums/about">About</a></h4></li>
     </ul>
 </nav>
-<h2>Welcome to NumNums! We're going to help you find something good to eat.</h2><br>
-<form method="post" style="max-width:300px;" th:object="${aSearch}">
+<h2><i>Welcome to NumNums! We're going to help you find something good to eat.</i></h2>
+<div>
+    <p class="lead"><i>Please select your dining preferences.</i></p>
+    <p>You may choose all that apply.</p>
+</div>
+<form  class="form-inline" method="post"  th:object="${aSearch}">
     <div class="checkbox">
-        <p>Please select your dining preferences. You may choose all that apply.</p>
+    <div class="form-group">
         <ul>
-            <li><input type="checkbox" name="glutenFree" th:field="*{glutenFree}" value="true"/>gluten-free<br></li>
-            <li><input type="checkbox" name="lactoseFree" th:field="*{lactoseFree}" value="true"/>lactose-free<br></li>
-            <li><input type="checkbox" name="vegan" th:field="*{vegan}" value="true"/>vegan<br></li>
-            <li><input type="checkbox" name="vegetarian" th:field="*{vegetarian}" value="true" />vegetarian<br></li>
-            <li><input type="checkbox" name="nonVegetarian" th:field="*{nonVegetarian}" value="true"/>non-vegetarian<br></li>
+            <li><input class="form=control" type="checkbox" name="glutenFree" th:field="*{glutenFree}" value="true"/>gluten-free</li>
+            <li><input class="form=control" type="checkbox" name="lactoseFree" th:field="*{lactoseFree}" value="true"/>lactose-free</li>
+            <li><input class="form=control" type="checkbox" name="vegan" th:field="*{vegan}" value="true"/>vegan</li>
+            <li><input class="form=control" type="checkbox" name="vegetarian" th:field="*{vegetarian}" value="true" />vegetarian</li>
+            <li><input class="form=control" type="checkbox" name="nonVegetarian" th:field="*{nonVegetarian}" value="true"/>non-vegetarian</li>
         </ul>
-    </div><br>
+        </div>
+    </div>
     <div class="form-group">
         <label th:for="zipCode">Zip Code</label>
         <input class="form-control" type="text" th:field="*{zipCode}"/>
         <span class="error" th:errors="*{zipCode}"></span>
-    </div><br>
+    </div>
+
     <div class="dropdown">
+        <div class="form-group">
         <p>Search Distance in Miles</p>
-        <select name="distance" th:field="*{distance}">
+        <select class="form=control" name="distance" th:field="*{distance}">
             <option value="5">5</option>
             <option value="10">10</option>
             <option value="15">15</option>
             <option value="20">20</option>
             <option value="25">25</option>
         </select>
-        <br><br>
-    </div><br>
-    <input type="submit" value="Search"/>
+        </div>
+    </div>
+        <div class="form-group">
+            <input class="form=control" type="submit" value="Search"/>
+        </div>
 </form>
+
 </body>
 <footer th:replace="fragments ::footer"></footer>
 

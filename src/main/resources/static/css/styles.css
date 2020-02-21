@@ -4,12 +4,18 @@ html,body {
     width:100%;
     margin: 0;
     padding: 0;
+    color:#4D0020;
+
 }
 
 nav ul {
     background-color: #333;
+    background-image: url('http://food.fnr.sndimg.com/content/dam/images/food/fullset/2013/11/26/1/FNK_rainbow-spectrum_s4x3.jpg.rend.hgtvcom.966.725.suffix/1386172541852.jpeg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
     list-style-type: none;
-    margin: 14px;
+    margin: 0px;
     padding: 0;
     overflow: hidden;
 
@@ -17,14 +23,15 @@ nav ul {
 
 nav li a {
     display: block;
-    color: white;
-    float: right;
-    padding: 14px 16px;
+    color: #99ff33;
+    float: left;
+    padding: 14px 14px;
+    font-weight: bold;
+    height:20px;
+    margin: 15px;
 }
 
-nav li a:hover {
-    background-color: grey;
-}
+
 
 .error {
     color: red;
@@ -36,12 +43,18 @@ nav li a:hover {
 }
 
 .logo {
-    float: left;
-    margin: 14px;
-    color: red;
+    margin: 180px;
+    color: #99ff33;
+    display: block;
+    margin-right:0%;
+    margin-left:0%;
+    width: 30%;
+    height: 100%
+    font-size: 150%;
 }
 
 #map {
         height: 500px;
         width:100%;
 }
+form-inline: max-width:900px;
