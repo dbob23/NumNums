@@ -137,35 +137,40 @@ public class HomeController {
                 }
             }
 
-            if (searchResults.size() != 0) {
-                for (Restaurant rest : searchResults) {
-                    if (rest.isGlutenFree()) {
-                        searchResultPropertiesList.add("glutenFree");
-                    }
-                    if (rest.isLactoseFree()) {
-                        searchResultPropertiesList.add("lactoseFree");
-                    }
-                    if (rest.isVegan()) {
-                        searchResultPropertiesList.add("vegan");
-                    }
-                    if (rest.isVegetarian()) {
-                        searchResultPropertiesList.add("vegetarian");
-                    }
-                    if (rest.isNonVegetarian()) {
-                        searchResultPropertiesList.add("nonVegetarian");
-                    }
-                    for (String property : userInputSearchList) {
-                        if (searchResultPropertiesList.contains(property) && !filteredSearchResults.contains(rest)) {
-                            filteredSearchResults.add(rest);
+            if (userInputSearchList.size() > 0) {
+
+                if (searchResults.size() != 0) {
+                    for (Restaurant rest : searchResults) {
+                        if (rest.isGlutenFree()) {
+                            searchResultPropertiesList.add("glutenFree");
                         }
-                    }
-                    for (String property : userInputSearchList) {
-                        if (!searchResultPropertiesList.contains(property) && filteredSearchResults.contains(rest)) {
-                            filteredSearchResults.remove(rest);
+                        if (rest.isLactoseFree()) {
+                            searchResultPropertiesList.add("lactoseFree");
                         }
+                        if (rest.isVegan()) {
+                            searchResultPropertiesList.add("vegan");
+                        }
+                        if (rest.isVegetarian()) {
+                            searchResultPropertiesList.add("vegetarian");
+                        }
+                        if (rest.isNonVegetarian()) {
+                            searchResultPropertiesList.add("nonVegetarian");
+                        }
+                        for (String property : userInputSearchList) {
+                            if (searchResultPropertiesList.contains(property) && !filteredSearchResults.contains(rest)) {
+                                filteredSearchResults.add(rest);
+                            }
+                        }
+                        for (String property : userInputSearchList) {
+                            if (!searchResultPropertiesList.contains(property) && filteredSearchResults.contains(rest)) {
+                                filteredSearchResults.remove(rest);
+                            }
+                        }
+                        searchResultPropertiesList.clear();
                     }
-                    searchResultPropertiesList.clear();
                 }
+            } else {
+                filteredSearchResults.addAll(searchResults);
             }
 
                 //ArrayLists needed to display markers and infoWindows

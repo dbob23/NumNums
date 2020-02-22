@@ -15,16 +15,16 @@
     <p th:text="${message}"></p>
     <p th:text="${user}"></p>
 </div>
-<div>
-    <b>These are the restaurants that you have added to NumNums!</b>
-</div>
-<div>
-    <br/><br/>
-    <a class = "in text link" href="/NumNums/add">Add a restaurant</a>
+<div th:if="${restaurants} and ${restaurants.size()}" >
+    <p><b>These are the restaurants that you have added to NumNums!</b></p>
 </div>
 <br/><br/>
 <div class="container">
     <p th:unless="${restaurants} and ${restaurants.size()}"><i>You have not yet added a restaurant to NumNums!</i></p>
+    <div>
+        <br/><br/>
+        <a class = "in text link" href="/NumNums/add">Add a restaurant</a>
+    </div>
     <table class="table">
         <tr>
             <th>Name</th>

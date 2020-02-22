@@ -88,6 +88,9 @@ public class RestaurantController {
         User user = userService.findUserByEmail(auth.getName());
         String address = restaurant.getStreetAddress() + "," + restaurant.getCity() + "," + restaurant.getState();
         String noSpaces = address.replace(" ", "+");
+
+//      retrieve lat and long from geocode api and set it to the added restaurant
+
         try {
             URL url = new URL("https://maps.googleapis.com/maps/api/geocode/json?address=" + noSpaces + "&key=AIzaSyDvq8G2idSuiPwzYEt6JIsbqtP29RjZZ0c");
             Scanner scan = new Scanner(url.openStream());
