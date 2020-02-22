@@ -5,54 +5,60 @@
 <body class="container">
 <nav th:fragment="navigation">
     <ul>
-        <li><a class="logo" href="/NumNums"><h1 class="display-1">NumNums!</h1></a></li>
+        <li><a class="logo" href="/NumNums"><h1 class="display-1">NumNums</h1></a></li>
         <li><h4><a href="/NumNums/registration">Register</a></h4></li>
         <li><h4><a href="/NumNums/login">Login</a></h4></li>
         <li><h4><a href="/NumNums/about">About</a></h4></li>
     </ul>
 </nav>
 <h2><i>Welcome to NumNums! We're going to help you find something good to eat.</i></h2>
-<div>
-    <p class="lead"><i>Please select your dining preferences.</i></p>
-    <p>You may choose all that apply.</p>
-</div>
 <form  class="form-inline" method="post"  th:object="${aSearch}">
-    <div class="checkbox">
     <div class="form-group">
-        <ul>
-            <li><input class="form=control" type="checkbox" name="glutenFree" th:field="*{glutenFree}" value="true"/>gluten-free</li>
-            <li><input class="form=control" type="checkbox" name="lactoseFree" th:field="*{lactoseFree}" value="true"/>lactose-free</li>
-            <li><input class="form=control" type="checkbox" name="vegan" th:field="*{vegan}" value="true"/>vegan</li>
-            <li><input class="form=control" type="checkbox" name="vegetarian" th:field="*{vegetarian}" value="true" />vegetarian</li>
-            <li><input class="form=control" type="checkbox" name="nonVegetarian" th:field="*{nonVegetarian}" value="true"/>non-vegetarian</li>
-        </ul>
+        <div class="checkbox">
+            <p class="lead"><i>Please select your dining preferences.</i></p>
         </div>
     </div>
     <div class="form-group">
-        <label th:for="zipCode">Zip Code</label>
-        <input class="form-control" type="text" th:field="*{zipCode}"/>
-        <span class="error" th:errors="*{zipCode}"></span>
+        <ul>
+            <label class="mx-0">
+                <label class="ml-0"><input class="form-control" type="checkbox" name="glutenFree" th:field="*{glutenFree}" value="true"/>Gluten-Free</label>
+                <label class="mx-2"><input class="form-control" type="checkbox" name="lactoseFree" th:field="*{lactoseFree}" value="true"/>Lactose-Free</label>
+                <label class="mx-2"><input class="form-control" type="checkbox" name="vegan" th:field="*{vegan}" value="true"/>Vegan</label>
+                <label class="mx-2"><input class="form-control" type="checkbox" name="vegetarian" th:field="*{vegetarian}" value="true" />Vegetarian</label>
+                <label class="mx-2"><input class="form-control" type="checkbox" name="nonVegetarian" th:field="*{nonVegetarian}" value="true"/>Non-Vegetarian</label>
+            </label>
+        </ul>
     </div>
-
+    <div class="form-group">
+        <label class="mx-2" th:for="zipCode">Zip Code</label>
+        <label class="mx-2">
+            <input class="form-control" type="text" th:field="*{zipCode}"/>
+            <div><label class="error" th:errors="*{zipCode}"></label></div>
+        </label>
+    </div>
     <div class="dropdown">
         <div class="form-group">
-        <p>Search Distance in Miles</p>
-        <select class="form=control" name="distance" th:field="*{distance}">
+            <div class="mx-2">
+                <p>Search Distance in Miles</p>
+             </div>
+            <label class="ml-3">
+            <select class="form=control" name="distance" th:field="*{distance}">
             <option value="5">5</option>
             <option value="10">10</option>
             <option value="15">15</option>
             <option value="20">20</option>
             <option value="25">25</option>
-        </select>
+            </select>
+            </label>
         </div>
     </div>
+<br>
         <div class="form-group">
-            <input class="form=control" type="submit" value="Search"/>
+            <div class="ml-3">
+                    <input class="form=control" type="submit" value="Search"/>
+            </div>
         </div>
 </form>
-
 </body>
 <footer th:replace="fragments ::footer"></footer>
-
-
 </html>
