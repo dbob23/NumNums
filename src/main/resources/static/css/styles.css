@@ -65,3 +65,20 @@ max-width:850px;
 .form-signin{
 max-width:1200px;
 }
+
+div.form-control{
+padding-bottom: 15px;
+position: relative;
+}
+
+div.form-group{
+padding-bottom: 15px;
+position: relative;
+}
+
+#has-error{
+position: absolute;
+bottom: 0;
+left: 0;
+margin-left: 90px;
+}

@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 
 public class SearchDetails {
 
-    @Pattern(regexp = "^[0-9]{5}(?:-[0-9]{4})?$", message = "You must enter a valid zipcode. Please try again.")
+    @Pattern(regexp = "^[0-9]{5}(?:-[0-9]{4})?$", message = "Please enter a valid Zip Code")
     private String zipCode;
 
     private int distance;
