@@ -3,10 +3,15 @@ package com.NumNums.controlllers;
 
 import com.NumNums.models.Restaurant;
 import com.NumNums.models.SearchDetails;
+import com.NumNums.models.User;
 import com.NumNums.models.service.RestaurantService;
+import com.NumNums.models.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -28,18 +33,34 @@ import java.util.Scanner;
 @RequestMapping("NumNums")
 public class HomeController {
 
+    @Autowired
+    private UserService userService;
+
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String index(@ModelAttribute("aSearch") @Valid SearchDetails aSearch, Errors errors, Model model) {
         model.addAttribute("aSearch", new SearchDetails());
         model.addAttribute("title", "NumNums!");
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByEmail(auth.getName());
+
+        if (user!=null) {
+            model.addAttribute("home", "/NumNums/login"  );
+        }
+
         return "home/index";
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     public String processZipCode(@ModelAttribute("aSearch") @Valid SearchDetails aSearch, Errors errors, Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByEmail(auth.getName());
+        if (user!=null) {
+            model.addAttribute("home", "/NumNums/login"  );
+        }
         if (errors.hasErrors()) {
             model.addAttribute("title", "NumNums!");
+
             return "home/index";
         }
 

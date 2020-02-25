@@ -37,6 +37,7 @@ public class RestaurantController {
         User user = userService.findUserByEmail(auth.getName());
         modelAndView.addObject(new Restaurant());
         modelAndView.addObject("title", "Add");
+        modelAndView.addObject("message", "You are logged in!");
         modelAndView.addObject("user", "Welcome, " + user.getUsername());
         modelAndView.addObject("restaurants", user.getRestaurants());
         modelAndView.setViewName("admin/add");
@@ -49,6 +50,7 @@ public class RestaurantController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
         modelAndView.addObject("user", "Welcome, " + user.getUsername());
+
         Restaurant restaurantExists = restaurantService.findRestaurantByWebAddress(restaurant.getWebAddress().toLowerCase());
 
         if (restaurantExists != null) {
@@ -84,6 +86,7 @@ public class RestaurantController {
     @RequestMapping(value = "NumNums/confirmAdd", method = RequestMethod.POST)
     public ModelAndView processConfirmAddForm(Restaurant restaurant)  {
         ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("home", "/NumNums/login"  );
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
         String address = restaurant.getStreetAddress() + "," + restaurant.getCity() + "," + restaurant.getState();

@@ -6,12 +6,17 @@
 <nav th:fragment="navigation">
     <ul>
         <li><a class="logo" href="/NumNums"><h1 class="display-1">NumNums</h1></a></li>
-        <li><h4><a href="/NumNums/registration">Register</a></h4></li>
-        <li><h4><a href="/NumNums/login">Login</a></h4></li>
+        <li th:unless="${home}"><h4><a href="/NumNums/registration">Register</a></h4></li>
+        <li th:unless="${home}"><h4><a href="/NumNums/login">Login</a></h4></li>
+        <li th:if="${home}"><h4><a href="/NumNums/login">Home</a></h4></li>
+        <li th:if="${home}" ><h4><a href="/NumNums/logout">Logout</a></h4></li>
         <li><h4><a href="/NumNums/about">About</a></h4></li>
     </ul>
 </nav>
 <h2><i>Welcome to NumNums! We're going to help you find something good to eat.</i></h2>
+<div th:if="${home}">
+    <b>You are logged in!</b>
+</div>
 <form  class="form-inline" method="post"  th:object="${aSearch}">
     <div class="form-group">
             <p><i class="lead">Please select your dining preferences.</i><br/>You may choose all that apply.</p>
@@ -19,7 +24,7 @@
     <div class="form-group">
         <ul>
             <label class="mx-0">
-                <label class="mx-2"><input class="form-control" type="checkbox" name="glutenFree" th:field="*{glutenFree}" value="true"/>Gluten-Free</label>
+                <label class="mx-"><input class="form-control" type="checkbox" name="glutenFree" th:field="*{glutenFree}" value="true"/>Gluten-Free</label>
                 <label class="mx-2"><input class="form-control" type="checkbox" name="lactoseFree" th:field="*{lactoseFree}" value="true"/>Lactose-Free</label>
                 <label class="mx-2"><input class="form-control" type="checkbox" name="vegan" th:field="*{vegan}" value="true"/>Vegan</label>
                 <label class="mx-2"><input class="form-control" type="checkbox" name="vegetarian" th:field="*{vegetarian}" value="true" />Vegetarian</label>
@@ -30,12 +35,12 @@
     <div class="form-group">
         <label class="mx-1" th:for="zipCode">Zip Code</label>
         <div>
+            <small class="form-text text-muted">
+                <span id="has-error" class="error" th:errors="*{zipCode}"></span>
+            </small>
         <label class="mx-3">
             <input class="form-control" type="text" th:field="*{zipCode}"/>
         </label>
-            <small class="form-text text-muted">
-            <span id="has-error" class="error" th:errors="*{zipCode}"></span>
-            </small>
         </div>
     </div>
     <div class="dropdown">
