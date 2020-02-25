@@ -1,10 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.w3.org/1999/xhtml">
 <head  th:replace="fragments :: head">
 </head>
 <body class="container">
-    <nav th:replace="fragments :: navigation"></nav>
+    <nav th:fragment="navigation">
+        <ul>
+        <li><a class="logo" href="/NumNums"><h1 class="display-1">NumNums</h1></a></li>
+        <li><h4><a href="/NumNums">Search</a></h4></li>
+        <li th:if="${home}"><h4><a href="/NumNums/login">Home</a></h4></li>
+        <li th:if="${home}" ><h4><a href="/NumNums/logout">Logout</a></h4></li>
+        <li th:unless="${home}"><h4><a href="/NumNums/registration">Register</a></h4></li>
+        <li th:unless="${home}"><h4><a href="/NumNums/login">Login</a></h4></li>
+        <li><h4><a href="/NumNums/about">About</a></h4></li>
+        </ul>
+    </nav>
+    <div th:if="${home}">
+        <b>You are logged in!</b>
+    </div>
     <h3>About NumNums</h3>
     <div>
         <p>"NumNums!" is a capstone project for LaunchCode's LC101 programming course.</p>
