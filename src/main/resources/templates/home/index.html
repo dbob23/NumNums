@@ -103,7 +103,7 @@
                         <li th:if="${home}"><a href="/NumNums/login">Home</a></li>
                         <li th:unless="${home}"><a href="/NumNums/registration">Register</a></li>
                         <li th:unless="${home}"><a href="/NumNums/login">Login</a></li>
-                        <li th:if="${home}" >><a href="/NumNums/logout">Logout</a></li>
+                        <li th:if="${home}" ><a href="/NumNums/logout">Logout</a></li>
                         <li th:if="${home}" ><a href="/NumNums/add">Add a Restaurant</a></li>
                         <li><a href="/NumNums/about">About</a></li>
 
@@ -158,16 +158,19 @@
             NumNums!
         </h1></a>
         <!--  H1 can have 2 designs: "logo" and "logo cursive"           -->
-        <h4 id="motto" class="motto">We'll help you find something good eat.</h4>
+<!--        <h4 class="logo">We'll help you find something good to eat.</h4>-->
     </div>
+    <div class="container">
+            <h4 class="logo">We'll help you find something good to eat.</h4>
+?    </div>
     <div class="content">
 
-<!--            <div class="subscribe">-->
+            <div class="subscribe">
         <form class="form-inline" method="post" th:object="${aSearch}" role="form">
 
-            <div class="form-group" id="please">
-                <p><i class="lead">Please select your dining preferences.</i></p>
-            </div>
+<!--            <div class="form-group" id="please">-->
+<!--                <p><i class="lead">Please select your dining preferences.</i></p>-->
+<!--            </div>-->
             <div class="form-group">
                 <label id="you">
                 <h5>You may check all that apply.</h5>
@@ -192,7 +195,7 @@
                         <input class="form-control transparent" type="text" id="zipBox" placeholder="Your zip code here..." th:field="*{zipCode}"/>
                     </label>
                 </div>
-                <div>
+                <div class="mt-5">
 
                     <small class="form-text text-muted">
                         <p id="has-error" class="error" th:errors="*{zipCode}"></p>
@@ -204,9 +207,8 @@
                         <h5>Search Distance</h5>
                     </div>
                     <div class="form-group">
-                        <button class="btn btn-default dropdown-toggle"  type="button" id="mybyn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        <button class="btn btn-default dropdown-toggle"  type="button" id="distanceBox" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="color:#E7E5E4">
                             Miles
-                            <span class="caret"></span>
                                 <select  class="btn btn-default dropdown-toggle"  th:field="*{distance}">
                                     <ul class="dropdown-menu">
                                         <option value="5">5</option>
@@ -219,23 +221,22 @@
                         </button>
                     </div>
                 </div>
-            <br>
+<!--            <br/>-->
             <div class="form-group">
-                <div class="container">
-                    <div class="row">
-                        <div class="col text-center">
+<!--                <div class="container">-->
+<!--                    <div class="row">-->
+<!--                        <div class="col text-center">-->
                             <button type="submit"  id="submit" class="btn  btn-lg btn-fill btn-md"><h5>Search</h5></button>
-                        </div>
-                    </div>
-                </div>
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
             </div>
         </form>
     </div>
 </div>
-<div class="footer">
-    <div class="container">
-    </div>
 </div>
+
+
 </body>
 <footer  th:replace="fragments :: footer" ></footer>
 </html>
