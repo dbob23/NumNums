@@ -1,0 +1,84 @@
+html,body {
+    font-family: sans-serif;
+    height: 100%;
+    width:100%;
+    margin: 0;
+    padding: 0;
+    color:#485447;
+
+}
+
+nav ul {
+    background-color: #333;
+    background-image: url('http://food.fnr.sndimg.com/content/dam/images/food/fullset/2013/11/26/1/FNK_rainbow-spectrum_s4x3.jpg.rend.hgtvcom.966.725.suffix/1386172541852.jpeg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    list-style-type: none;
+    margin: 0px;
+    padding: 0;
+    overflow: hidden;
+    border-style: solid;
+    border-width: 2px;
+    border-color:#4D0020
+}
+
+nav li a {
+    display: block;
+    color: #05fcdb;
+    float: left;
+    padding: 14px 14px;
+    font-weight: bold;
+    height:20px;
+    margin: 15px;
+}
+
+.error {
+    color: red;
+}
+
+.b {
+    text-align: center;
+    display: inline-block;
+}
+
+.logo {
+    margin: 180px;
+    color: #05fcdb;
+    display: block;
+    margin-right:0%;
+    margin-left:0%;
+    width: 30%;
+    height: 100%
+    font-size: 150%;
+}
+
+#map {
+    height: 500px;
+    width:100%;
+}
+
+.form-inline{
+max-width:850px;
+}
+
+.form-signin{
+max-width:1200px;
+}
+
+div.form-control{
+padding-bottom: 5px;
+position: relative;
+}
+
+div.form-group{
+padding-bottom: 5px;
+position: relative;
+}
+
+#has-error{
+position: absolute;
+bottom: 0;
+left: 0;
+margin-left: 90px;
+}

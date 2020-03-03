@@ -3464,6 +3464,7 @@ input[type="button"].btn-block {
   border-right: 4px solid transparent;
   border-bottom: 0 dotted;
   border-left: 4px solid transparent;
+  background-color: transparent;
 
 }
 
@@ -3494,6 +3495,7 @@ input[type="button"].btn-block {
   -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
           box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   background-clip: padding-box;
+  background-color: transparent;
 }
 
 .dropdown-menu.pull-right {
