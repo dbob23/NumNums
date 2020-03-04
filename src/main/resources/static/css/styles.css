@@ -729,7 +729,7 @@ box-shadow:none !important;
 
 #has-error{
     position:absolute;
-    left:35px;
+    left:25px;
     top:110px;
     margin-left: -5px;
     margin-top: -25px;
@@ -747,20 +747,13 @@ div.form-control{
     position: absolute;
 }
 
-#select{
-    position:relative;
-    top:-55px;
-    left:40px;
-    height:60px;
-}
-
 #submit{
     position:relative;
-    top:-3px;
+    top:-2px;
     border:1.5px solid ;
     border-radius:4px;
     position:relative;
-    left:68px;
+    left:px;
     background-color:#AE0D7A;
     opacity: 0.8;
     height:77px;
@@ -771,8 +764,8 @@ div.form-control{
 
 #zipBox{
     position:relative;
-    top:-6px;
-    left:15px;
+    top:-5px;
+    left:0px;
     border:1.5px solid #E3E3E3;
     height:77px;
     margin-bottom:30px;
@@ -793,7 +786,7 @@ div.panel{
     height: 77px;
     position:relative;
     top:-15px;
-    left:-10px;
+    left:px;
     font-weight:500;
     font-size:16px;
     text-opacity:15;
@@ -824,18 +817,26 @@ div.panel{
 #distanceText{
     position:relative;
     top:8px;
+    left:7px;
 }
 
 #zipLabel{
     position:relative;
-    left:15px;
-    top:-10
+    left:10px;
+    top:3px;
 }
 
 #you{
     position:relative;
-    left:30px;
-    top:-10px;
+    left:45px;
+    top:-9px;
+}
+
+#select{
+    position:relative;
+    top:-55px;
+    left:px;
+    height:60px;
 }
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
@@ -858,5 +859,5 @@ div.panel{
 
 form{
     position:relative;
-    left:75px;
+    left:100px;
 }
