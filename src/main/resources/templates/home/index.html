@@ -77,79 +77,40 @@
 <head  th:replace="fragments :: head">
 </head>
 <body>
-<nav class="navbar navbar-transparent navbar-fixed-top" role="navigation">
-    <div class="container">
-
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <nav class="navbar navbar-transparent navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-<!--                <li class="dropdown">-->
-<!--                    <a href="/NumNums/about" class="dropdown-toggle" data-toggle="dropdown">-->
-<!--                        About-->
-<!--                        <b class="caret"></b>-->
-<!--                    </a>-->
-<!--                    <ul class="dropdown-menu">-->
-
-                        <li th:if="${home}"><a href="/NumNums/login">Home</a></li>
-                        <li th:unless="${home}"><a href="/NumNums/registration">Register</a></li>
-                        <li th:unless="${home}"><a href="/NumNums/login">Login</a></li>
-                        <li th:if="${home}" ><a href="/NumNums/logout">Logout</a></li>
-                        <li th:if="${home}" ><a href="/NumNums/add">Add a Restaurant</a></li>
-                        <li><a href="/NumNums/about">About</a></li>
-
-                        <!--                        <li><a href="#"><img src="images/flags/DE.png"/> Deutsch</a></li>-->
-<!--                        <li><a href="#"><img src="images/flags/GB.png"/> English(UK)</a></li>-->
-<!--                        <li><a href="#"><img src="images/flags/FR.png"/> Français</a></li>-->
-<!--                        <li><a href="#"><img src="images/flags/RO.png"/> Română</a></li>-->
-<!--                        <li><a href="#"><img src="images/flags/IT.png"/> Italiano</a></li>-->
-
-<!--                        <li class="divider"></li>-->
-<!--                        <li><a href="#"><img src="images/flags/ES.png"/> Español <span class="label label-default">soon</span></a></li>-->
-<!--                        <li><a href="#"><img src="images/flags/BR.png"/> Português <span class="label label-default">soon</span></a></li>-->
-<!--                        <li><a href="#"><img src="images/flags/JP.png"/> 日本語 <span class="label label-default">soon</span></a></li>-->
-<!--                        <li><a href="#"><img src="images/flags/TR.png"/> Türkçe <span class="label label-default">soon</span></a></li>-->
-<!--                    </ul>-->
-<!--                </li>-->
+                        <li th:if="${home}"><a href="/NumNums/login">home</a></li>
+                        <li th:unless="${home}"><a href="/NumNums/registration">register</a></li>
+                        <li th:unless="${home}"><a href="/NumNums/login">login</a></li>
+                        <li th:if="${home}" ><a href="/NumNums/logout">logout</a></li>
+                        <li th:if="${home}" ><a href="/NumNums/add">add a restaurant</a></li>
+                        <li><a href="/NumNums/about">about</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="#">
-                        <i class="fa fa-facebook-square"></i>
-                        Like
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fa fa-twitter"></i>
-                        Tweet
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fa fa-gittip"></i>
-                        Gittip
+<!--                <li>-->
+<!--                    <a href="#">-->
+<!--                        <i class="fa fa-facebook-square"></i>-->
+<!--                        Like-->
+<!--                    </a>-->
+<!--                </li>-->
+<!--                <li th:unless="${home}">-->
+<!--                    <a href="/NumNums/login">-->
+<!--                        You are not logged in.-->
+<!--                    </a>-->
+<!--                </li>-->
+                <li th:if="${home}">
+                    <a href="/NumNums/login">
+                        You are logged in!
                     </a>
                 </li>
             </ul>
-
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container -->
+        </div>
+    </div>
 </nav>
 <div class="main" style="background-image: url('http://food.fnr.sndimg.com/content/dam/images/food/fullset/2013/11/26/1/FNK_rainbow-spectrum_s4x3.jpg.rend.hgtvcom.966.725.suffix/1386172541852.jpeg')">
-
-    <!--    Change the image source '/images/restaurant.jpg')" with your favourite image.     -->
-
-    <div class="cover black" data-color="black"></div>
+<!--    <div class="cover green" data-color="green"></div>-->
 
     <!--   You can change the black color for the filter with those colors: blue, green, red, orange       -->
 
@@ -157,86 +118,70 @@
         <a href="/NumNums"><h1 class="logo cursive">
             NumNums!
         </h1></a>
-        <!--  H1 can have 2 designs: "logo" and "logo cursive"           -->
-<!--        <h4 class="logo">We'll help you find something good to eat.</h4>-->
     </div>
     <div class="container">
             <h4 class="logo">We'll help you find something good to eat.</h4>
-?    </div>
-    <div class="content">
-
-            <div class="subscribe">
-        <form class="form-inline" method="post" th:object="${aSearch}" role="form">
-
-<!--            <div class="form-group" id="please">-->
-<!--                <p><i class="lead">Please select your dining preferences.</i></p>-->
-<!--            </div>-->
-            <div class="form-group">
-                <label id="you">
-                <h5>You may check as many options as you like.</h5>
-                </label>
-                <ul>
-                    <label class="mx-0">
-                        <div class="panel">
-                        <label class="ml-5"><input class="form-control transparent" type="checkbox" name="glutenFree" th:field="*{glutenFree}" value="true"/>Gluten-Free</label>
-                        <label class="mx-2"><input class="form-control transparent" type="checkbox" name="lactoseFree" th:field="*{lactoseFree}" value="true"/>Lactose-Free</label>
-                        <label class="mx-2"><input class="form-control transparent" type="checkbox" name="vegan" th:field="*{vegan}" value="true"/>Vegan</label>
-                        <label class="mx-2"><input class="form-control transparent" type="checkbox" name="vegetarian" th:field="*{vegetarian}" value="true" />Vegetarian</label>
-                        <label class="mx-2"><input class="form-control transparent" type="checkbox" name="nonVegetarian" th:field="*{nonVegetarian}" value="true"/>Non-Vegetarian</label>
-                        </div>
-                    </label>
-                </ul>
-            </div>
-            <div class="form-group">
-                <label class="ml-3" id="zipLabel" th:for="zipCode"><h5>Zip Code</h5></label>
-                <div>
-
-                    <label class="ml-3">
-                        <input class="form-control transparent" type="text" id="zipBox" placeholder="Your zip code here..." th:field="*{zipCode}"/>
-                    </label>
-                </div>
-                <div class="mt-5">
-
-                    <small class="form-text text-muted">
-                        <p id="has-error" class="error" th:errors="*{zipCode}"></p>
-                    </small>
-                </div>
-            </div>
-                <div id="select" class="form-group">
-                    <div class="ml-3" id="distanceText">
-                        <h5>Search Distance</h5>
-                    </div>
-                    <div class="form-group">
-                        <button class="btn btn-default dropdown-toggle"  type="button" id="distanceBox" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="color:#E7E5E4">
-                            Miles
-                                <select  class="btn btn-default dropdown-toggle"  th:field="*{distance}">
-                                    <ul class="dropdown-menu">
-                                        <option value="5">5</option>
-                                        <option value="10">10</option>
-                                        <option value="15">15</option>
-                                        <option value="20">20</option>
-                                        <option value="25">25</option>
-                                    </ul>
-                                </select>
-                        </button>
-                    </div>
-                </div>
-<!--            <br/>-->
-            <div class="form-group">
-<!--                <div class="container">-->
-<!--                    <div class="row">-->
-<!--                        <div class="col text-center">-->
-                            <button type="submit"  id="submit" class="btn  btn-lg btn-fill btn-md"><h5>Search</h5></button>
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-            </div>
-        </form>
     </div>
-</div>
-</div>
-
-
-</body>
-<footer  th:replace="fragments :: footer" ></footer>
+    <div class="content">
+        <div class="subscribe">
+            <form class="form-inline" method="post" th:object="${aSearch}" role="form">
+                <div class="form-group">
+                    <label id="you">
+                        <h5>You may check as many options as you like.</h5>
+                    </label>
+                    <ul>
+                        <label class="mx-0">
+                            <div class="panel">
+                                <label class="ml-5"><input class="form-control transparent" type="checkbox" name="glutenFree" th:field="*{glutenFree}" value="true"/>Gluten-Free</label>
+                                <label class="mx-2"><input class="form-control transparent" type="checkbox" name="lactoseFree" th:field="*{lactoseFree}" value="true"/>Lactose-Free</label>
+                                <label class="mx-2"><input class="form-control transparent" type="checkbox" name="vegan" th:field="*{vegan}" value="true"/>Vegan</label>
+                                <label class="mx-2"><input class="form-control transparent" type="checkbox" name="vegetarian" th:field="*{vegetarian}" value="true" />Vegetarian</label>
+                                <label class="mx-2"><input class="form-control transparent" type="checkbox" name="nonVegetarian" th:field="*{nonVegetarian}" value="true"/>Non-Vegetarian</label>
+                            </div>
+                        </label>
+                    </ul>
+                </div>
+                <div class="form-group">
+                    <label class="ml-3" id="zipLabel" th:for="zipCode"><h5>Zip Code</h5></label>
+                        <div>
+                            <label class="ml-3">
+                                <input class="form-control transparent" type="text" id="zipBox" placeholder="Your zip code here..." th:field="*{zipCode}"/>
+                            </label>
+                        </div>
+                        <div class="mt-5">
+                            <small class="form-text text-muted">
+                                <p id="has-error" class="error" th:errors="*{zipCode}"></p>
+                            </small>
+                        </div>
+                    </div>
+                        <div id="select" class="form-group">
+                            <div class="ml-3" id="distanceText">
+                                <h5>Search Distance</h5>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-default dropdown-toggle"  type="button" id="distanceBox" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="color:#E7E5E4">
+                                    Miles
+                                    <select  class="btn btn-default dropdown-toggle"  th:field="*{distance}">
+                                        <ul class="dropdown-menu">
+                                            <option value="5">5</option>
+                                            <option value="10">10</option>
+                                            <option value="15">15</option>
+                                            <option value="20">20</option>
+                                            <option value="25">25</option>
+                                        </ul>
+                                    </select>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit"  id="submit" class="btn  btn-lg btn-fill btn-md"><h5>Search</h5></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="js/jquery-1.10.2.js" type="text/javascript"></script>
+    <script src="js/bootstrap.min.js" type="text/javascript"></script>
+    <footer ></footer>
 </html>

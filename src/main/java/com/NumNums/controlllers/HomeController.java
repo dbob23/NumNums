@@ -46,6 +46,8 @@ public class HomeController {
 
         if (user!=null) {
             model.addAttribute("home", "/NumNums/login"  );
+            model.addAttribute("user", "Welcome, " + user.getUsername());
+
         }
 
         return "home/index";

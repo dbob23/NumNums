@@ -1,6 +1,24 @@
 <!DOCTYPE html>
-<html xmlns:="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
-<head th:replace="fragments :: head">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:name="http://www.w3.org/1999/xhtml">
+
+
+<!--<html xmlns:="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">-->
+<head >
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+
+    <title th:text="${title}">NumNums!</title>
+
+    <link th:href="@{css/bootstrap.css}" rel="stylesheet" />
+    <link href="@{css/oldStyles.css}" rel="stylesheet" />
+
+    <!--     Fonts     -->
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Grand+Hotel' rel='stylesheet' type='text/css'>
 </head>
 <body class="container">
 <nav>
