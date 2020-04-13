@@ -3464,8 +3464,6 @@ input[type="button"].btn-block {
   border-right: 4px solid transparent;
   border-bottom: 0 dotted;
   border-left: 4px solid transparent;
-  background-color: transparent;
-
 }
 
 .dropdown {
@@ -3495,7 +3493,6 @@ input[type="button"].btn-block {
   -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
           box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   background-clip: padding-box;
-  background-color: transparent;
 }
 
 .dropdown-menu.pull-right {
@@ -5623,13 +5620,10 @@ a.list-group-item.active:focus .list-group-item-text {
 }
 
 .panel {
-     border: 1px solid #E3E3E3;
-     border-radius: 2px;
-     border-width: 2px;
-     background-color: rgba(0,0,0,.0);
-     font-weight: 400;
-     opacity: 0.8;
-     padding: 2px 2px;
+  margin-bottom: 20px;
+  background-color: #ffffff;
+  border: 1px solid transparent;
+  border-radius: 4px;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
           box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
 }

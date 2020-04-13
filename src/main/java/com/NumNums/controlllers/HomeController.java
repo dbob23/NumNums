@@ -258,6 +258,14 @@ public class HomeController {
                     e.printStackTrace();
                 }
 
+            String numberOfMatches = new String();
+                if (filteredSearchResults.size() == 1) {
+                    numberOfMatches = "We found one restaurant that meets your needs.";
+                } else {
+                    numberOfMatches = "We found "+ filteredSearchResults.size() + " restaurants that meet your needs.";
+                }
+
+
                 System.out.println(filteredSearchResults);
                 model.addAttribute("latList", latList);
                 model.addAttribute("lngList", lngList);
@@ -268,7 +276,7 @@ public class HomeController {
                 model.addAttribute("confirmMessage", confirmMessage);
                 model.addAttribute("latitude", jsonFour);
                 model.addAttribute("longitude", jsonFive);
-                model.addAttribute("numberOfResults", ("We found " + filteredSearchResults.size()) + " restaurants that meet your needs.");
+                model.addAttribute("numberOfResults", numberOfMatches);
                 return "home/display";
         }
     }
