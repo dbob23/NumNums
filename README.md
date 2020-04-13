@@ -10,4 +10,4 @@
 
   The restaurants, once retrieved from the database, are displayed in both a list format, and as markers on a googleMap. Each marker can be clicked to show the restaurant name, street address, and website URL in an infoWindow. 
 
-  Making "NumNums!" has been a tremendously rewarding experience. It is the first project that I have completed on my own. In the process, I was able to teach myself how to use Spring Security, GoogleMaps and GoogleGeocode APIs, JSON parsing, and JavaScript, all for the first time.  While any project of this size can be improved and refactored, I am satisfied to see my original idea made into a fully functioning web based application. 
+  Making "NumNums!" has been a tremendously rewarding experience. It is the first project that I have completed on my own. In the process, I was able to teach myself how to use Spring Security, GoogleMaps and GoogleGeocode APIs, JSON parsing, and JavaScript, all for the first time. I am satisfied to see my original idea made into a fully functioning web based application. 
