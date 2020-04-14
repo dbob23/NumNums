@@ -1,6 +1,20 @@
 <!doctype html>
-<html lang="en" xmlns:="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml" >
-<head  th:replace="fragments :: head">
+<html lang="en" xmlns:="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+
+    <title th:text="${title}">NumNums!</title>
+
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet" />
+    <link th:href="@{/css/styles.css}" rel="stylesheet" />
+
+    <!--     Fonts     -->
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Livvic:ital,wght@1,300&display=swap" rel="stylesheet">
 </head>
 <body>
 <nav class="navbar navbar-transparent navbar-static-top" role="navigation">
