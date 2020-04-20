@@ -36,7 +36,7 @@ public class RestaurantController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
         modelAndView.addObject(new Restaurant());
-        modelAndView.addObject("title", "Add");
+        modelAndView.addObject("title", "NumNums! Add a Restaurant");
         modelAndView.addObject("message", "You are logged in!");
         modelAndView.addObject("user", "Welcome, " + user.getUsername());
         modelAndView.addObject("restaurants", user.getRestaurants());
@@ -55,16 +55,16 @@ public class RestaurantController {
 
         if (restaurantExists != null) {
             modelAndView.addObject("restaurantExistsMessage", "That restaurant already exists in our database.");
-            modelAndView.addObject("title", "Add");
+            modelAndView.addObject("title", "NumNums! Add a Restaurant");
             modelAndView.setViewName("admin/add");
         } else if (bindingResult.hasErrors()) {
-            modelAndView.addObject("title", "Add");
+            modelAndView.addObject("title", "NumNums! Add a Restaurant");
             modelAndView.setViewName("admin/add");
         } else {
             restaurant.setUser(user);
             modelAndView.addObject("restaurant", restaurant);
             modelAndView.addObject("message", "This restaurant will be added to NumNums!");
-            modelAndView.addObject("title", "Confirm Add");
+            modelAndView.addObject("title", "NumNums! Add a Restaurant");
             modelAndView.setViewName("admin/confirmAdd");
         }
         return modelAndView;
@@ -75,7 +75,7 @@ public class RestaurantController {
         ModelAndView modelAndView = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
-        modelAndView.addObject("title", "Confirm Add");
+        modelAndView.addObject("title", "NumNums! Add a Restaurant");
         modelAndView.addObject("restaurant", restaurant);
         modelAndView.addObject("welcome", "Welcome, " + user.getUsername());
         modelAndView.addObject("message", "This restaurant will be added to NumNums!");
@@ -135,7 +135,7 @@ public class RestaurantController {
         ModelAndView modelAndView = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
-        modelAndView.addObject("title", "Edit");
+        modelAndView.addObject("title", "NumNums! Edit a Restaurant");
         modelAndView.addObject("user","Welcome, " + user.getUsername());
         modelAndView.addObject("restaurant", restaurantService.findRestaurantById(id));
         modelAndView.addObject("message", "All fields will be saved as they appear when submitted.");
@@ -151,11 +151,11 @@ public class RestaurantController {
         User user = userService.findUserByEmail(auth.getName());
         Restaurant restaurantExists = restaurantService.findRestaurantByWebAddress(restaurant.getWebAddress().toLowerCase());
         if (restaurantExists != null && restaurant.getId() != restaurantExists.getId()) {
-            modelAndView.addObject("title", "Edit");
+            modelAndView.addObject("title", "NumNums! Edit a Restaurant");
             modelAndView.addObject("restaurantExistsMessage", "That web address already exists in our database.");
             modelAndView.setViewName("admin/edit");
         } else if (bindingResult.hasErrors()) {
-            modelAndView.addObject("title", "Edit");
+            modelAndView.addObject("title", "NumNums! Edit a Restaurant");
             modelAndView.setViewName("admin/edit");
         } else {
             restaurant.setUser(user);
@@ -188,7 +188,7 @@ public class RestaurantController {
                 modelAndView.addObject("user", "Welcome, " + user.getUsername());
                 modelAndView.addObject("message", restaurant.getRestaurantName() + " has been edited successfully");
                 modelAndView.addObject("id", id);
-                modelAndView.addObject("title", "Logged In");
+                modelAndView.addObject("title", "NumNums! Home");
                 modelAndView.setViewName("admin/home");
             }
         }
@@ -200,7 +200,7 @@ public class RestaurantController {
         ModelAndView modelAndView = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
-        modelAndView.addObject("title", "Delete");
+        modelAndView.addObject("title", "NumNums! Delete a Restaurant");
         modelAndView.addObject("user", "Welcome, " + user.getUsername());
         modelAndView.addObject("restaurant", restaurantService.findRestaurantById(id));
         modelAndView.addObject("message", "This restaurant will be deleted from NumNums!");
@@ -219,7 +219,7 @@ public class RestaurantController {
         modelAndView.addObject("user", "Welcome, " + user.getUsername());
         modelAndView.addObject("restaurants", user.getRestaurants());
         modelAndView.addObject("message", "A restaurant has been deleted successfully");
-        modelAndView.addObject("title", "Logged In");
+        modelAndView.addObject("title", "NumNums! Home");
         modelAndView.setViewName("admin/home");
         return modelAndView;
     }

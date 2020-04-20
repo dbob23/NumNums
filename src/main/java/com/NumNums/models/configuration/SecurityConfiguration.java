@@ -48,7 +48,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         http.
                 authorizeRequests().antMatchers("/").permitAll()
+                .antMatchers( "/NumNums/js/**" ).permitAll()
                 .antMatchers("/NumNums").permitAll()
+                .antMatchers( "/NumNums/search" ).permitAll()
+                .antMatchers( "/NumNums/home" ).permitAll()
                 .antMatchers("/NumNums/login").permitAll()
                 .antMatchers("/NumNums/registration").permitAll()
                 .antMatchers("/NumNums/about").permitAll()
@@ -71,6 +74,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         web.ignoring().antMatchers("/scripts/**");
         web.ignoring().antMatchers("/images/**");
         web.ignoring().antMatchers("/sql/**");
-//        web.ignoring().antMatchers("/js/**");
+        web.ignoring().antMatchers("/js/**");
     }
 }

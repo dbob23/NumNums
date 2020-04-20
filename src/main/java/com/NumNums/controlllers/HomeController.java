@@ -30,17 +30,16 @@ import java.util.Scanner;
 
 
 @Controller
-@RequestMapping("NumNums")
 public class HomeController {
 
     @Autowired
     private UserService userService;
 
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
+    @RequestMapping(value = "NumNums/search", method = RequestMethod.GET)
     public String index(@ModelAttribute("aSearch") @Valid SearchDetails aSearch, Errors errors, Model model) {
         model.addAttribute("aSearch", new SearchDetails());
-        model.addAttribute("title", "NumNums!");
+        model.addAttribute("title", "NumNums! Search");
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
 
@@ -53,7 +52,7 @@ public class HomeController {
         return "home/index";
     }
 
-    @RequestMapping(value = "", method = RequestMethod.POST)
+    @RequestMapping(value = "NumNums/search", method = RequestMethod.POST)
     public String processZipCode(@ModelAttribute("aSearch") @Valid SearchDetails aSearch, Errors errors, Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
@@ -61,7 +60,7 @@ public class HomeController {
             model.addAttribute("home", "/NumNums/login"  );
         }
         if (errors.hasErrors()) {
-            model.addAttribute("title", "NumNums!");
+            model.addAttribute("title", "NumNums! Search");
 
             return "home/index";
         }
@@ -128,7 +127,7 @@ public class HomeController {
 //            System.out.println("Lng = " + location.get("lng"));
         } catch (Exception e) {
         } finally {
-            model.addAttribute("title", "NumNums! Display");
+            model.addAttribute("title", "NumNums! Results");
 
 //          Set parameters for Query
             BigDecimal latitude = aSearch.getLatitude();

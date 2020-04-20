@@ -884,9 +884,9 @@ div.panel{
 }
 
 form{
-    font-family: 'Livvic', sans-serif;
-    position:relative;
-    left:100px;
+  font-family: 'Livvic', sans-serif;
+  position:relative;
+  left:100px;
 }
 
 a{
@@ -894,25 +894,23 @@ a{
   font-family: 'Livvic', sans-serif;
 }
 .about{
-    padding:50px;
+   padding:50px;
 }
 #map {
-    height: 250px;
-    width:400px;
-
-
+   height: 250px;
+   width:400px;
 }
 .box{
-float:left;
-padding:30px;
+   float:left;
+   padding:30px;
 }
 #table{
-    width: 610px;
+   width: 610px;
 }
 #regNav{
-    top:-50px;
-    left:10px;
+   top:-50px;
+   left:10px;
 }
 #addPanel{
-    left:-25px;
+   left:-25px;
 }

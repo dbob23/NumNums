@@ -1,78 +1,3 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en" xmlns="http://www.w3.org/1999/xhtml"-->
-<!--      xmlns:th="http://www.thymeleaf.org" xmlns:name="http://www.w3.org/1999/xhtml">-->
-
-
-<!--&lt;!&ndash;<html xmlns:="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">&ndash;&gt;-->
-<!--<head >-->
-<!--    <meta charset="utf-8" />-->
-<!--    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />-->
-
-<!--    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />-->
-<!--    <meta name="viewport" content="width=device-width" />-->
-
-<!--    <title th:text="${title}">NumNums!</title>-->
-
-<!--    <link th:href="@{css/bootstrap.css}" rel="stylesheet" />-->
-<!--    <link href="@{css/oldStyles.css}" rel="stylesheet" />-->
-
-<!--    &lt;!&ndash;     Fonts     &ndash;&gt;-->
-<!--    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css" rel="stylesheet">-->
-<!--    <link href='http://fonts.googleapis.com/css?family=Grand+Hotel' rel='stylesheet' type='text/css'>-->
-<!--</head>-->
-<!--<body class="container">-->
-<!--<nav>-->
-<!--    <ul>-->
-<!--        <li><a class="logo" href="/NumNums"><h1 class="display-1">NumNums!</h1></a></li>-->
-<!--        <li><h4><a href="/NumNums">Search</a></h4></li>-->
-<!--        <li><h4><a href="/NumNums/logout">Logout</a></h4></li>-->
-<!--        <li><h4><a href="/NumNums/add">Add a Restaurant</a></h4></li>-->
-<!--        <li><h4><a href="/NumNums/about">About</a></h4></li>-->
-<!--    </ul>-->
-<!--</nav>-->
-<!--<div>-->
-<!--    <p th:text="${user}"></p>-->
-<!--</div>-->
-<!--<div>-->
-<!--    <b>You are logged in!</b>-->
-<!--</div>-->
-<!--<br/>-->
-<!--<div th:if="${restaurants} and ${restaurants.size()}" >-->
-<!--    <p><b>These are the restaurants that you have added to NumNums!</b></p>-->
-<!--</div>-->
-<!--<div class="container">-->
-<!--    <p th:unless="${restaurants} and ${restaurants.size()}"><i>You have not yet added a restaurant to NumNums!</i></p>-->
-<!--    <div>-->
-<!--        <br/>-->
-<!--        <a class = "in text link" href="/NumNums/add">Add a restaurant</a>-->
-<!--    </div>-->
-<!--    <table class="table">-->
-<!--        <tr>-->
-<!--            <th>Name</th>-->
-<!--            <th>Address</th>-->
-<!--            <th>Gluten Free</th>-->
-<!--            <th>Lactose Free</th>-->
-<!--            <th>Vegan</th>-->
-<!--            <th>Vegetarian</th>-->
-<!--            <th>Non-Vegetarian</th>-->
-<!--            <th>Website</th>-->
-<!--        </tr>-->
-<!--        <tr th:each="restaurant : ${restaurants}">-->
-<!--            <td th:text="${restaurant.restaurantName}"></td>-->
-<!--            <td th:text="${restaurant.streetAddress} + ', ' + ${restaurant.city} + ', ' + ${restaurant.state} + ', ' + ${restaurant.zipCode}"></td>-->
-<!--            <td><div th:if="${restaurant.glutenFree}">Yes</div><div th:if="${!restaurant.glutenFree}">No</div></td>-->
-<!--            <td><div th:if="${restaurant.lactoseFree}">Yes</div><div th:if="${!restaurant.lactoseFree}">No</div></td>-->
-<!--            <td><div th:if="${restaurant.vegan}">Yes</div><div th:if="${!restaurant.vegan}">No</div></td>-->
-<!--            <td><div th:if="${restaurant.vegetarian}">Yes</div><div th:if="${!restaurant.vegetarian}">No</div></td>-->
-<!--            <td><div th:if="${restaurant.nonVegetarian}">Yes</div><div th:if="${!restaurant.nonVegetarian}">No</div></td>-->
-<!--            <td><a th:href="@{${restaurant.webAddress}}"><p th:text="${restaurant.webAddress}"></p></a></td>-->
-<!--            <td><a th:href="@{/NumNums/edit(id=${restaurant.id})}">Edit</a></td>-->
-<!--        </tr>-->
-<!--    </table>-->
-<!--</div>-->
-<!--</body>-->
-<!--</html>-->
-
 <!doctype html>
 <html lang="en" xmlns:="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -96,7 +21,7 @@
     <div class="container">
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="/NumNums">search</a></li>
+                <li><a href="/NumNums/search">search</a></li>
                 <li><a href="/NumNums/logout">logout</a></li>
                 <li><a href="/NumNums/add">add a restaurant</a></li>
                 <li><a href="/NumNums/about">about</a></li>
@@ -117,7 +42,7 @@
     <!--   You can change the black color for the filter with those colors: blue, green, red, orange       -->
 
     <div class="container">
-        <a href="/NumNums"><h1 class="logo cursive">
+        <a href="/NumNums/search"><h1 class="logo cursive">
             NumNums!
         </h1></a>
     </div>

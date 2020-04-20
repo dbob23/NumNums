@@ -24,13 +24,13 @@ import org.springframework.web.servlet.ModelAndView;
             User user = userService.findUserByEmail(auth.getName());
             if (user != null) {
                 modelAndView.addObject("user", "Welcome,  " + user.getUsername());
-                modelAndView.addObject("title", "Home");
+                modelAndView.addObject("title", "NumNums!Home");
                 modelAndView.addObject("restaurants", user.getRestaurants());
                 modelAndView.setViewName("admin/home");
             } else {
                 modelAndView.addObject("failMessage", "Email or Password invalid, please verify");
                 modelAndView.addObject("logoutMessage","You have been logged out");
-                modelAndView.addObject("title", "Log In");
+                modelAndView.addObject("title", "NumNums! Log In");
                 modelAndView.setViewName("login/login");
             }
 

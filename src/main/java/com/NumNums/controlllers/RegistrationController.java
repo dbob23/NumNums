@@ -25,7 +25,7 @@ public class RegistrationController {
 
     @RequestMapping(value="NumNums/registration", method = RequestMethod.GET)
         public String displayRegistrationForm(Model model) {
-            model.addAttribute("title", "Register");
+            model.addAttribute("title", "NumNums! Register");
             model.addAttribute(new User());
             return "login/registration";
         }
@@ -33,19 +33,19 @@ public class RegistrationController {
     @RequestMapping(value="NumNums/registration", method = RequestMethod.POST)
     public String processRegisterationForm(@ModelAttribute("user") @Valid User user, Errors errors, Model model) {
         if (errors.hasErrors()) {
-            model.addAttribute("title", "Register");
+            model.addAttribute("title", "NumNums! Register");
             return "login/registration";
         }
 
         User userExists = userService.findUserByEmail(user.getEmail());
         if (userExists != null) {
-            model.addAttribute("title", "Register");
+            model.addAttribute("title", "NumNums! Register");
             model.addAttribute("error", "There is already a user with the email provided.");
             return "login/registration";
         }
 
         userService.saveUser(user);
-        model.addAttribute("title", "Log In");
+        model.addAttribute("title", "NumNums! Log In");
         model.addAttribute("user", user);
         model.addAttribute("registeredMessage", "You have successfully created a new user! Please log in.");
         return "login/login";

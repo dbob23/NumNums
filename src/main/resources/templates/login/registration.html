@@ -21,7 +21,7 @@
     <div class="container">
             <ul class="nav navbar-nav">
                 <li th:if="${home}"><a href="/NumNums/login">home</a></li>
-                <li><a href="/NumNums">search</a></li>
+                <li><a href="/NumNums/search">search</a></li>
                 <li th:unless="${home}"><a href="/NumNums/login">login</a></li>
                 <li th:if="${home}" ><a href="/NumNums/logout">logout</a></li>
                 <li th:if="${home}" ><a href="/NumNums/add">add a restaurant</a></li>
@@ -42,7 +42,7 @@
     <!--   You can change the black color for the filter with those colors: blue, green, red, orange       -->
 
     <div class="container">
-        <a href="/NumNums"><h1 class="logo cursive">
+        <a href="/NumNums/search"><h1 class="logo cursive">
             NumNums!
         </h1></a>
     </div>

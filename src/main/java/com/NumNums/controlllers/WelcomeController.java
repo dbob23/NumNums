@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class AboutController {
-
+@RequestMapping("NumNums")
+public class WelcomeController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value="NumNums/about", method = RequestMethod.GET)
-    public String displayAboutPage(Model model) {
+    @RequestMapping(value="", method = RequestMethod.GET)
+    public String ddisplayWelcomePage(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
 
@@ -26,7 +26,9 @@ public class AboutController {
 
         }
 
-        model.addAttribute("title", "About NumNums!");
-        return "about/about";
+        model.addAttribute("title", "Welcome to NumNums!");
+        return "login/welcome";
     }
+
+
 }
