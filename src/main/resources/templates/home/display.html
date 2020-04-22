@@ -7,7 +7,7 @@
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
 
-    <title th:text="${title}">NumNums! Results</title>
+    <title th:text="${title}">NumNums! Search Results</title>
 
     <link th:href="@{/css/bootstrap.css}" rel="stylesheet" />
     <link th:href="@{/css/styles.css}" rel="stylesheet" />
@@ -27,7 +27,6 @@
                     <li th:if="${home}" ><a href="/NumNums/logout">logout</a></li>
                     <li th:if="${home}" ><a href="/NumNums/add">add a restaurant</a></li>
                     <li><a href="/NumNums">search</a></li>
-                    <li th:if="${home}"><a href="/NumNums/login">home</a></li>
                     <li><a href="/NumNums/about">about</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -45,7 +44,7 @@
         <!--   You can change the black color for the filter with those colors: blue, green, red, orange       -->
 
         <div class="container">
-            <a href="/NumNums"><h1 class="logo cursive">NumNums!</h1></a>
+            <a href="/NumNums/search"><h1 class="logo cursive">NumNums!</h1></a>
         </div>
         <div class="container">
             <h4 class="logo">We'll help you find something good to eat.</h4>

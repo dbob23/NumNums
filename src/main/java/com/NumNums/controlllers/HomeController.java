@@ -127,7 +127,7 @@ public class HomeController {
 //            System.out.println("Lng = " + location.get("lng"));
         } catch (Exception e) {
         } finally {
-            model.addAttribute("title", "NumNums! Results");
+            model.addAttribute("title", "NumNums! Search Results");
 
 //          Set parameters for Query
             BigDecimal latitude = aSearch.getLatitude();
