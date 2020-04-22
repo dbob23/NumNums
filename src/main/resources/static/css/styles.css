@@ -183,6 +183,9 @@ background:transparent;
 .btn:hover{
     background-color: rgba(0,0,0,.0);
     opacity: 1;
+    color: #33a6cc;
+    border-color: #33a6cc;
+    }
 }
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary {
     color: #1D62F0;
@@ -899,6 +902,7 @@ a{
 #map {
    height: 250px;
    width:400px;
+   color: #000000;
 }
 .box{
    float:left;
@@ -914,3 +918,4 @@ a{
 #addPanel{
    left:-50px;
 }
+
