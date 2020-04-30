@@ -21,12 +21,8 @@
             <div class="container">
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li th:if="${home}"><a href="/NumNums/login">home</a></li>
                         <li><a href="/NumNums/search">search</a></li>
-                        <li th:unless="${home}"><a href="/NumNums/registration">register</a></li>
-                        <li th:unless="${home}"><a href="/NumNums/login">login</a></li>
-                        <li th:if="${home}" ><a href="/NumNums/logout">logout</a></li>
-                        <li th:if="${home}" ><a href="/NumNums/add">add a restaurant</a></li>
+                        <li><a href="/NumNums/login">home</a></li>
                         <li><a href="/NumNums/about">about</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
@@ -35,6 +31,10 @@
                                 You are logged in!
                             </a>
                         </li>
+                        <li th:unless="${home}"><a href="/NumNums/registration">register</a></li>
+                        <li th:unless="${home}"><a href="/NumNums/login">login</a></li>
+                        <li th:if="${home}" ><a href="/NumNums/logout">logout</a></li>
+                        <li th:if="${home}" ><a href="/NumNums/add">add a restaurant</a></li>
                     </ul>
                 </div>
             </div>

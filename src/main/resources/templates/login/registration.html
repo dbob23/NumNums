@@ -19,12 +19,10 @@
     <body>
         <nav class="navbar navbar-transparent navbar-static-top" id="regNav" role="navigation">
             <div class="container">
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li th:if="${home}"><a href="/NumNums/login">home</a></li>
                         <li><a href="/NumNums/search">search</a></li>
-                        <li th:unless="${home}"><a href="/NumNums/login">login</a></li>
-                        <li th:if="${home}" ><a href="/NumNums/logout">logout</a></li>
-                        <li th:if="${home}" ><a href="/NumNums/add">add a restaurant</a></li>
+                        <li><a href="/NumNums/login">home</a></li>
                         <li><a href="/NumNums/about">about</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
@@ -33,7 +31,11 @@
                                 You are logged in!
                             </a>
                         </li>
+                        <li th:if="${home}" ><a href="/NumNums/add">add a restaurant</a></li>
+                        <li th:unless="${home}"><a href="/NumNums/login">login</a></li>
+                        <li th:if="${home}" ><a href="/NumNums/logout">logout</a></li>
                     </ul>
+                </div>
             </div>
         </nav>
         <div class="main" style="background-image: url('https://images.unsplash.com/photo-1548626995-d16b6a752c97?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60')">
@@ -42,53 +44,53 @@
             <!--   You can change the black color for the filter with those colors: blue, green, red, orange       -->
 
             <div class="container">
-                <a href="/NumNums/search"><h1 class="logo cursive">
-                    NumNums!
-                </h1></a>
+                <a href="/NumNums/search"><h1 class="logo cursive">NumNums!</h1></a>
             </div>
             <div class="container">
                 <h4 class="logo">We'll help you find something good to eat.</h4>
             </div>
             <div class="content">
-                <div class="row">
-                    <div class="col-sm-6 col-md-offset-2">
-                        <form th:action="@{/NumNums/login}" method="get">
-                            <button class="btn btn-lg btn-block" type="Submit">Already have an account? Log in here.</button>
-                        </form>
-                    </div>
-                </div>
-                <div class="container">
+                <div class="subscribe">
                     <div class="row">
-                        <div class="col-md-6 col-md-offset-3">
-                            <form autocomplete="off"  th:action="@{/NumNums/registration}"
-                                 th:object="${user}" method="post" class="form-horizontal"
-                                 role="form">
-                                 <h3>Registration Form</h3>
-                                 <div class="form-group">
-                                     <div class="col-sm-9">
-                                         <input type="text" th:field="*{username}" placeholder="Name" class="form-control" />
-                                         <span class="error" th:errors="*{username}"></span>
-                                     </div>
-                                 </div>
-                                <div class="form-group">
-                                    <div class="col-sm-9">
-                                        <input type="text" th:field="*{email}" placeholder="Email" class="form-control" />
-                                        <span class="error" th:errors="*{email}"></span>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-sm-9">
-                                        <input type="password" th:field="*{password}" placeholder="Password" class="form-control" />
-                                        <span class="error" th:errors="*{password}"></span>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-sm-9">
-                                        <button type="submit" class="btn btn-lg btn-primary btn-block">Register</button>
-                                    </div>
-                                </div>
-                                <div class=error th:text="${error}"></div>
+                        <div class="col-sm-6 col-md-offset-2">
+                            <form th:action="@{/NumNums/login}" method="get">
+                                <button class="btn btn-lg btn-block" type="Submit">Already have an account? Log in here.</button>
                             </form>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6 col-md-offset-3">
+                                <form autocomplete="off"  th:action="@{/NumNums/registration}"
+                                     th:object="${user}" method="post" class="form-horizontal"
+                                     role="form">
+                                     <h3>Registration Form</h3>
+                                     <div class="form-group">
+                                         <div class="col-sm-9">
+                                             <input type="text" th:field="*{username}" placeholder="Name" class="form-control" />
+                                             <span class="error" th:errors="*{username}"></span>
+                                         </div>
+                                     </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-9">
+                                            <input type="text" th:field="*{email}" placeholder="Email" class="form-control" />
+                                            <span class="error" th:errors="*{email}"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-9">
+                                            <input type="password" th:field="*{password}" placeholder="Password" class="form-control" />
+                                            <span class="error" th:errors="*{password}"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-9">
+                                            <button type="submit" class="btn btn-lg btn-primary btn-block">Register</button>
+                                        </div>
+                                    </div>
+                                    <div class=error th:text="${error}"></div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -21,11 +21,8 @@
             <div class="container">
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li th:if="${home}"><a href="/NumNums/login">home</a></li>
-                        <li th:unless="${home}"><a href="/NumNums/registration">register</a></li>
-                        <li th:unless="${home}"><a href="/NumNums/login">login</a></li>
-                        <li th:if="${home}" ><a href="/NumNums/logout">logout</a></li>
-                        <li th:if="${home}" ><a href="/NumNums/add">add a restaurant</a></li>
+                        <li><a href="/NumNums/search">search</a></li>
+                        <li><a href="/NumNums/login">home</a></li>
                         <li><a href="/NumNums/about">about</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
@@ -34,6 +31,10 @@
                                 You are logged in!
                             </a>
                         </li>
+                        <li th:unless="${home}"><a href="/NumNums/registration">register</a></li>
+                        <li th:unless="${home}"><a href="/NumNums/login">login</a></li>
+                        <li th:if="${home}" ><a href="/NumNums/logout">logout</a></li>
+                        <li th:if="${home}" ><a href="/NumNums/add">add a restaurant</a></li>
                     </ul>
                 </div>
             </div>
@@ -119,8 +120,10 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <button type="submit"  id="submit" class="btn  btn-lg btn-fill btn-md"><h5>Search</h5></button>
+                        <div class="row">
+                            <div class="col-sm-6 col-md-offset-2">
+                            <button type="submit"  id="submit" class="btn btn-lg btn-primary btn-block"><h5>Search</h5></button>
+                            </div>
                         </div>
                     </form>
                 </div>
