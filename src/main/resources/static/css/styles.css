@@ -689,7 +689,7 @@ box-shadow:none !important;
     font-weight: 100;
     font-size: 90px;
     color:#E7E5E4;
-    margin-top: 75px;
+    margin-top: 45px;
 }
 .main .content{
     position: relative;
@@ -714,12 +714,12 @@ box-shadow:none !important;
     color:#E7E5E4;
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.33);
     text-align: center;
-    margin: 60px;
+    margin-top: 10px;
 }
 .main .subscribe .info-text{
     font-family: 'Livvic', sans-serif;
     font-size: 18px;
-    margin: 30px;
+    margin-top: 10px;
     color:#E7E5E4;
 }
 .footer{
@@ -765,12 +765,9 @@ div.form-control{
     position: absolute;
 }
 #submit{
-    position:relative;
-
     border:1.5px solid ;
     border-radius:4px;
     position:relative;
-
     background-color:;
     opacity: 0.8;
     height:77px;
@@ -804,8 +801,7 @@ div.panel{
     padding: 10px 10px 10px 10px;
     height: 77px;
     position:relative;
-    top:-5px;
-    left:px;
+    text-align:center;
     font-family: 'Livvic', sans-serif;
     font-weight:500;
     font-size:16px;
@@ -913,8 +909,30 @@ a{
 }
 #regNav{
    top:-50px;
+   left:10px;
 }
-#addPanel{
-   left:-50px;
+.aboutNav{
+   left:9px;
 }
-
+input[type=checkbox] {
+   transform: scale(1.5);
+}
+.addButton{
+    width: 300px;
+      margin-left: 300px ;
+      display: block;
+      text-align:center;
+}
+#searchPanel{
+    top:-5px;
+    left:px;
+}
+#welcomeLogo{
+    font-size: 160px;
+}
+.aButton{
+    width: 300px;
+      margin-left: 300px ;
+      display: inline-block;
+      text-align:center;
+}
