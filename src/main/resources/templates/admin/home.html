@@ -17,7 +17,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Livvic:ital,wght@1,300&display=swap" rel="stylesheet">
     </head>
     <body>
-        <nav class="navbar navbar-transparent navbar-static-top" role="navigation">
+        <nav class="navbar navbar-transparent navbar-static-top" id="aboutNav"  role="navigation">
             <div class="container">
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
@@ -26,7 +26,7 @@
                         <li><a href="/NumNums/about">about</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/NumNums/login">You are logged in!</a></li>
+                        <li><a href="/NumNums/login"><b th:text="${user}"></b></a></li>
                         <li><a href="/NumNums/logout">logout</a></li>
                         <li><a href="/NumNums/add">add a restaurant</a></li>
                     </ul>
@@ -48,15 +48,13 @@
             </div>
             <div class="content">
                 <div class="subscribe">
-                    <div>
-                        <p th:text="${user}"></p>
-                    </div>
-                    <div>
-                        <b>You are logged in!</b>
-                    </div>
-                    <br/>
-                    <div th:if="${restaurants} and ${restaurants.size()}" >
-                        <p><b>These are the restaurants that you have added to NumNums!</b></p>
+                    <div class="message">
+                        <div>
+                            <b>You are logged in!</b>
+                        </div>
+                        <div th:if="${restaurants} and ${restaurants.size()}" >
+                            <p><b>These are the restaurants that you have added to NumNums!</b></p>
+                        </div>
                     </div>
                     <div class="container">
                         <p th:unless="${restaurants} and ${restaurants.size()}"><i>You have not yet added a restaurant to NumNums!</i></p>

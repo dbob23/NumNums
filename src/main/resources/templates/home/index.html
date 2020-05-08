@@ -27,9 +27,7 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li th:if="${home}">
-                            <a href="/NumNums/login">
-                                You are logged in!
-                            </a>
+                            <a href="/NumNums/login"><b th:text="${user}"></b></a>
                         </li>
                         <li th:unless="${home}"><a href="/NumNums/registration">register</a></li>
                         <li th:unless="${home}"><a href="/NumNums/login">login</a></li>
@@ -59,7 +57,7 @@
                             </label>
                             <ul>
                                 <label class="mx-0">
-                                    <div class="panel">
+                                    <div class="panel" id="searchPanel">
                                         <label class="ml-5"><input class="form-control transparent" type="checkbox" name="glutenFree" th:field="*{glutenFree}" value="true"/>Gluten-Free</label>
                                         <label class="mx-2"><input class="form-control transparent" type="checkbox" name="lactoseFree" th:field="*{lactoseFree}" value="true"/>Lactose-Free</label>
                                         <label class="mx-2"><input class="form-control transparent" type="checkbox" name="vegan" th:field="*{vegan}" value="true"/>Vegan</label>
@@ -121,7 +119,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-6 col-md-offset-2">
+                            <div class="col-sm-3 col-md-offset-3">
                             <button type="submit"  id="submit" class="btn btn-lg btn-primary btn-block"><h5>Search</h5></button>
                             </div>
                         </div>

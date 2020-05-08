@@ -37,6 +37,12 @@ public class RegistrationController {
             return "login/registration";
         }
 
+        if ( ! user.getVerifyPassword().equals(user.getPassword()) ) {
+            model.addAttribute("title", "NumNums! Register");
+            model.addAttribute("verifyError", "Passwords must match.");
+            return "login/registration";
+        }
+
         User userExists = userService.findUserByEmail(user.getEmail());
         if (userExists != null) {
             model.addAttribute("title", "NumNums! Register");

@@ -37,6 +37,7 @@ public class User {
     @NotEmpty(message = "Please provide your password.")
     private String password;
 
+    private String verifyPassword;
 
     @Column(name = "active")
     private int active;
@@ -49,13 +50,14 @@ public class User {
     public User() {
     }
 
-    public User(int id, List<Restaurant> restaurants, String username, String password, String email, Set roles) {
+    public User(int id, List<Restaurant> restaurants, String username, String password, String email, String verifyPassword, Set roles) {
         this.id = id;
         this.restaurants = restaurants;
         this.username = username;
         this.password = password;
         this.email = email;
         this.active = 0;
+        this.verifyPassword = verifyPassword;
         this.roles = roles;
 
     }
@@ -116,6 +118,10 @@ public class User {
     public void addRestaurant(Restaurant restaurant){
         this.restaurants.add(restaurant);
     }
+
+    public String getVerifyPassword() { return verifyPassword; }
+
+    public void setVerifyPassword(String verifyPassword) { this.verifyPassword = verifyPassword; }
 
     @Override
     public String toString() {
