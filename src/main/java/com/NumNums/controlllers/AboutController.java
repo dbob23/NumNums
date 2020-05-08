@@ -23,6 +23,7 @@ public class AboutController {
 
         if (user!=null) {
             model.addAttribute("home", "/NumNums/login"  );
+            model.addAttribute("user", "Welcome, " + user.getUsername());
 
         }
 

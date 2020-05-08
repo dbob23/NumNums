@@ -27,7 +27,7 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li th:if="${home}">
-                            <a href="/NumNums/login">You are logged in</a>
+                            <a href="/NumNums/login"><b th:text="${user}"></b></a>
                         </li>
                         <li th:unless="${home}"><a href="/NumNums/registration">register</a></li>
                         <li th:unless="${home}"><a href="/NumNums/login">login</a></li>

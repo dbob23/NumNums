@@ -58,6 +58,7 @@ public class HomeController {
         User user = userService.findUserByEmail(auth.getName());
         if (user!=null) {
             model.addAttribute("home", "/NumNums/login"  );
+            model.addAttribute("user", "Welcome, " + user.getUsername());
         }
         if (errors.hasErrors()) {
             model.addAttribute("title", "NumNums! Search");
@@ -128,6 +129,7 @@ public class HomeController {
         } catch (Exception e) {
         } finally {
             model.addAttribute("title", "NumNums! Search Results");
+            model.addAttribute("user", "Welcome, " + user.getUsername());
 
 //          Set parameters for Query
             BigDecimal latitude = aSearch.getLatitude();

@@ -23,6 +23,7 @@ public class WelcomeController {
 
         if (user!=null) {
             model.addAttribute("home", "/NumNums/login"  );
+            model.addAttribute("user", "Welcome, " + user.getUsername());
 
         }
 
