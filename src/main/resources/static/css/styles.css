@@ -679,9 +679,9 @@ box-shadow:none !important;
     position: relative;
     text-align: center;
     text-shadow: 0 0 10px rgba(0, 0, 0, 0.33);
-    margin-top: -75px;
+    margin-top: -20px;
     z-index: 3;
-    margin-bottom: 75px;
+    margin-bottom: px;
 }
 .main .logo.cursive{
     /*font-family: 'Grand Hotel',cursive;*/
@@ -931,8 +931,13 @@ input[type=checkbox] {
     font-size: 160px;
 }
 .aButton{
-    width: 300px;
-      margin-left: 300px ;
-      display: inline-block;
-      text-align:center;
+     width: 300px;
+       margin-left: 300px ;
+       display: inline-block;
+       text-align:center;
+       float:left;
+ }
+.message{
+    text-align:center;
+    margin-top:-10px;
 }
