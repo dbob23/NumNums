@@ -26,7 +26,7 @@
                         <li><a href="/NumNums/about">about</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li th:if="${home}"><a href="/NumNums/login"><b th:text="${user}"></b></a></li>
+<!--                        <li th:if="${home}"><a href="/NumNums/login"><b th:text="${user}"></b></a></li>-->
                         <li th:unless="${home}"><a href="/NumNums/registration">register</a></li>
                     </ul>
                 </div>
@@ -53,11 +53,11 @@
                     <p th:text="${logoutMessage}"></p>
                 </div>
                 <div class="container">
-                    <div align="center">
-                        <p th:text="${registeredMessage}"></p>
-                    </div>
+<!--                    <div align="center">-->
+<!--                        <p th:text="${registeredMessage}"></p>-->
+<!--                    </div>-->
                     <div class="col-md-6 col-md-offset-3">
-                        <form th:action="@{/NumNums/login}" method="POST"  class="form-signin">
+                        <form th:action="@{/NumNums/login}" method="POST"  class="form-horizontal">
                             <h3 class="form-signin-heading" th:text="Welcome"></h3>
                             <div class="form-group">
                                 <div class="col-sm-9">

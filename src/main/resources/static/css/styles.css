@@ -902,7 +902,7 @@ a{
 }
 .box{
    float:left;
-   padding:30px;
+   padding:15px;
 }
 #table{
    width: 610px;
@@ -919,9 +919,9 @@ input[type=checkbox] {
 }
 .addButton{
     width: 300px;
-      margin-left: 300px ;
-      display: block;
-      text-align:center;
+    margin-left: 350px ;
+    display: block;
+    text-align:center;
 }
 #searchPanel{
     top:-5px;
@@ -931,13 +931,24 @@ input[type=checkbox] {
     font-size: 160px;
 }
 .aButton{
-     width: 300px;
-       margin-left: 300px ;
-       display: inline-block;
-       text-align:center;
-       float:left;
+    width: 300px;
+    margin-left: 150px ;
+    display: inline-block;
+    text-align:center;
+    float:left;
  }
 .message{
     text-align:center;
     margin-top:-10px;
+}
+.changesButton{
+    top: 20px;
+    margin-right:-150px;
+}
+
+#regForm{
+   left:70px;
+}
+#sbmtBtn{
+    left:40px;
 }

@@ -26,7 +26,7 @@
                         <li><a href="/NumNums/about">about</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/NumNums/login"><b th:text="${user}"></b></a></li>
+<!--                        <li><a href="/NumNums/login"><b th:text="${user}"></b></a></li>-->
                         <li><a href="/NumNums/logout">logout</a></li>
                     </ul>
                 </div>
@@ -40,70 +40,75 @@
             <div class="container">
                 <a href="/NumNums/search"><h1 class="logo cursive">NumNums!</h1></a>
             </div>
-            <div class="container">
-                <h4 class="logo">We'll help you find something good to eat.</h4>
-            </div>
+<!--            <div class="container">-->
+<!--                <h4 class="logo">We'll help you find something good to eat.</h4>-->
+<!--            </div>-->
             <div class="content">
                 <div class="subscribe">
-                    <div>
-                        <p th:text="${user}"></p>
-                    </div>
-                    <div>
-                        <b>You have chosen to add this restaurant to NumNums!.</b>
-                    </div>
-                    <form th:action="@{/NumNums/confirmAdd}" method="POST"  class="form-signin" th:object="${restaurant}">
-                        <div class="container">
-                            <table class="table">
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Address</th>
-                                    <th>Gluten Free</th>
-                                    <th>Lactose Free</th>
-                                    <th>Vegan</th>
-                                    <th>Vegetarian</th>
-                                    <th>Non-Vegetarian</th>
-                                    <th>Website</th>
-                                </tr>
-                                <tr>
-                                    <td th:text="${restaurant.restaurantName}"></td>
-                                    <td th:text="${restaurant.streetAddress} + ', ' + ${restaurant.city} + ', ' + ${restaurant.state} + ', ' + ${restaurant.zipCode}">
-                                    <td><div th:if="${restaurant.glutenFree}">Yes</div><div th:if="${!restaurant.glutenFree}">No</div></td>
-                                    <td><div th:if="${restaurant.lactoseFree}">Yes</div><div th:if="${!restaurant.lactoseFree}">No</div></td>
-                                    <td><div th:if="${restaurant.vegan}">Yes</div><div th:if="${!restaurant.vegan}">No</div></td>
-                                    <td><div th:if="${restaurant.vegetarian}">Yes</div><div th:if="${!restaurant.vegetarian}">No</div></td>
-                                    <td><div th:if="${restaurant.nonVegetarian}">Yes</div><div th:if="${!restaurant.nonVegetarian}">No</div></td>
-                                    <td><a target="_blank" rel="noopener noreferrer" th:href="@{${restaurant.webAddress}}"><p th:text="${restaurant.webAddress}"></p></a></td>
-                                </tr>
-                                <input type="hidden" id="restaurantName" name="restaurantName" th:value="${restaurant.restaurantName}" th:field="*{restaurantName}"/>
-                                <input type="hidden" id="streetAddress" name="streetAddress" th:value="${restaurant.StreetAddress}" th:field="*{streetAddress}"/>
-                                <input type="hidden" id="city" name="city" th:value="${restaurant.city}" th:field="*{city}"/>
-                                <input type="hidden" id="state" name="state" th:value="${restaurant.state}" th:field="*{state}"/>
-                                <input type="hidden" id="zipCode" name="zipCode" th:value="${restaurant.zipCode}" th:field="*{zipCode}"/>
-                                <input type="hidden" id="glutenFree" name="glutenFree" th:value="${restaurant.glutenFree}" th:field="*{glutenFree}"/>
-                                <input type="hidden" id="lactoseFree" name="lactoseFree" th:value="${restaurant.lactoseFree}" th:field="*{lactoseFree}"/>
-                                <input type="hidden" id="vegan" name="vegan" th:value="${restaurant.vegan}" th:field="*{vegan}"/>
-                                <input type="hidden" id="vegetarian" name="vegetarian" th:value="${restaurant.vegetarian}" th:field="*{vegetarian}"/>
-                                <input type="hidden" id="nonVegetarian" name="nonVegetarian" th:value="${restaurant.nonVegetarian}" th:field="*{nonVegetarian}"/>
-                                <input type="hidden" id="webAddress" name="webAddress" th:value="${restaurant.webAddress}" th:field="*{webAddress}"/>
-
-                            </table>
+                    <div class="message">
+                        <div>
+                            <b>You are logged in!</b>
                         </div>
                         <div>
-                            <p th:text="${message}"></p>
+                            <p th:text="${user}"></p>
                         </div>
-                        <div class="form-group">
-                            <div class="col-sm-9">
-                                <button class="btn btn-lg btn-primary btn-block" name="Add" value="Add" type="Submit">Add This Restaurant</button>
-                            </div><br>
+                        <div>
+                            <b><p>You have chosen to add this restaurant to NumNums!.</p></b>
                         </div>
-                    </form>
-                    <form th:action="@{/NumNums/login}" method="get">
-                        <div class="form-group">
-                            <div class="col-sm-9 addButton">
-                                <button class="btn btn-lg btn-primary btn-block" type="Submit">Cancel</button>
+                        <form th:action="@{/NumNums/confirmAdd}" method="POST"  class="form-signin" th:object="${restaurant}">
+                            <div class="container">
+                                <table class="table">
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Address</th>
+                                        <th>Gluten Free</th>
+                                        <th>Lactose Free</th>
+                                        <th>Vegan</th>
+                                        <th>Vegetarian</th>
+                                        <th>Non-Vegetarian</th>
+                                        <th>Website</th>
+                                    </tr>
+                                    <tr>
+                                        <td th:text="${restaurant.restaurantName}"></td>
+                                        <td th:text="${restaurant.streetAddress} + ', ' + ${restaurant.city} + ', ' + ${restaurant.state} + ', ' + ${restaurant.zipCode}">
+                                        <td><div th:if="${restaurant.glutenFree}">Yes</div><div th:if="${!restaurant.glutenFree}">No</div></td>
+                                        <td><div th:if="${restaurant.lactoseFree}">Yes</div><div th:if="${!restaurant.lactoseFree}">No</div></td>
+                                        <td><div th:if="${restaurant.vegan}">Yes</div><div th:if="${!restaurant.vegan}">No</div></td>
+                                        <td><div th:if="${restaurant.vegetarian}">Yes</div><div th:if="${!restaurant.vegetarian}">No</div></td>
+                                        <td><div th:if="${restaurant.nonVegetarian}">Yes</div><div th:if="${!restaurant.nonVegetarian}">No</div></td>
+                                        <td><a target="_blank" rel="noopener noreferrer" th:href="@{${restaurant.webAddress}}"><p th:text="${restaurant.webAddress}"></p></a></td>
+                                    </tr>
+                                    <input type="hidden" id="restaurantName" name="restaurantName" th:value="${restaurant.restaurantName}" th:field="*{restaurantName}"/>
+                                    <input type="hidden" id="streetAddress" name="streetAddress" th:value="${restaurant.StreetAddress}" th:field="*{streetAddress}"/>
+                                    <input type="hidden" id="city" name="city" th:value="${restaurant.city}" th:field="*{city}"/>
+                                    <input type="hidden" id="state" name="state" th:value="${restaurant.state}" th:field="*{state}"/>
+                                    <input type="hidden" id="zipCode" name="zipCode" th:value="${restaurant.zipCode}" th:field="*{zipCode}"/>
+                                    <input type="hidden" id="glutenFree" name="glutenFree" th:value="${restaurant.glutenFree}" th:field="*{glutenFree}"/>
+                                    <input type="hidden" id="lactoseFree" name="lactoseFree" th:value="${restaurant.lactoseFree}" th:field="*{lactoseFree}"/>
+                                    <input type="hidden" id="vegan" name="vegan" th:value="${restaurant.vegan}" th:field="*{vegan}"/>
+                                    <input type="hidden" id="vegetarian" name="vegetarian" th:value="${restaurant.vegetarian}" th:field="*{vegetarian}"/>
+                                    <input type="hidden" id="nonVegetarian" name="nonVegetarian" th:value="${restaurant.nonVegetarian}" th:field="*{nonVegetarian}"/>
+                                    <input type="hidden" id="webAddress" name="webAddress" th:value="${restaurant.webAddress}" th:field="*{webAddress}"/>
+
+                                </table>
                             </div>
-                        </div>
-                    </form>
+    <!--                        <div class="message">-->
+    <!--                            <p th:text="${message}"></p>-->
+    <!--                        </div>-->
+                            <div class="row" >
+                                <div class="form-group changesButton">
+                                    <div class="col-md-3">
+                                        <button class="btn btn-lg btn-primary btn-block aButton" name="Add" value="Add" type="Submit">Add This Restaurant</button>
+                                    </div>
+                                </div>
+                                <div th:action="@{/NumNums/login}" method="get">
+                                    <div class="col-md-3">
+                                        <button class="btn btn-lg btn-primary btn-block aButton" type="Submit">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

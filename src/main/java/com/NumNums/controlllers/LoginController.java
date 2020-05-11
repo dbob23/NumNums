@@ -28,7 +28,7 @@ import org.springframework.web.servlet.ModelAndView;
                 modelAndView.addObject("restaurants", user.getRestaurants());
                 modelAndView.setViewName("admin/home");
             } else {
-                modelAndView.addObject("failMessage", "Email or Password invalid, please verify");
+                modelAndView.addObject("failMessage", "Email or Password is invalid");
                 modelAndView.addObject("logoutMessage","You have been logged out");
                 modelAndView.addObject("title", "NumNums! Log In");
                 modelAndView.setViewName("login/login");

@@ -27,7 +27,7 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <a href="/NumNums/login"><b th:text="${user}"></b></a>
+<!--                            <a href="/NumNums/login"><b th:text="${user}"></b></a>-->
                         </li>
                         <li><a href="/NumNums/logout">logout</a></li>
                     </ul>
@@ -39,147 +39,143 @@
 
             <!--   You can change the black color for the filter with those colors: blue, green, red, orange       -->
 
-            <div class="container">
-                <a href="/NumNums/search"><h1 class="logo cursive">NumNums!</h1></a>
-            </div>
-            <div class="container">
-                <h4 class="logo">We'll help you find something good to eat.</h4>
-            </div>
-            <div class="content">
-                <div class="subscribe">
-                    <div class="message">
-                        <b>You are logged in. This is the place to edit or update restaurant information.</b>
-                    </div>
-                    <form th:action="@{/NumNums/edit(id=${restaurant.id})}" method="POST"  class="form-signin" th:object="${restaurant}">
-                        <div class="container">
-                            <span class="error" th:text="${restaurantExistsMessage}"></span>
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <label th:for="restaurantName">Name of Restaurant</label>
-                                    <input type="text" id="restaurantName" name="restaurantName" th:field="*{restaurantName}" class="form-control" />
-                                    <span class="error" th:errors="*{restaurantName}"></span>
-                                </div>
-                                <div class="col-md-3">
-                                    <label th:for="webAddress">Restaurant Web Address</label>
-                                    <input type="text" id="webAddress" name="webAddress" placeholder="https//: " th:field="*{webAddress}" class="form-control" />
-                                    <span class="error" th:errors="*{webAddress}"></span>
-                                </div>
-                                <div class="col-md-3">
-                                    <label th:for="streetAddress">Restaurant Street Address</label>
-                                    <input type="text" id="streetAddress" name="streetAddress" th:field="*{streetAddress}" class="form-control" />
-                                    <span class="error" th:errors="*{streetAddress}"></span>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <label th:for="city">City</label>
-                                    <input type="text" id="city" name="city" th:field="*{city}" class="form-control" />
-                                    <span class="error" th:errors="*{city}"></span>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="dropdown">
-                                        <label th:for="state">State</label>
-                                        <select name="state" th:field="*{state}"  class="form-control">
-                                            <option value="AL">Alabama (AL)</option>
-                                            <option value="AK">Alaska (AK)</option>
-                                            <option value="AZ">Arizona (AZ)</option>
-                                            <option value="AR">Arkansas (AR)</option>
-                                            <option value="CA">California (CA)</option>
-                                            <option value="CO">Colorado (CO)</option>
-                                            <option value="CT">Connecticut (CT)</option>
-                                            <option value="DE">Delaware (DE)</option>
-                                            <option value="DC">District Of Columbia (DC)</option>
-                                            <option value="FL">Florida (FL)</option>
-                                            <option value="GA">Georgia (GA)</option>
-                                            <option value="HI">Hawaii (HI)</option>
-                                            <option value="ID">Idaho (ID)</option>
-                                            <option value="IL">Illinois (IL)</option>
-                                            <option value="IN">Indiana (IN)</option>
-                                            <option value="IA">Iowa (IA)</option>
-                                            <option value="KS">Kansas (KS)</option>
-                                            <option value="KY">Kentucky (KY)</option>
-                                            <option value="LA">Louisiana (LA)</option>
-                                            <option value="ME">Maine (ME)</option>
-                                            <option value="MD">Maryland (MD)</option>
-                                            <option value="MA">Massachusetts (MA)</option>
-                                            <option value="MI">Michigan (MI)</option>
-                                            <option value="MN">Minnesota (MN)</option>
-                                            <option value="MS">Mississippi (MS)</option>
-                                            <option value="MO">Missouri (MO)</option>
-                                            <option value="MT">Montana (MT)</option>
-                                            <option value="NE">Nebraska (NE)</option>
-                                            <option value="NV">Nevada (NV)</option>
-                                            <option value="NH">New Hampshire (NH)</option>
-                                            <option value="NJ">New Jersey (NJ)</option>
-                                            <option value="NM">New Mexico (NM)</option>
-                                            <option value="NY">New York (NY)</option>
-                                            <option value="NC">North Carolina (NC)</option>
-                                            <option value="ND">North Dakota (ND)</option>
-                                            <option value="OH">Ohio (OH)</option>
-                                            <option value="OK">Oklahoma (OK)</option>
-                                            <option value="OR">Oregon (OR)</option>
-                                            <option value="PA">Pennsylvania (PA)</option>
-                                            <option value="RI">Rhode Island (RI)</option>
-                                            <option value="SC">South Carolina (SC)</option>
-                                            <option value="SD">South Dakota (SD)</option>
-                                            <option value="TN">Tennessee (TN)</option>
-                                            <option value="TX">Texas (TX)</option>
-                                            <option value="UT">Utah (UT)</option>
-                                            <option value="VT">Vermont</option>
-                                            <option value="VA">Virginia</option>
-                                            <option value="WA">Washington</option>
-                                            <option value="WV">West Virginia</option>
-                                            <option value="WI">Wisconsin</option>
-                                            <option value="WY">Wyoming</option>
-                                        </select>
+                <div class="container">
+                    <a href="/NumNums/search"><h1 class="logo cursive">NumNums!</h1></a>
+                </div>
+    <!--            <div class="container">-->
+    <!--                <h4 class="logo">We'll help you find something good to eat.</h4>-->
+    <!--            </div>-->
+                <div class="content">
+                    <div class="subscribe">
+                        <div class="message">
+                            <b><p>Edit Restaurant Details</p></b>
+                        </div>
+                        <form th:action="@{/NumNums/edit(id=${restaurant.id})}" method="POST"  class="form-signin" th:object="${restaurant}">
+                            <div class="container">
+                                <span class="error" th:text="${restaurantExistsMessage}"></span>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label th:for="restaurantName">Name of Restaurant</label>
+                                        <input type="text" id="restaurantName" name="restaurantName" th:field="*{restaurantName}" class="form-control" />
+                                        <span class="error" th:errors="*{restaurantName}"></span>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label th:for="webAddress">Restaurant Web Address</label>
+                                        <input type="text" id="webAddress" name="webAddress" placeholder="https//: " th:field="*{webAddress}" class="form-control" />
+                                        <span class="error" th:errors="*{webAddress}"></span>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label th:for="streetAddress">Restaurant Street Address</label>
+                                        <input type="text" id="streetAddress" name="streetAddress" th:field="*{streetAddress}" class="form-control" />
+                                        <span class="error" th:errors="*{streetAddress}"></span>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <label th:for="zipCode">ZipCode</label>
-                                    <input type="text" id="zipCode" name="zipCode" th:field="*{zipCode}" class="form-control" />
-                                    <span class="error" th:errors="*{zipCode}"></span><br/>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label th:for="city">City</label>
+                                        <input type="text" id="city" name="city" th:field="*{city}" class="form-control" />
+                                        <span class="error" th:errors="*{city}"></span>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="dropdown">
+                                            <label th:for="state">State</label>
+                                            <select name="state" th:field="*{state}"  class="form-control">
+                                                <option value="AL">Alabama (AL)</option>
+                                                <option value="AK">Alaska (AK)</option>
+                                                <option value="AZ">Arizona (AZ)</option>
+                                                <option value="AR">Arkansas (AR)</option>
+                                                <option value="CA">California (CA)</option>
+                                                <option value="CO">Colorado (CO)</option>
+                                                <option value="CT">Connecticut (CT)</option>
+                                                <option value="DE">Delaware (DE)</option>
+                                                <option value="DC">District Of Columbia (DC)</option>
+                                                <option value="FL">Florida (FL)</option>
+                                                <option value="GA">Georgia (GA)</option>
+                                                <option value="HI">Hawaii (HI)</option>
+                                                <option value="ID">Idaho (ID)</option>
+                                                <option value="IL">Illinois (IL)</option>
+                                                <option value="IN">Indiana (IN)</option>
+                                                <option value="IA">Iowa (IA)</option>
+                                                <option value="KS">Kansas (KS)</option>
+                                                <option value="KY">Kentucky (KY)</option>
+                                                <option value="LA">Louisiana (LA)</option>
+                                                <option value="ME">Maine (ME)</option>
+                                                <option value="MD">Maryland (MD)</option>
+                                                <option value="MA">Massachusetts (MA)</option>
+                                                <option value="MI">Michigan (MI)</option>
+                                                <option value="MN">Minnesota (MN)</option>
+                                                <option value="MS">Mississippi (MS)</option>
+                                                <option value="MO">Missouri (MO)</option>
+                                                <option value="MT">Montana (MT)</option>
+                                                <option value="NE">Nebraska (NE)</option>
+                                                <option value="NV">Nevada (NV)</option>
+                                                <option value="NH">New Hampshire (NH)</option>
+                                                <option value="NJ">New Jersey (NJ)</option>
+                                                <option value="NM">New Mexico (NM)</option>
+                                                <option value="NY">New York (NY)</option>
+                                                <option value="NC">North Carolina (NC)</option>
+                                                <option value="ND">North Dakota (ND)</option>
+                                                <option value="OH">Ohio (OH)</option>
+                                                <option value="OK">Oklahoma (OK)</option>
+                                                <option value="OR">Oregon (OR)</option>
+                                                <option value="PA">Pennsylvania (PA)</option>
+                                                <option value="RI">Rhode Island (RI)</option>
+                                                <option value="SC">South Carolina (SC)</option>
+                                                <option value="SD">South Dakota (SD)</option>
+                                                <option value="TN">Tennessee (TN)</option>
+                                                <option value="TX">Texas (TX)</option>
+                                                <option value="UT">Utah (UT)</option>
+                                                <option value="VT">Vermont</option>
+                                                <option value="VA">Virginia</option>
+                                                <option value="WA">Washington</option>
+                                                <option value="WV">West Virginia</option>
+                                                <option value="WI">Wisconsin</option>
+                                                <option value="WY">Wyoming</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label th:for="zipCode">ZipCode</label>
+                                        <input type="text" id="zipCode" name="zipCode" th:field="*{zipCode}" class="form-control" />
+                                        <span class="error" th:errors="*{zipCode}"></span><br/>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <label id="you"><h5>You may check as many options as you like.</h5></label>
-                        <div class="row">
-                            <div class="col-md-2">
-                                <div class="panel">
-                                    <label><input class="form-control transparent" type="checkbox" name="glutenFree" th:field="*{glutenFree}" value="true"/>Gluten-Free</label>
+                            <label id="you"><h5>You may check as many options as you like.</h5></label>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div class="panel">
+                                        <label><input class="form-control transparent" type="checkbox" name="glutenFree" th:field="*{glutenFree}" value="true"/>Gluten-Free</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="panel">
+                                        <label ><input class="form-control transparent" type="checkbox" name="lactoseFree" th:field="*{lactoseFree}" value="true"/>Lactose-Free</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="panel">
+                                        <label ><input class="form-control transparent" type="checkbox" name="vegan" th:field="*{vegan}" value="true"/>Vegan</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="panel">
+                                        <label ><input class="form-control transparent" type="checkbox" name="vegetarian" th:field="*{vegetarian}" value="true" />Vegetarian</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="panel">
+                                        <label ><input class="form-control transparent" type="checkbox" name="nonVegetarian" th:field="*{nonVegetarian}" value="true"/>Non-Vegetarian</label>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-2">
-                                <div class="panel">
-                                    <label ><input class="form-control transparent" type="checkbox" name="lactoseFree" th:field="*{lactoseFree}" value="true"/>Lactose-Free</label>
+                            <div class="row" >
+                                <div class="form-group changesButton">
+                                    <div class="col-md-3">
+                                        <button class="btn btn-lg btn-primary btn-block aButton" name="Edit" value="Edit" type="Submit">Save Changes</button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="panel">
-                                    <label ><input class="form-control transparent" type="checkbox" name="vegan" th:field="*{vegan}" value="true"/>Vegan</label>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="panel">
-                                    <label ><input class="form-control transparent" type="checkbox" name="vegetarian" th:field="*{vegetarian}" value="true" />Vegetarian</label>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="panel">
-                                    <label ><input class="form-control transparent" type="checkbox" name="nonVegetarian" th:field="*{nonVegetarian}" value="true"/>Non-Vegetarian</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="container" >
-                        <div class="form-group">
-                            <div class="col-md-3">
-                                <button class="btn btn-lg btn-primary btn-block aButton" name="Edit" value="Edit" type="Submit">Save Changes</button>
-                            </div>
-                        </div>
-                        </div>
-                    </form>
-                    <form th:action="@{/NumNums/delete(id=${id})}" method="get">
-                        <div class="container">
-                            <div class="form-group">
+                            <div th:action="@{/NumNums/delete(id=${id})}" method="get">
                                 <div class="col-md-3">
                                     <a th:href="@{/NumNums/delete(id=${id})}" class="btn btn-lg btn-primary btn-block aButton" name="Delete" value="Delete" type="Submit">Delete This Restaurant</a>
                                 </div>

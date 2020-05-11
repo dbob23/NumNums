@@ -26,7 +26,7 @@
                         <li><a href="/NumNums/about">about</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/NumNums/login"><b th:text="${user}"></b></a></li>
+<!--                        <li><a href="/NumNums/login"><b th:text="${user}"></b></a></li>-->
                         <li><a href="/NumNums/logout">logout</a></li>
                     </ul>
                 </div>
@@ -45,11 +45,11 @@
             </div>
             <div class="content">
                 <div class="subscribe">
-                    <div>
-                        <p th:text="${user}"></p>
-                    </div>
-                    <div>
-                        <b>You have chosen to delete this restaurant from NumNums!.</b>
+<!--                    <div>-->
+<!--                        <p th:text="${user}"></p>-->
+<!--                    </div>-->
+                    <div class="message">
+                        <b><p>You have chosen to delete this restaurant from NumNums!</p></b>
                     </div>
                     <form th:action="@{/NumNums/delete(id=${restaurant.id})}" method="POST"  class="form-signin" th:object="${restaurant}">
                         <div class="container">
@@ -76,19 +76,19 @@
                                 </tr>
                             </table>
                         </div>
-                        <div>
-                            <p th:text="${message}"></p>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-9">
-                                <button class="btn btn-lg btn-primary btn-block addButton" name="Delete" value="Delete" type="Submit" >Delete this Restuarant</button>
-                            </div><br>
-                        </div>
-                    </form>
-                    <form th:action="@{/NumNums/login}" method="get">
-                        <div class="form-group">
-                            <div class="col-sm-9">
-                                <button class="btn btn-lg btn-primary btn-block addButton" type="Submit">Cancel</button>
+<!--                        <div class="message">-->
+<!--                            <p th:text="${message}"></p>-->
+<!--                        </div>-->
+                        <div class="row">
+                            <div class="form-group changesButton">
+                                <div class="col-md-3">
+                                    <button class="btn btn-lg btn-primary btn-block aButton" name="Delete" value="Delete" type="Submit" >Delete this Restuarant</button>
+                                </div>
+                            </div>
+                            <div th:action="@{/NumNums/login}" method="get">
+                                <div class="col-md-3">
+                                    <a th:href="@{/NumNums/login}" class="btn btn-lg btn-primary btn-block aButton" type="Submit">Cancel</a>
+                                </div>
                             </div>
                         </div>
                     </form>
