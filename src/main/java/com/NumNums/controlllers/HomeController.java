@@ -129,7 +129,7 @@ public class HomeController {
         } catch (Exception e) {
         } finally {
             model.addAttribute("title", "NumNums! Search Results");
-            model.addAttribute("user", "Welcome, " + user.getUsername());
+            //model.addAttribute("user", "Welcome, " + user.getUsername());
 
 //          Set parameters for Query
             BigDecimal latitude = aSearch.getLatitude();

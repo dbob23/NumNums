@@ -337,12 +337,14 @@ background:transparent;
 /**    Select     **/
 
 select {
- background-color: rgba(0,0,0,0) !important ;
  box-shadow:none !important;
+ font-weight:600 !important;
 }
 option {
 background-color: rgba(0,0,0,0) !important ;
 box-shadow:none !important;
+font-weight:600 !important;
+
 }
 
 
@@ -647,7 +649,7 @@ box-shadow:none !important;
 }
 
 .logo-container{
-    left: 50px;
+    left: 30px;
     position: absolute;
     top: 20px;
     z-index: 3;
@@ -700,7 +702,7 @@ box-shadow:none !important;
 
 /*    padding-top:50px;*/
     padding-right:50px;
-    padding-left:50px;
+    padding-left:200px;
 
 
 }
@@ -812,16 +814,14 @@ div.panel{
     position:relative;
     top:5px;
     height:77px;
-    opacity:0.8;
+    opacity:15;
     border:1.5px solid #E3E3E3;
     border-width: 1.5px;
-    border-opacity:2;
     border-radius: 4px;
     background-color:transparent;
     font-family: 'Livvic', sans-serif;
-    font-weight:500;
+    font-weight:100;
     font-size:16px;
-    text-opacity:15;
     margin-bottom:60px;
 }
 
@@ -915,7 +915,7 @@ a{
    left:9px;
 }
 input[type=checkbox] {
-   transform: scale(1.5);
+   transform: scale(.75);
 }
 .addButton{
     width: 300px;
@@ -950,5 +950,5 @@ input[type=checkbox] {
    left:70px;
 }
 #sbmtBtn{
-    left:40px;
+    left:20px;
 }
